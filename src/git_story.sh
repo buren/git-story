@@ -29,6 +29,10 @@ function __gs_functions {
     __gs-diff
   elif [ $1 == "switchto" ]; then
     __gs-switchto "$2"
+  elif [ $1 == "history" ]; then
+  __gs-history "$2"
+elif [ $1 == "show" ] || [ $1 == "last" ]; then
+  __gs-show "$2"
   else
     echo "Unknown command '$1'"
     __gs-help
@@ -52,6 +56,10 @@ function __gs-help {
     __gs-diff-help
   elif [ $1 == "switchto" ]; then
     __gs-switchto-help
+  elif [ $1 == "history" ]; then
+    __gs-history-help "$2"
+  elif [ $1 == "show" ] || [ $1 == "last" ]; then
+    __gs-show-help "$2"
   else
     echo "Unknown command: '$1'"
     echo ""
@@ -157,6 +165,14 @@ function __gs-switchto {
   git checkout $1
 }
 
+function __gs-history {
+  git log $1
+}
+
+function __gs-show {
+  git show $1
+}
+
 ################
 #     HELP     #
 ################
@@ -241,4 +257,18 @@ function __gs-switchto-help {
   echo "usage: "
   echo -e "\t gs switchto branch_name"
   echo "change the current workspace to branch_name"
+}
+
+function __gs-history-help {
+  echo "usage:"
+  echo -e "\t gs log <branch_name>"
+  echo "if no <branch_name> is provided the current branch history will be shown"
+}
+
+function __gs-show-help {
+  echo "usage: "
+  echo -e "\t gs show <commit_sha>"
+  echo -e "'\t gs last <commit_sha>"
+  echo "if no <commit_sha> is provided the last commit in the current branch will be shown"
+  echo "last (is an alias)"
 }
