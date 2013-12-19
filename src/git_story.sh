@@ -5,7 +5,7 @@ git config --global color.ui auto
 ########
 
 function gs {
-  if   [ -z "$1" ]; then
+  if    [[ -z "$1" ]]; then
     __gs-help
   elif [[ $1 == "help" ]]; then
     __gs_functions "$2" "-help"
@@ -15,26 +15,28 @@ function gs {
 }
 
 function __gs_functions {
-  if   [ $1 == "dev" ]; then
+  if   [[ $1 == "dev" ]]; then
     __gs-dev "$2" "$3"
-  elif [ $1 == "update" ]; then
+  elif [[ $1 == "update" ]]; then
     __gs-update "$2"
-  elif [ $1 == "checkpoint" ]; then
+  elif [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
-  elif [ $1 == "done" ]; then
+  elif [[ $1 == "done" ]]; then
     __gs-ready "$2"
-  elif [ $1 == "release" ]; then
+  elif [[ $1 == "release" ]]; then
     __gs-release "$2"
-  elif [ $1 == "list" ]; then
+  elif [[ $1 == "list" ]]; then
     __gs-list-commands "$2"
-  elif [ $1 == "diff" ]; then
+  elif [[ $1 == "diff" ]]; then
     __gs-diff "$2"
-  elif [ $1 == "switchto" ]; then
+  elif [[ $1 == "switchto" ]]; then
     __gs-switchto "$2"
-  elif [ $1 == "history" ]; then
+  elif [[ $1 == "history" ]]; then
   __gs-history "$2"
-elif [ $1 == "show" ] || [ $1 == "last" ]; then
-  __gs-show "$2"
+  elif [[ $1 == "show" ]] || [[ $1 == "last" ]]; then
+    __gs-show "$2"
+  elif [[ $1 == "where" ]]; then
+  __gs-where "$2"
   else
     echo "Unknown command '$1'"
     __gs-help
@@ -247,6 +249,20 @@ function __gs-show {
     __gs-show-help
   else
     git show $1
+  fi
+}
+
+function __gs-where-help {
+  echo "usage: "
+  echo -e "\t gs where"
+  echo "prints the current branch"
+}
+
+function __gs-where {
+  if [[ $1 == "-help" ]]; then
+    __gs-where-help
+  else
+    git branch
   fi
 }
 
