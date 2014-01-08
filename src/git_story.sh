@@ -70,22 +70,21 @@ function __gs-dev {
 
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     __uncommitted-changes-message
-  else
-    base=$2
-    branch=${base:-master}
-    echo "Base branch: $branch"
-    git checkout $branch
-    if git show-ref --verify --quiet "refs/heads/$branch";then
-      echo "Updating $branch, from repository."
-      git pull origin $branch
-    fi
-    echo "Creating branch: $1"
-    git checkout -b $1
-    git branch
-    echo -e "You're now ready to implement your feature"
-    echo "Based of: $branch branch"
-    echo "Current branch $1"
+    return
   fi
+  base=$2
+  branch=${base:-master}
+  echo "Base branch: $branch"
+  git checkout $branch
+  gitremote=git show-ref --verify --quiet "refs/heads/$branch"
+  echo "Updating $branch, from repository."
+  git pull origin $branch
+  echo "Creating branch: $1"
+  git checkout -b $1
+  git branch
+  echo -e "You're now ready to implement your feature"
+  echo "Based of: $branch branch"
+  echo "Current branch $1"
 }
 
 function __gs-update-help {
