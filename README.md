@@ -41,31 +41,23 @@ comment and commit to the changes you've made.
 * Commit and sync with repository
 
         gs done <commit_message>
-comment and commit to the changes you've made and merge changes made on master. If no merge conflicts open the projects GitHub and make a pull request. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts"` . Then open GitHub and make a pull request.
-
+comment and commit to the changes you've made and merge changes made on master. If no merge conflicts open the projects GitHub and make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts"` . Then open GitHub and make a pull request `gs pull-request`.
 * Fetch and merge
 
         gs update
 fetch and merge from remote.
 Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.
-
-* ```gs list``` list all available git-story commands.
-
-* ```gs diff``` view all uncommitted changes.
-
-* ```gs switchto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed.
-
-* ```gs history``` view repository commit history.
-
 * ```gs pull-request``` opens the repository on GitHub. Aliased as `gs open`
-
+* ```gs where``` prints all branches and marks the current one with a *.
+* ```gs switchto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed.
+* ```gs diff``` view all uncommitted changes.
+* ```gs history``` view repository commit history.
+* ```gs list``` list all available git-story commands.
 * Show commited changes
 
         gs show
         gs show <sha>
 view the last commit in current branch or specified commit <sha>.
-
-* ```gs where``` prints all branches and marks the current one with a *.
 
 ## Caution
 Overides ```gs``` (Ghostscript) command on Linux.
