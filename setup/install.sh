@@ -1,5 +1,9 @@
 if [[ ! -d ~/.git-story/ ]]; then
   cd ~ && git clone https://github.com/buren/git-story.git && mv git-story .git-story
+else
+  echo "git-story already installed"
+  echo "Exiting"
+  exit 0
 fi
 
 if [[ -f ~/.bash_profile ]]; then
@@ -16,4 +20,4 @@ else
   echo -e "\t source ~/.git-story/setup/import.sh"
 fi
 echo "Importing to current shell"
-source ~/.git-story/setup/import.sh
+source ~/.git-story/setup/import.sh # Currently yields error
