@@ -9,7 +9,6 @@ Simplified branch strategy, based on [GitHub Flow](http://scottchacon.com/2011/0
     $ gs dev branch_name                     # Sets up clean workspace based of remote master
     $ gs checkpoint "Commit message"         # Commit changes locally
     $ gs done "Commit message"               # Commit changes, merge with master
-    $ gs release                             # Push master branch to remote
 
 ## Caution
 Overides ```gs``` (Ghostscript) command on Linux.

@@ -1,4 +1,5 @@
 git config --global color.ui auto
+alias github_open="open \`git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//'\`"
 
 ########
 #     CLI      #
@@ -19,20 +20,20 @@ function __gs_functions {
     __gs-dev "$2" "$3"
   elif [[ $1 == "update" ]]; then
     __gs-update "$2"
-  elif [[ $1 == "checkpoint" ]]; then
+  elif [[ $1 == "commit" ]] || [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
   elif [[ $1 == "done" ]]; then
     __gs-ready "$2"
-  elif [[ $1 == "release" ]]; then
-    __gs-release "$2"
   elif [[ $1 == "list" ]]; then
     __gs-list-commands "$2"
   elif [[ $1 == "diff" ]]; then
     __gs-diff "$2"
   elif [[ $1 == "switchto" ]]; then
     __gs-switchto "$2"
-  elif [[ $1 == "history" ]]; then
+  elif [[ $1 == "history" ]] || [[ $1 == "repo-history" ]]; then
   __gs-history "$2"
+elif [[ $1 == "pull-request" ]] || [[ $1 == "open" ]]; then
+  __gs-github-open "$2"
   elif [[ $1 == "show" ]] || [[ $1 == "last" ]]; then
     __gs-show "$2"
   elif [[ $1 == "where" ]]; then
@@ -69,14 +70,15 @@ function __gs-dev {
   fi
 
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
-    __uncommitted-changes-message
+    __gs-uncommitted-changes-message
     return
   fi
+  git fetch
   base=$2
   branch=${base:-master}
   echo "Base branch: $branch"
   git checkout $branch
-  gitremote=git show-ref --verify --quiet "refs/heads/$branch"
+  # git show-ref --verify --quiet "refs/heads/$branch"
   echo "Updating $branch, from repository."
   git pull origin $branch
   echo "Creating branch: $1"
@@ -94,13 +96,17 @@ function __gs-update-help {
   echo -e "! Can cause merge conflicts"
 }
 
+function __gs-github-open {
+  github_open
+}
+
 function __gs-update {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
       __gs-update-help
     return
   fi
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
-    __uncommitted-changes-message
+    __gs-uncommitted-changes-message
   else
     git pull origin master
   fi
@@ -108,7 +114,7 @@ function __gs-update {
 
 function __gs-checkpoint-help {
   echo -e "usage: "
-  echo -e "\t gs checkpoint 'Commit message'"
+  echo -e "\t gs commit 'Commit message'"
   echo -e "Commit changes and push branch to remote"
 }
 
@@ -176,45 +182,17 @@ function __gs-ready-execute {
   git push origin $BRANCH
   git pull origin master
   echo -e "If any merge conflicts fix them and then run:"
-  echo -e "\t gs checkpoint 'message'"
-  echo -e "If no conflicts:"
-  echo -e "\t gs release"
-}
+  echo -e "\t gs done 'Fixed merge conflicts.'"
+  echo ""
 
-function __gs-release {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-     __gs-release-help
-     return
-  fi
   while true; do
-    read -p "Are you sure you want to release? (y\n)" yn
+    read -p "Would you like to open GitHub? (y\n)" yn
     case $yn in
-      [Yy]* ) __gs-release-execute; break;;
+      [Yy]* ) __gs-github-open; break;;
       [Nn]* ) break;;
       * ) echo "Please answer yes or no.";;
     esac
   done
-}
-
-function __gs-release-help {
-  echo -e "usage: "
-  echo -e "\t gs release"
-  echo -e "pushes your committed changes to the repository."
-}
-
-function __gs-release-execute {
-  local BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  if [ $BRANCH == "master" ]; then
-    git push origin master
-  else
-    echo -e "Cannot release from branch $($CURRENT_BRANCH)."
-    echo -e "Can only release from master branch."
-    echo -e "Did you forget to run 'gs done'?"
-    echo -e "help: "
-    echo -e "\t gs help"
-    echo "or for a specific command"
-    echo -e "\t gs help 'command'"
-  fi
 }
 
 function __gs-diff-help {
@@ -240,6 +218,10 @@ function __gs-switchto-help {
 function __gs-switchto {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-switchto-help
+    return
+  fi
+  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    __gs-uncommitted-changes-message
     return
   fi
   git checkout $1
@@ -289,10 +271,10 @@ function __gs-where {
   git branch
 }
 
-function __uncommitted-changes-message {
+function __gs-uncommitted-changes-message {
   echo -e "You have uncommited changes."
   echo -e "Please commit or stash you're changes before implementing you're new feature."
-  echo "Perhaps create a checkpoint:"
+  echo "Commit your changes:"
   __gs-checkpoint-help
 }
 
@@ -309,7 +291,6 @@ function __gs-help {
   echo -e "usage: "
   echo -e "\t gs dev story23"
   echo -e "\t gs done 'Implemented Story 23'"
-  echo -e "\t gs release"
 }
 
 function __gs-list-commands {
@@ -317,9 +298,11 @@ function __gs-list-commands {
   echo "gs commands: "
   echo -e "\t dev              Start developling a new feature"
   echo -e "\t update           Download changes from remote master branch to local workspace"
-  echo -e "\t checkpoint       Commit changes and push branch to remote"
-  echo -e "\t done             Commit changes and sync with remote master branch"
-  echo -e "\t release          Pushes your committed changes to remote master branch"
+  echo -e "\t commit           Commit changes and push branch to remote (alias: checkpoint)"
+  echo -e "\t done             Commit changes and sync with remote"
+  echo -e "\t switchto         Switch from current branch to specified branch."
+  echo -e "\t diff             List uncomitted changes."
+  echo -e "\t pull-request     Open current git repository on Github (alias: open)."
 }
 
 function __gs-ready-checklist-print {
@@ -328,5 +311,6 @@ function __gs-ready-checklist-print {
   echo -e "\t 2. Do all tests pass?"
   echo -e "\t 3. Have you refactored your code?"
   echo -e "\t 4. Are you ready for possible merge conflicts?"
+  echo -e "\t 5. Are you happy with your commit message?"
   echo ""
 }
