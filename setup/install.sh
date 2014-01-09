@@ -3,7 +3,7 @@ if [[ ! -d ~/.git-story/ ]]; then
 else
   echo "git-story already installed"
   echo "Exiting"
-  exit 0
+  return
 fi
 
 if [[ -f ~/.bash_profile ]]; then
@@ -20,4 +20,5 @@ else
   echo -e "\t source ~/.git-story/setup/import.sh"
 fi
 echo "Importing to current shell"
-source ~/.git-story/setup/import.sh # Currently yields error
+source ~/.git-story/setup/import.sh
+echo "Initialized"
