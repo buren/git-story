@@ -3,6 +3,9 @@
 
 Simplified git workflow.
 
+## Getting Started
+    curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+
 ## Example
 Simplified branch strategy, based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
 
