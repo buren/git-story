@@ -3,8 +3,10 @@ if [[ ! -d ~/.git-story/ ]]; then
 fi
 
 if [[ -f ~/.bash_profile ]]; then
+  echo "Injecting import: bash_profile"
   cat ~/.git-story/setup/import.sh >> ~/.bash_profile
 elif [[ -f ~/.bashrc ]]; then
+  echo "Injecting import: bashrc"
   cat ~/.git-story/setup/import.sh >> ~/.bashrc
 else
   echo "[ERROR] Neither .bash_profile or .bashrc present!"
@@ -13,4 +15,5 @@ else
   echo -e "To install add the below line to your bash profile."
   echo -e "\t source ~/.git-story/setup/import.sh"
 fi
-sh ~/.git-story/setup/import.sh
+echo "Importing to current shell"
+source ~/.git-story/setup/import.sh
