@@ -1,9 +1,8 @@
 ## Visual example
 Goto http://pcottle.github.io/learnGitBranching/?NODEMO
-type
-    import tree
-in the console.
-And paste the below:
+type `import tree` in the console.
+
+Then paste the below:
 
     {
       "branches": {
