@@ -181,6 +181,7 @@ function __gs-ready-execute {
   local BRANCH="$(git rev-parse --abbrev-ref HEAD)"
   git push origin $BRANCH
   git pull origin master
+  git push origin $BRANCH
   echo -e "If any merge conflicts fix them and then run:"
   echo -e "\t gs done 'Fixed merge conflicts.'"
   echo ""
