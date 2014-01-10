@@ -61,3 +61,6 @@ view the last commit in current branch or specified commit <sha>.
 
 ## Caution
 Overides ```gs``` (Ghostscript) command on Linux.
+
+## License
+Released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
