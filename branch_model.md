@@ -9,7 +9,7 @@ Then paste the below:
         "master": {
           "remoteTrackingBranchID": null,
           "remote": false,
-          "target": "C13",
+          "target": "C18",
           "id": "master",
           "type": "branch"
         },
@@ -44,7 +44,7 @@ Then paste the below:
         "story14": {
           "remoteTrackingBranchID": null,
           "remote": false,
-          "target": "C14",
+          "target": "C18",
           "id": "story14",
           "type": "branch"
         }
@@ -211,12 +211,43 @@ Then paste the below:
           "createTime": "Thu Jan 09 2014 23:55:58 GMT+0100 (CET)",
           "commitMessage": "'update'",
           "id": "C15"
+        },
+        "C16": {
+          "type": "commit",
+          "parents": [
+            "C14"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:21:23 GMT+0100 (CET)",
+          "commitMessage": "'u'",
+          "id": "C16"
+        },
+        "C17": {
+          "type": "commit",
+          "parents": [
+            "C15"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:22:17 GMT+0100 (CET)",
+          "commitMessage": "'u'",
+          "id": "C17"
+        },
+        "C18": {
+          "type": "commit",
+          "parents": [
+            "C16",
+            "C17"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:22:30 GMT+0100 (CET)",
+          "commitMessage": "Merge branch \"master\" into branch \"story14\"",
+          "id": "C18"
         }
       },
       "tags": {},
       "HEAD": {
         "id": "HEAD",
-        "target": "story13",
+        "target": "master",
         "type": "general ref"
       }
     }
