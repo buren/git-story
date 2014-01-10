@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Git-story by buren</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Git-story</h1>
+        <h2>Simplified git workflow.</h2>
+        <a href="https://github.com/buren/git-story" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="git-story-alpha" class="anchor" href="#git-story-alpha"><span class="octicon octicon-link"></span></a>git-story (alpha)</h1>
+
+<p>Simplified git workflow.
+Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a>.</p>
+
+<h2>
+<a name="install-git-story" class="anchor" href="#install-git-story"><span class="octicon octicon-link"></span></a>Install git-story</h2>
+
+<pre><code>curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+</code></pre>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>A git story is a git branching model which tries to so simple that any SCM novice should be able to effectively use it within 5 minutes.</p>
+
+<p>The model:</p>
+
+<ol>
+<li>Start developing a feature, and name it <code>gs dev &lt;name&gt;</code>
+</li>
+<li>Save local changes and sync with remote <code>gs done &lt;commit_message&gt;</code>
+</li>
+<li>If any conflicts fix them and <code>gs done "Fixed merge conflicts in ..."</code>
+</li>
+<li>Make a pull request on GitHub <code>gs pull-request</code>
+</li>
+</ol><h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<pre><code>gs dev branch_name                     # Sets up clean workspace based of remote master.
+gs commit "Commit message"             # Commit changes locally.
+gs done "Commit message"               # Commit changes, update master and merge.
+gs pull-request                        # Opens project GitHub page. So you can make a pull request.
+</code></pre>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<ul>
+<li>
+<p>Start developing a feature</p>
+
+<pre><code>gs dev &lt;branch_name&gt;
+gs dev &lt;branch_name&gt; &lt;base_branch&gt;
+</code></pre>
+
+<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes.</p>
+</li>
+<li>
+<p>Commit your changes</p>
+
+<pre><code>gs commit &lt;commit_message&gt; # alias: checkpoint
+</code></pre>
+
+<p>comment and commit to the changes you've made.</p>
+</li>
+<li>
+<p>Commit and sync with repository</p>
+
+<pre><code>gs done &lt;commit_message&gt;
+</code></pre>
+
+<p>comment and commit to the changes you've made and merge changes made on master. If no merge conflicts open the projects GitHub and make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts"</code> . Then open GitHub and make a pull request <code>gs pull-request</code>.</p>
+</li>
+<li>
+<p>Fetch and merge</p>
+
+<pre><code>gs update
+</code></pre>
+
+<p>fetch and merge from remote.
+Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.</p>
+</li>
+<li>
+<code>gs pull-request</code> opens the repository on GitHub. Aliased as <code>gs open</code>
+</li>
+<li>
+<code>gs where</code> prints all branches and marks the current one with a *.</li>
+<li>
+<code>gs switchto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed.</li>
+<li>
+<code>gs diff</code> view all uncommitted changes.</li>
+<li>
+<code>gs history</code> view repository commit history.</li>
+<li>
+<code>gs list</code> list all available git-story commands.</li>
+<li>
+<p>Show commited changes</p>
+
+<pre><code>gs show
+gs show &lt;sha&gt;
+</code></pre>
+
+<p>view the last commit in current branch or specified commit .</p>
+</li>
+</ul><h2>
+<a name="caution" class="anchor" href="#caution"><span class="octicon octicon-link"></span></a>Caution</h2>
+
+<p>Overides <code>gs</code> (Ghostscript) command on Linux.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/buren/git-story/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/buren/git-story/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/buren/git-story"></a> is maintained by <a href="https://github.com/buren">buren</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47025757-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
