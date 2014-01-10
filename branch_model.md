@@ -9,7 +9,7 @@ Then paste the below:
         "master": {
           "remoteTrackingBranchID": null,
           "remote": false,
-          "target": "C18",
+          "target": "C22",
           "id": "master",
           "type": "branch"
         },
@@ -37,14 +37,14 @@ Then paste the below:
         "story13": {
           "remoteTrackingBranchID": null,
           "remote": false,
-          "target": "C15",
+          "target": "C20",
           "id": "story13",
           "type": "branch"
         },
         "story14": {
           "remoteTrackingBranchID": null,
           "remote": false,
-          "target": "C18",
+          "target": "C22",
           "id": "story14",
           "type": "branch"
         }
@@ -242,6 +242,48 @@ Then paste the below:
           "createTime": "Fri Jan 10 2014 10:22:30 GMT+0100 (CET)",
           "commitMessage": "Merge branch \"master\" into branch \"story14\"",
           "id": "C18"
+        },
+        "C19": {
+          "type": "commit",
+          "parents": [
+            "C15"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:26:46 GMT+0100 (CET)",
+          "commitMessage": "'bug fix'",
+          "id": "C19"
+        },
+        "C20": {
+          "type": "commit",
+          "parents": [
+            "C19",
+            "C18"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:27:16 GMT+0100 (CET)",
+          "commitMessage": "Merge branch \"master\" into branch \"story13\"",
+          "id": "C20"
+        },
+        "C21": {
+          "type": "commit",
+          "parents": [
+            "C18"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:27:41 GMT+0100 (CET)",
+          "commitMessage": "'impl'",
+          "id": "C21"
+        },
+        "C22": {
+          "type": "commit",
+          "parents": [
+            "C21",
+            "C20"
+          ],
+          "author": "Peter Cottle",
+          "createTime": "Fri Jan 10 2014 10:27:45 GMT+0100 (CET)",
+          "commitMessage": "Merge branch \"master\" into branch \"story14\"",
+          "id": "C22"
         }
       },
       "tags": {},
