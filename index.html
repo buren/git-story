@@ -76,7 +76,7 @@ gs pull-request                        # Opens project GitHub page. So you can m
 gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
-<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes.</p>
+<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.</p>
 </li>
 <li>
 <p>Commit your changes</p>
@@ -89,10 +89,12 @@ gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 <li>
 <p>Commit and sync with repository</p>
 
-<pre><code>gs done &lt;commit_message&gt;
+<pre><code>gs done &lt;commit_message&gt; &lt;target_branch&gt;
 </code></pre>
 
-<p>comment and commit to the changes you've made and merge changes made on master. If no merge conflicts open the projects GitHub and make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts"</code> . Then open GitHub and make a pull request <code>gs pull-request</code>.</p>
+<p>comment and commit the changes you've made and merge changes made on . 
+<code>&lt;target_branch&gt;</code> is optional and defaults to 'master'.
+If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs pull-request</code>.</p>
 </li>
 <li>
 <p>Fetch and merge</p>
@@ -134,7 +136,6 @@ gs show &lt;sha&gt;
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
-
         </section>
 
         <aside id="sidebar">
