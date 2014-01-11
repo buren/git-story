@@ -1,4 +1,4 @@
-# git-story (alpha)
+# git-story (beta)
 
 
 Simplified git workflow.
@@ -31,7 +31,7 @@ The model:
 
         gs dev <branch_name>
         gs dev <branch_name> <base_branch>
-this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes.
+this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
 
 * Commit your changes
 
@@ -40,8 +40,10 @@ comment and commit to the changes you've made.
 
 * Commit and sync with repository
 
-        gs done <commit_message>
-comment and commit to the changes you've made and merge changes made on master. If no merge conflicts open the projects GitHub and make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts"` . Then open GitHub and make a pull request `gs pull-request`.
+        gs done <commit_message> <target_branch>
+comment and commit the changes you've made and merge changes made on <target_branch>. 
+`<target_branch>` is optional and defaults to 'master'.
+If no merge conflicts; make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts for ..."` and then `gs pull-request`.
 * Fetch and merge
 
         gs update
@@ -61,3 +63,6 @@ view the last commit in current branch or specified commit <sha>.
 
 ## Caution
 Overides ```gs``` (Ghostscript) command on Linux.
+
+## License
+Released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
