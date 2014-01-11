@@ -4,9 +4,16 @@
 Simplified git workflow.
 Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
 
+* [Installation](#install-git-story)
+* [Example](#example)
+* [Documentation](#documentation)
+* [Notes](#notes)
+* [License](#license)
+
 ## Install git-story
 
     curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+injects import of git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
 ## Getting started
 A git story is a git branching model which tries to so simple that any SCM novice should be able to effectively use it within 5 minutes.
@@ -61,8 +68,8 @@ Example: If the current branch is "test_feature" the command will try to fetch a
         gs show <sha>
 view the last commit in current branch or specified commit <sha>.
 
-## Caution
-Overides ```gs``` (Ghostscript) command on Linux.
+## Notes
+Overides ```gs``` (Ghostscript) on Linux.
 
 ## License
 Released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
