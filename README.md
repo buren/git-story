@@ -7,6 +7,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 ## Install git-story
 
     curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+injects import of git-story script to either .bash_profile, .bashrc or .zshrc (in that order).
 
 ## Getting started
 A git story is a git branching model which tries to so simple that any SCM novice should be able to effectively use it within 5 minutes.
