@@ -1,4 +1,4 @@
-# git-story (alpha)
+# git-story (beta)
 
 
 Simplified git workflow.
