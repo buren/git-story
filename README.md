@@ -16,7 +16,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 injects import of git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
 ## Getting started
-A git story is a git branching model which tries to so simple that any SCM novice should be able to effectively use it within 5 minutes.
+git-story is a git branching model which tries to so simple that any VCS novice should be able to effectively use it within 5 minutes.
 
 The model:
 
