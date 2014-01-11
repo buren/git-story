@@ -133,7 +133,7 @@ function __gs-dev {
   __gs-print "Updated$PURPLE $branch$WHITE, from repository."
   __gs-print "Created branch: $PURPLE $1 $WHITE"
   __gs-print "Based of branch:$PURPLE $branch $WHITE"
-  __gs-success "Successfully created new feature branch named$PURPLE '$1' $WHITE based of $PURPLE '$branch' $WHITE"
+  __gs-success "[SUCCESS] $WHITE Successfully created new feature branch named$PURPLE '$1' $WHITE based of $PURPLE '$branch' $WHITE"
   echo ""
 }
 
