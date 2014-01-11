@@ -13,8 +13,11 @@ __install-git-story() {
   elif [[ -f ~/.bashrc ]]; then
     echo "Injecting import: bashrc"
     cat ~/.git-story/setup/import.sh >> ~/.bashrc
+  elif [[ -f ~/.zshrc ]]; then
+    echo "Injecting import: zshrc"
+    cat ~/.git-story/setup/import.sh >> ~/.zshrc
   else
-    echo "[ERROR] Neither .bash_profile or .bashrc found."
+    echo "[ERROR] Neither .bash_profile, .bashrc or .zsrc found."
     echo "However the script has been loaded and will be available in the current shell session."
     echo ""
     echo -e "To install add the below line to your bash profile."
