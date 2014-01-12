@@ -30,7 +30,6 @@ The model:
     gs dev branch_name                     # Sets up clean workspace based of remote master.
     gs commit "Commit message"             # Commit changes locally.
     gs done "Commit message"               # Commit changes, update master and merge.
-    gs pull-request                        # Opens project GitHub page. So you can make a pull request.
 
 ## Documentation
 
