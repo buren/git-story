@@ -27,7 +27,7 @@ function __gs_functions {
   elif [[ $1 == "commit" ]] || [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
   elif [[ $1 == "done" ]]; then
-    __gs-ready "$2"
+    __gs-ready "$2" "$3"
   elif [[ $1 == "list" ]]; then
     __gs-list-commands "$2"
   elif [[ $1 == "diff" ]]; then
@@ -215,7 +215,7 @@ function __gs-ready {
   while true; do
     read -p "Have you answered yes to all of the above? (y\n)" yn
     case $yn in
-      [Yy]* ) __gs-ready-execute "$1"; break;;
+      [Yy]* ) __gs-ready-execute "$@"; break;;
       [Nn]* ) break;;
       * ) echo "Please answer yes or no.";;
     esac
