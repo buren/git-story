@@ -287,7 +287,7 @@ function __gs-switchto {
     __gs-uncommitted-changes-message
     return
   fi
-  git checkout $1 && __gs-success "Successfully switched to branch $PURPLE'$1'$WHITE"
+  git checkout $1
 }
 
 function __gs-history-help {
