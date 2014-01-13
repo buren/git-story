@@ -1,20 +1,20 @@
-function __gs-error {
+__gs-error() {
   echo -e "${BOLD}${MAGENTA}$1$RESET"
 }
 
-function __gs-success {
+__gs-success() {
   echo -e "${BOLD}${GREEN}$1$RESET"
 }
 
-function __gs-warning {
+__gs-warning() {
   echo -e "${BOLD}${ORANGE}$1$RESET"
 }
 
-function __gs-print {
+__gs-print() {
   echo -e "${RESET}$1$RESET"
 }
 
-function __gs-ignore-args {
+__gs-ignore-args() {
   __gs-error "
 No arguements allowed for:
 \t $PURPLE$1$RESET
