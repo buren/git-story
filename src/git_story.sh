@@ -22,8 +22,8 @@ gs() {
 __gs_functions() {
   if   [[ $1 == "dev" ]]; then
     __gs-dev "$2" "$3"
-  elif [[ $1 == "update" ]]; then
-    __gs-update "$2"
+  elif [[ $1 == "pull" ]]; then
+    __gs-pull "$2"
   elif [[ $1 == "commit" ]] || [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
   elif [[ $1 == "done" ]]; then
@@ -137,18 +137,19 @@ __gs-dev() {
   echo ""
 }
 
-__gs-update-help() {
+__gs-pull-help() {
   __gs-print "
 usage:
-\t gs update
-Download changes from remote master branch to local workspace
+\t gs pull <branch_name>
+Download changes from remote <branch_name> branch to local workspace.
+<branch_name> is optional, default: master.
 note:"
   __gs-warning "\t Can cause merge conflicts"
 }
 
-__gs-update() {
+__gs-pull() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    __gs-update-help
+    __gs-pull-help
     return
   fi
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
@@ -385,15 +386,15 @@ usage:
 __gs-list-commands() {
   __gs-print "
 gs commands:
-\t dev              Start developling a new feature
-\t update           Download changes from remote master branch to local workspace
+\t dev                 Start developling a new feature
+\t pull                 Download changes from remote branch to local workspace
 \t commit           Commit changes and push branch to remote (alias: checkpoint)
-\t done             Commit changes and sync with remote
-\t switchto         Switch from current branch to specified branch
-\t diff             List uncomitted changes
-\t pull-request     Open current git repository on Github (alias: open)
-\t status           Shows the current git status
-\t where            Shows all available branches (alias: branches)"
+\t done               Commit changes and sync with remote
+\t switchto          Switch from current branch to specified branch
+\t diff                  List uncomitted changes
+\t pull-request    Open current git repository on Github (alias: open)
+\t status              Shows the current git status
+\t where              Shows all available branches (alias: branches)"
 }
 
 __gs-ready-checklist-print() {
