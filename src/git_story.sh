@@ -101,7 +101,7 @@ function __gs-dev {
 
   __gs-print "Verifying unique name for branch."
   if git show-ref --verify --quiet "refs/heads/$1"; then
-    __gs-error >&2 "Branch $PURPLE'$1'$WHITE already exists."
+    __gs-error >&2 "Branch $PURPLE'$1'$RESET already exists."
     __gs-error "Please choose another branch name."
     return
   else
@@ -115,11 +115,11 @@ function __gs-dev {
       __gs-print >&2 "Base branch '$2' exists."
       __gs-print "Proceeding..."
     else
-      __gs-print "Specified base branch: $PURPLE'$2'$WHITE not found!"
+      __gs-print "Specified base branch: $PURPLE'$2'$RESET not found!"
       __gs-print "Please specifiy a valid base branch."
       __gs-print "Available branches are:"
       git branch
-      __gs-error "ERROR: No such base branch$PURPLE '$2' $WHITE"
+      __gs-error "ERROR: No such base branch$PURPLE '$2' $RESET"
       return
     fi
   fi
@@ -130,10 +130,10 @@ function __gs-dev {
   git pull origin $branch
   git checkout -b $1
   git push origin $1
-  __gs-print "Updated$PURPLE $branch$WHITE, from repository."
-  __gs-print "Created branch: $PURPLE $1 $WHITE"
-  __gs-print "Based of branch:$PURPLE $branch $WHITE"
-  __gs-success "[SUCCESS] $WHITE Successfully created new feature branch named$PURPLE '$1' $WHITE based of $PURPLE '$branch' $WHITE"
+  __gs-print "Updated$PURPLE $branch$RESET, from repository."
+  __gs-print "Created branch: $PURPLE $1 $RESET"
+  __gs-print "Based of branch:$PURPLE $branch $RESET"
+  __gs-success "[SUCCESS] $RESET Successfully created new feature branch named$PURPLE '$1' $RESET based of $PURPLE '$branch' $RESET"
   echo ""
 }
 

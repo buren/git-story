@@ -1,23 +1,23 @@
 function __gs-error {
-  echo -e "${BOLD}${MAGENTA}$1$WHITE"
+  echo -e "${BOLD}${MAGENTA}$1$RESET"
 }
 
 function __gs-success {
-  echo -e "${BOLD}${GREEN}$1$WHITE"
+  echo -e "${BOLD}${GREEN}$1$RESET"
 }
 
 function __gs-warning {
-  echo -e "${BOLD}${ORANGE}$1$WHITE"
+  echo -e "${BOLD}${ORANGE}$1$RESET"
 }
 
 function __gs-print {
-  echo -e "${WHITE}$1$WHITE"
+  echo -e "${RESET}$1$RESET"
 }
 
 function __gs-ignore-args {
   __gs-error "
 No arguements allowed for:
-\t $PURPLE$1$WHITE
+\t $PURPLE$1$RESET
 Ignoring arguments."
 echo ""
 }
