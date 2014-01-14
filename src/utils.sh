@@ -10,6 +10,10 @@ function __gs-warning {
   echo -e "${BOLD}${ORANGE}$1$WHITE"
 }
 
+function __gs-info {
+  echo -e "${BOLD}${PURPLE}$1$WHITE"
+}
+
 function __gs-print {
   echo -e "${WHITE}$1$WHITE"
 }

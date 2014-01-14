@@ -43,7 +43,9 @@ function __gs_functions {
   elif [[ $1 == "status" ]]; then
     __gs-status "$2"
   elif [[ $1 == "where" ]] || [[ $1 == "branches" ]]; then
-  __gs-where "$2"
+    __gs-where "$2"
+  elif [[ $1 == "stat" ]]; then
+    __gs-stat "$2" "$3"
   else
     __gs-error "Unknown command '$1'"
     __gs-help
@@ -53,18 +55,90 @@ function __gs_functions {
 ###########
 #  FUNCTIONS   #
 ###########
+function __gs-stat-help {
+  __gs-print "
+usage:
+\t gs stat <type>
+prints statistics of given type.
+Alias: statistics
+Available types are: commits, contributions (alias: contrib).
 
-function __gs-github-open {
+example:
+
+Default: contributions"
+}
+
+function __gs-stat {
+  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+    __gs-stat-help
+    return
+  elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
+    if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
+      __gs-error "Doesn't correctly print total number of commits.."
+      $author_list | while read line; do
+        __gs-stat-author-contrib "${line}"
+      done
+    else
+      __gs-stat-author-contrib "$2"
+    fi
+  elif [[ "$1" == "commits" ]] || [[ "$1" == "commit" ]]; then
+    if [[ ! -z "$2" ]]; then
+      __gs-ignore-args "gs stat $1 $2"
+    fi
+    __gs-stat-commits
+  else
+    __gs-error "Error '$1' unrecognized argument."
+    __gs-stat-help
+  fi
+}
+
+function __gs-list-authors {
+  git log --format='%aN' | sort -u
+}
+
+function __gs-stat-commits {
+  git shortlog --summary --numbered --no-merges
+}
+
+function __gs-stat-author-contrib {
+  if [[ "$1" == "total" ]]; then
+    __gs-print "Contributions by all authors:"
+    git log --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+    { printf "added lines:   %s \nremoved lines: %s \ntotal lines:   %s\n",add,subs,loc }' -
+  elif [[ ! -z "$1" ]]; then
+    # echo "$(git shortlog --summary --numbered --no-merges)"
+    __gs-print "Contributions by: $PURPLE$1$WHITE"
+    git log --author="$1" --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
+    { printf "added lines:   %s \nremoved lines: %s \ntotal lines:   %s\n",add,subs,loc }' -
+    # Print number of commits
+    # echo "start"
+    # al=$(__gs-stat-commits); echo "al is: $al"
+    # echo "$(git shortlog --summary --numbered --no-merges)"
+    # echo "stop"
+    __gs-stat-commits | grep -i "$@" | cut -f1 | tr -d ' ' | awk '{ commits = $1 ;} END \
+            { printf "commits:   %s \n",commits }' -
+    number_of_commits=$(__gs-stat-commits | grep -i "$@" | cut -f1 | tr -d ' ' | awk '{ commits = $1 ;} END \
+        { printf "commits:   %s \n",commits }' -)
+    # echo "static:"
+    # echo $number_of_commits
+    echo ""
+  else
+    __gs-error "[BUG] No argument supplied for __gs-stat-author-contrib."
+    __gs-stat-help
+  fi
+}
+
+function __gs-github-open-help {
   __gs-print "
 usage:
 \t gs pull-request
-opens current git-projects GitHub page"
+opens current projects GitHub page"
 }
 
 alias github_open="open \`git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//'\`"
 function __gs-github-open {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    __gs-github-open
+    __gs-github-open-help
     return
   elif [[ ! -z "$1" ]]; then
     __gs-ignore-args "gs pull-request"
@@ -153,6 +227,7 @@ function __gs-update {
   fi
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     __gs-uncommitted-changes-message
+    return
   fi
 
   base=$1
