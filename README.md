@@ -52,7 +52,7 @@ comment and commit the changes you've made and merge changes made on <target_bra
 If no merge conflicts; make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts for ..."` and then `gs pull-request`.
 * Fetch and merge
 
-        gs update
+        gs pull
 fetch and merge from remote.
 Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.
 * ```gs pull-request``` opens the repository on GitHub. Aliased as `gs open`
