@@ -66,7 +66,8 @@ __gs-read-config() {
 ###########
 #  FUNCTIONS   #
 ###########
-function __gs-stat-help {
+
+__gs-stat-help() {
   __gs-print "
 usage:
 \t gs stat <type>
@@ -79,16 +80,18 @@ example:
 Default: contributions"
 }
 
-function __gs-stat {
+__gs-stat() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-stat-help
     return
   elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
     if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
-      __gs-error "Doesn't correctly print total number of commits.."
-      $author_list | while read line; do
-        __gs-stat-author-contrib "${line}"
+      commit_summary="$(git shortlog --summary --numbered --no-merges)"
+      __gs-list-authors | while read line; do
+        __gs-stat-author-contrib "${line}" "$commit_summary"
       done
+      __gs-stat-author-contrib "total" "$commit_summary"
+      echo ""
     else
       __gs-stat-author-contrib "$2"
     fi
@@ -97,44 +100,59 @@ function __gs-stat {
       __gs-ignore-args "gs stat $1 $2"
     fi
     __gs-stat-commits
+  elif [[ "$1" == "weekday" ]] || [[ "$1" == "weekdays" ]] || [[ "$1" == "week" ]]; then
+      for i in Mon Tue Wed Thu Fri Sat Sun; do
+        echo $( echo " $i: "; git shortlog  -n --format='%ad %s'| grep "$i " | wc -l) # must use 'echo'
+      done
+  elif [[ "$1" == "hour" ]] || [[ "$1" == "hours" ]]; then
+      for i in `seq -w 0 23`; do
+        echo $( echo " $i:"; git shortlog  -n --format='%ad %s' | grep " $i:" | wc -l) # must use 'echo'
+      done
+  elif [[ "$1" == "files" ]] || [[ "$1" == "lines" ]] || [[ "$1" == "loc" ]]; then
+      __gs-safe-path-operation "$(git ls-files | xargs cat | wc -l)" "$2" "Lines:       "
+      __gs-safe-path-operation "$(git ls-files |  wc -l)" "$2" "Unique files:"
   else
     __gs-error "Error '$1' unrecognized argument."
     __gs-stat-help
   fi
 }
 
-function __gs-list-authors {
+__gs-safe-path-operation() {
+  dir=$(pwd)
+  if [[ -z $2 ]]; then
+    cd "$(git rev-parse --show-toplevel)"
+  else
+    cd "$2"
+  fi
+  __gs-info "$3 $1"
+  cd $dir
+}
+
+__gs-list-authors() {
   git log --format='%aN' | sort -u
 }
 
-function __gs-stat-commits {
+__gs-stat-commits() {
   git shortlog --summary --numbered --no-merges
 }
 
-function __gs-stat-author-contrib {
-  if [[ "$1" == "total" ]]; then
-    __gs-print "Contributions by all authors:"
+__gs-stat-author-contrib() {
+  if [[ "$1" == "total" ]] || [[ "$1" == "tot" ]] || [[ "$1" == "summary" ]] || [[ "$1" == "sum" ]]; then
+    __gs-info "Summary:"
     git log --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
     { printf "added lines:   %s \nremoved lines: %s \ntotal lines:   %s\n",add,subs,loc }' -
+    echo -e "$2" | cut -f1 | tr -d ' ' | awk '{ commits += $1 ;} END \
+            { printf "commits:       %s \n",commits }' -
   elif [[ ! -z "$1" ]]; then
-    # echo "$(git shortlog --summary --numbered --no-merges)"
-    __gs-print "Contributions by: $PURPLE$1$WHITE"
+    echo ""
+    __gs-print "Contributions by: $PURPLE$1$RESET"
     git log --author="$1" --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 ; loc += $1 - $2 } END \
     { printf "added lines:   %s \nremoved lines: %s \ntotal lines:   %s\n",add,subs,loc }' -
-    # Print number of commits
-    # echo "start"
-    # al=$(__gs-stat-commits); echo "al is: $al"
-    # echo "$(git shortlog --summary --numbered --no-merges)"
-    # echo "stop"
-    __gs-stat-commits | grep -i "$@" | cut -f1 | tr -d ' ' | awk '{ commits = $1 ;} END \
-            { printf "commits:   %s \n",commits }' -
-    number_of_commits=$(__gs-stat-commits | grep -i "$@" | cut -f1 | tr -d ' ' | awk '{ commits = $1 ;} END \
-        { printf "commits:   %s \n",commits }' -)
-    # echo "static:"
-    # echo $number_of_commits
+    echo -e "$2" | grep "$1" | cut -f1 | tr -d ' ' | awk '{ commits += $1 ;} END \
+            { printf "commits:       %s \n",commits }' -
     echo ""
   else
-    __gs-error "[BUG] No argument supplied for __gs-stat-author-contrib."
+    __gs-error "[ERROR] No argument supplied for __gs-stat-author-contrib."
     __gs-stat-help
   fi
 }
