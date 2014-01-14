@@ -11,7 +11,7 @@ __gs-warning() {
 }
 
 __gs-info() {
-  echo -e "${BOLD}${PURPLE}$1$WHITE"
+  echo -e "${BOLD}${PURPLE}$1$RESET"
 }
 
 __gs-print() {

@@ -1,6 +1,7 @@
 git config --global color.ui auto
 
 # Imports
+source ~/.git-story/config.sh
 source ~/.git-story/src/colors.sh
 source ~/.git-story/src/utils.sh
 
@@ -9,6 +10,7 @@ source ~/.git-story/src/utils.sh
 ########
 
 gs() {
+  __gs-read-config
   if [[ -z "$1" ]]; then
     __gs-error "Error requries at least one argument."
     __gs-help
@@ -26,6 +28,8 @@ __gs_functions() {
     __gs-pull "$2"
   elif [[ $1 == "commit" ]] || [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
+  elif [[ $1 == "pre-commit" ]] || [[ $1 == "test" ]]; then
+    __gs-precommit-hook
   elif [[ $1 == "done" ]]; then
     __gs-ready "$2" "$3"
   elif [[ $1 == "list" ]]; then
@@ -49,6 +53,13 @@ __gs_functions() {
   else
     __gs-error "Unknown command '$1'"
     __gs-help
+  fi
+}
+
+__gs-read-config() {
+  config_path="$(git rev-parse --show-toplevel)/.gitstoryrc"
+  if [[ -f $config_path ]]; then
+    source $config_path
   fi
 }
 
@@ -256,8 +267,11 @@ __gs-checkpoint() {
     return
   fi
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    __gs-precommit-hook
+
     git add --all
     git commit -m "$1"
+    __gs-info "Ran all tests. Check status."
   else
     __gs-warning "No changes to commit."
   fi
@@ -287,15 +301,25 @@ __gs-ready() {
     __gs-ready-help
     return
   fi
-  __gs-ready-checklist-print
+
+  __gs-precommit-hook
+
+  if [[ $PRINT_CHECKLIST == true ]]; then
+    __gs-ready-checklist-print
+    confirm_message="Have you answered yes to all of the above?"
+  else
+    confirm_message="Are your sure?"
+  fi
+
   while true; do
-    read -p "Have you answered yes to all of the above? (y\n)" yn
+    read -p "$confirm_message  (y\n)" yn
     case $yn in
       [Yy]* ) __gs-ready-execute "$@"; break;;
       [Nn]* ) break;;
       * ) echo "Please answer yes or no.";;
     esac
   done
+
 }
 
 __gs-ready-execute() {
@@ -321,14 +345,38 @@ __gs-ready-execute() {
   echo ""
   __gs-success "Successfully pulled updates from remote '$target' branch."
   echo ""
-  while true; do
-    read -p "Would you like to open GitHub? (y\n)" yn
-    case $yn in
-      [Yy]* ) __gs-github-open; break;;
-      [Nn]* ) break;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
+
+  if [[ $HAS_GITHUB == true ]]; then
+    while true; do
+      read -p "Would you like to open GitHub? (y\n)" yn
+      case $yn in
+        [Yy]* ) __gs-github-open; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+      esac
+    done
+  fi
+}
+
+__gs-precommit-hook-help() {
+  __gs-print "
+To set global pre-commit command edit ~/.git-story/config.sh.
+
+To set project specific pre-commit command create '.gitstoryrc' at git root.
+View ~/.git-story/config.sh for available config options."
+}
+
+__gs-precommit-hook() {
+  if [[ "$1" == "-help" ]] ||  [[ "$1" == "--help" ]]; then
+    __gs-precommit-hook
+    return
+  fi
+
+  if [[ ! -z $PRE_COMMIT_HOOK ]]; then
+    $PRE_COMMIT_HOOK
+  else
+    __gs-print "No pre-commit-hook set. Skipping..."
+  fi
 }
 
 __gs-diff-help() {
@@ -343,6 +391,7 @@ __gs-diff() {
     __gs-diff-help
     return
   fi
+  git status
   git diff
 }
 
