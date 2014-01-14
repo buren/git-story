@@ -1,0 +1,2 @@
+export PRINT_CHECKLIST=false
+export PROMPT_ON_DONE=false
