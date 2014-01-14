@@ -58,7 +58,6 @@ __gs_functions() {
 
 __gs-read-config() {
   config_path="$(git rev-parse --show-toplevel)/.gitstoryrc"
-  echo "Reading $config_path"
   if [[ -f $config_path ]]; then
     source $config_path
   fi
