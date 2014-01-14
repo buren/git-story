@@ -29,7 +29,7 @@ __gs_functions() {
   elif [[ $1 == "commit" ]] || [[ $1 == "checkpoint" ]]; then
     __gs-checkpoint "$2"
   elif [[ $1 == "pre-commit" ]] || [[ $1 == "test" ]]; then
-    __gs-precommit-hook
+    __gs-precommit-hook "$2"
   elif [[ $1 == "done" ]]; then
     __gs-ready "$2" "$3"
   elif [[ $1 == "list" ]]; then
@@ -311,15 +311,19 @@ __gs-ready() {
     confirm_message="Are your sure?"
   fi
 
-  while true; do
-    read -p "$confirm_message  (y\n)" yn
-    case $yn in
-      [Yy]* ) __gs-ready-execute "$@"; break;;
-      [Nn]* ) break;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
-
+  if [[ $PRINT_CHECKLIST != true ]] && [[ $PROMPT_ON_DONE  == false ]]; then
+    __gs-ready-execute "$@"
+  else
+    while true; do
+      read -p "$confirm_message  (y\n)" yn
+      case $yn in
+        [Yy]* ) __gs-ready-execute "$@"; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+      esac
+    done
+    return
+  fi
 }
 
 __gs-ready-execute() {
