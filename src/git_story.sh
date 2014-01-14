@@ -63,9 +63,8 @@ prints statistics of given type.
 Alias: statistics
 Available types are: commits, contributions (alias: contrib).
 
-<<<<<<< HEAD
 example:
-
+\t gs stat contributions
 Default: contributions"
 }
 
@@ -129,10 +128,7 @@ function __gs-stat-author-contrib {
   fi
 }
 
-function __gs-github-open-help {
-=======
-__gs-github-open() {
->>>>>>> c9b9962446cd471fc51434ef78dc2128bf736851
+__gs-github-open-help() {
   __gs-print "
 usage:
 \t gs pull-request
