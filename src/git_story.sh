@@ -12,7 +12,7 @@ source ~/.git-story/src/utils.sh
 gs() {
   __gs-read-config
   if [[ -z "$1" ]]; then
-    __gs-error "Error requries at least one argument."
+    __gs-error "Error requires at least one argument."
     __gs-help
   elif [[ $1 == "help" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs_functions "$2" "-help"
@@ -350,7 +350,7 @@ __gs-ready-execute() {
   __gs-success "Successfully pulled updates from remote '$target' branch."
   echo ""
 
-  if [[ $HAS_GITHUB == true ]]; then
+  if [[ $HAS_GITHUB == true ]] && [[ $PROMPT_GITHUB == true ]]; then
     while true; do
       read -p "Would you like to open GitHub? (y\n)" yn
       case $yn in
