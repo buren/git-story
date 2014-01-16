@@ -50,7 +50,7 @@ __gs_functions() {
     __gs-where "$2"
   elif [[ $1 == "stat" ]]; then
     __gs-stat "$2" "$3"
-  elif [[ $1 == "update" ]]; then
+  elif [[ $1 == "get_update" ]] || [[ $1 == "get-update" ]] || [[ $1 == "getupdate" ]]; then
     __gs-update-source "$2"
   else
     __gs-error "Unknown command '$1'"
@@ -71,8 +71,9 @@ __gs-read-config() {
 __gs-update-source-help(){
   __gs-print "
 usage:
-\t gs update <brach_name>
+\t gs get_update <brach_name>
 updates git-story. <branch_name> is optional and defaults to master.
+alias: get-update, getupdate
 "
 }
 
