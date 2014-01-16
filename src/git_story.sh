@@ -379,7 +379,9 @@ __gs-ready-execute() {
     git add --all
     git commit -m "$1"
   else
-    __gs-warning "Nothing to commit. Ignoring arguments."
+    if [[ -z "$1" ]]; then
+      __gs-warning "Nothing to commit. Ignoring arguments."
+    fi
   fi
 
   local current="$(git rev-parse --abbrev-ref HEAD)"
