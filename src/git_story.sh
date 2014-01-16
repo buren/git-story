@@ -87,8 +87,7 @@ __gs-update-source() {
   target=${2-master}
   __gs-print "Downloading latest changes made to 'git-story' from '$target'"
   current_dir=$(pwd)
-  cd ~/.git-story
-  __gs-pull $target
+  cd ~/.git-story && __gs-pull $target
   cd $current_dir
   __gs-info "Successfully updated git-story."
 }
