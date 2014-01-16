@@ -50,6 +50,8 @@ __gs_functions() {
     __gs-where "$2"
   elif [[ $1 == "stat" ]]; then
     __gs-stat "$2" "$3"
+  elif [[ $1 == "update" ]]; then
+    __gs-update-source "$2"
   else
     __gs-error "Unknown command '$1'"
     __gs-help
@@ -66,6 +68,29 @@ __gs-read-config() {
 ###########
 #  FUNCTIONS   #
 ###########
+__gs-update-source-help(){
+  __gs-print "
+usage:
+\t gs update <brach_name>
+updates git-story. <branch_name> is optional and defaults to master.
+"
+}
+
+__gs-update-source() {
+  if [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
+    __gs-update-source-help
+    return
+  else
+    __gs-info "Function does not take arguments. Ignoring..."
+  fi
+  target=${2-master}
+  __gs-print "Downloading latest changes made to 'git-story' from '$target'"
+  current_dir=$(pwd)
+  cd ~/.git-story
+  __gs-pull $target
+  cd $current_dir
+  __gs-info "Successfully updated git-story."
+}
 
 __gs-stat-help() {
   __gs-print "
