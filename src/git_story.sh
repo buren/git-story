@@ -72,7 +72,8 @@ __gs-update-source-help(){
   __gs-print "
 usage:
 \t gs get_update <brach_name>
-updates git-story. <branch_name> is optional and defaults to master.
+updates git-story.
+<branch_name> is optional and defaults to master.
 alias: get-update, getupdate
 "
 }
