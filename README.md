@@ -6,6 +6,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 
 * [Installation](#install-git-story)
 * [Example](#example)
+* [Command list](#command-list)
 * [Documentation](#documentation)
 * [Notes](#notes)
 * [License](#license)
@@ -30,6 +31,25 @@ The model:
     gs dev branch_name                     # Sets up clean workspace based of remote master.
     gs commit "Commit message"             # Commit changes locally.
     gs done "Commit message"               # Commit changes, update master and merge with repository.
+
+## Command list
+
+    gs <command>
+       dev               # Start developling a new feature (alias: feature)
+       pull              # Download changes from remote branch to local workspace
+       commit            # Commit changes and push branch to remote (alias: checkpoint)
+       done              # Commit changes and sync with remote (alias: release)
+       test              # Runs test command defined in .gitstoryrc (alias: pre-commit)
+       switchto          # Switch from current branch to specified branch (alias: branch, goto)
+       diff              # List status and uncomitted changes
+       pull-request      # Open current git repository on Github (alias: open, github)
+       history           # List repository commits (alias: repo-history)
+       show              # Show last or specified commit (alias: last)
+       status            # Shows the current git status
+       where             # Shows all available branches (alias: branches)
+       list              # Print command list
+       stat              # Print statistics of git repository (alias: statistics)
+       get-update        # Update git-story
 
 ## Documentation
 
@@ -72,14 +92,13 @@ Alias: `last`
 * Show statistics for repository
 
         gs stat <type>
-show statistics for repository.
-Alias: statistics
-Available commands:
-⋅⋅* `gs stat contributions <author>` shows statistics for all authors or specified author (alias: contrib)
-⋅⋅* `gs stat commits` shows number of commits for each author.
-⋅⋅* `gs stat weekdays` prints statistics for number of commits per weekday.
-⋅⋅* `gs stat hour`     prints statistics for number of commits per hour.
+                contributions <author> # shows statistics for all authors or specified author (alias: contrib)
+                commits                # shows number of commits for each author
+                weekdays               # prints statistics for number of commits per weekday
+                hour                   # prints statistics for number of commits per hour
 
+  show statistics for repository.  
+  Alias: statistics  
 ## Notes
 Overides ```gs``` (Ghostscript) on Linux.
 
