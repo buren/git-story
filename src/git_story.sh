@@ -230,7 +230,16 @@ __gs-dev() {
     return
   fi
 
-  git fetch origin
+  # git fetch origin
+  for remote in `git branch -r `; do
+    remote_result=$(git branch --track $remote 2>&1 /dev/null)
+    found_result="fatal: A branch named 'origin/$1' already exists."
+    if [[ $remote_result == $found_result ]]; then
+      __gs-error "A branch with name '$1' already exists. Please choose another branch name."
+      return
+    fi
+  done
+
 
   __gs-print "Verifying unique name for branch."
   if git show-ref --verify --quiet "refs/heads/$1"; then
@@ -263,10 +272,11 @@ __gs-dev() {
   git pull origin $branch
   git checkout -b $1
   git push origin $1
+  echo ""
   __gs-print "Updated$PURPLE $branch$RESET, from repository."
   __gs-print "Created branch: $PURPLE $1 $RESET"
   __gs-print "Based of branch:$PURPLE $branch $RESET"
-  __gs-success "[SUCCESS] $RESET Successfully created new feature branch named$PURPLE '$1' $RESET based of $PURPLE '$branch' $RESET"
+  __gs-success "[SUCCESS] $RESET Successfully created new feature branch named$PURPLE '$1'$RESET based of$PURPLE '$branch'$RESET"
   echo ""
 }
 
@@ -319,7 +329,6 @@ __gs-checkpoint() {
 
     git add --all
     git commit -m "$1"
-    __gs-info "Ran all tests. Check status."
   else
     __gs-warning "No changes to commit."
   fi
@@ -428,6 +437,7 @@ __gs-precommit-hook() {
 
   if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
     $GS_PRE_COMMIT_HOOK
+    __gs-info "Ran all tests. Check status."
   else
     __gs-print "No pre-commit-hook set. Skipping..."
   fi
