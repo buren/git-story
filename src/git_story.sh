@@ -101,9 +101,12 @@ __gs-stat-help() {
   __gs-print "
 usage:
 \t gs stat <type>
+\t         contributions <author> # shows statistics for all authors or specified author (alias: contrib)
+\t         commits                # shows number of commits for each author
+\t         weekdays               # prints statistics for number of commits per weekday
+\t         hour                   # prints statistics for number of commits per hour
 prints statistics of given type.
 Alias: statistics
-Available types are: commits, contributions (alias: contrib).
 
 example:
 \t gs stat contributions
