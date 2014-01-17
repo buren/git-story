@@ -1,2 +1,7 @@
+# Default options
+export PRE_COMMIT_HOOK
 export PRINT_CHECKLIST=false
 export PROMPT_ON_DONE=false
+# GitHub
+export HAS_GITHUB=true
+export PROMPT_GITHUB=true
