@@ -59,9 +59,13 @@ __gs_functions() {
 }
 
 __gs-read-config() {
-  config_path="$(git rev-parse --show-toplevel)/.gitstoryrc"
-  if [[ -f $config_path ]]; then
-    source $config_path
+  config_file="$(git rev-parse --show-toplevel)/.gitstoryrc"
+  if [[ -f $config_file ]]; then
+    source $config_file
+  else
+    __gs-print "Config file not found."
+    __gs-info "Creating '$config_file'"
+    cat ~/.git-story/config.sh > $config_file
   fi
 }
 
