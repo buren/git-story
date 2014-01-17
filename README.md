@@ -26,6 +26,8 @@ The model:
 3. If any conflicts fix them and `gs done "Fixed merge conflicts in ..."`
 4. Make a pull request on GitHub `gs pull-request`
 
+The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.
+
 ## Example
 
     gs dev branch_name                     # Sets up clean workspace based of remote master.
