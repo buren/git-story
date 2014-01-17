@@ -22,7 +22,7 @@ gs() {
 }
 
 __gs_functions() {
-  if   [[ $1 == "dev" ]]; then
+  if   [[ $1 == "dev" ]] || [[ $1 == "feature" ]]; then
     __gs-dev "$2" "$3"
   elif [[ $1 == "pull" ]]; then
     __gs-pull "$2"
@@ -30,7 +30,7 @@ __gs_functions() {
     __gs-checkpoint "$2"
   elif [[ $1 == "pre-commit" ]] || [[ $1 == "test" ]]; then
     __gs-precommit-hook "$2"
-  elif [[ $1 == "done" ]]; then
+  elif [[ $1 == "done" ]] || [[ $1 == "release" ]]; then
     __gs-ready "$2" "$3"
   elif [[ $1 == "list" ]]; then
     __gs-list-commands "$2"
@@ -40,7 +40,7 @@ __gs_functions() {
     __gs-switchto "$2"
   elif [[ $1 == "history" ]] || [[ $1 == "repo-history" ]]; then
     __gs-history "$2"
-  elif [[ $1 == "pull-request" ]] || [[ $1 == "open" ]]; then
+  elif [[ $1 == "pull-request" ]] || [[ $1 == "open" ]] || [[ $1 == "github" ]]; then
     __gs-github-open "$2"
   elif [[ $1 == "show" ]] || [[ $1 == "last" ]]; then
     __gs-show "$2"
@@ -48,7 +48,7 @@ __gs_functions() {
     __gs-status "$2"
   elif [[ $1 == "where" ]] || [[ $1 == "branches" ]]; then
     __gs-where "$2"
-  elif [[ $1 == "stat" ]]; then
+  elif [[ $1 == "stat" ]] || [[ $1 == "statistics" ]]; then
     __gs-stat "$2" "$3"
   elif [[ $1 == "get_update" ]] || [[ $1 == "get-update" ]] || [[ $1 == "getupdate" ]]; then
     __gs-update-source "$2"
@@ -352,14 +352,14 @@ __gs-ready() {
 
   __gs-precommit-hook
 
-  if [[ $PRINT_CHECKLIST == true ]]; then
+  if [[ $GS_PRINT_CHECKLIST == true ]]; then
     __gs-ready-checklist-print
     confirm_message="Have you answered yes to all of the above?"
   else
     confirm_message="Are your sure?"
   fi
 
-  if [[ $PRINT_CHECKLIST != true ]] && [[ $PROMPT_ON_DONE  == false ]]; then
+  if [[ $GS_PRINT_CHECKLIST != true ]] && [[ $GS_PROMPT_ON_DONE  == false ]]; then
     __gs-ready-execute "$@"
   else
     while true; do
@@ -400,7 +400,7 @@ __gs-ready-execute() {
   __gs-success "Successfully pulled updates from remote '$target' branch."
   echo ""
 
-  if [[ $HAS_GITHUB == true ]] && [[ $PROMPT_GITHUB == true ]]; then
+  if [[ $GS_HAS_GITHUB == true ]] && [[ $GS_PROMPT_GITHUB == true ]]; then
     while true; do
       read -p "Would you like to open GitHub? (y\n)" yn
       case $yn in
@@ -426,8 +426,8 @@ __gs-precommit-hook() {
     return
   fi
 
-  if [[ ! -z $PRE_COMMIT_HOOK ]]; then
-    $PRE_COMMIT_HOOK
+  if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+    $GS_PRE_COMMIT_HOOK
   else
     __gs-print "No pre-commit-hook set. Skipping..."
   fi
@@ -564,23 +564,24 @@ usage:
 __gs-list-commands() {
   __gs-print "
 gs commands:
-\t dev                 Start developling a new feature
-\t pull                 Download changes from remote branch to local workspace
-\t commit           Commit changes and push branch to remote (alias: checkpoint)
-\t done               Commit changes and sync with remote
-\t switchto          Switch from current branch to specified branch
-\t diff                  List uncomitted changes
-\t pull-request    Open current git repository on Github (alias: open)
-\t status              Shows the current git status
-\t where              Shows all available branches (alias: branches)"
+\t dev                Start developling a new feature (alias: feature)
+\t pull               Download changes from remote branch to local workspace
+\t commit             Commit changes and push branch to remote (alias: checkpoint)
+\t done               Commit changes and sync with remote (alias: release)
+\t test               Runs test command defined in .gitstoryrc (alias: pre-commit)
+\t switchto           Switch from current branch to specified branch (alias: branch, goto)
+\t diff               List status and uncomitted changes
+\t pull-request       Open current git repository on Github (alias: open, github)
+\t history            List repository commits (alias: repo-history)
+\t show               Show last or specified commit (alias: last)
+\t status             Shows the current git status
+\t where              Shows all available branches (alias: branches)
+\t list               Prints command list
+\t stat               Print statistics of git repository (alias: statistics)
+\t get-update         Updates git-story"
 }
 
 __gs-ready-checklist-print() {
-  __gs-warning "
-Checklist:
-\t 1. Have you written tests?
-\t 2. Do all tests pass?
-\t 3. Have you refactored your code?
-\t 4. Are you ready for possible merge conflicts?"
+  __gs-warning "$GS_CHECKLIST_MESSAGE"
   echo ""
 }
