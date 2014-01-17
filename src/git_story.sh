@@ -86,7 +86,7 @@ __gs-update-source() {
   if [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
     __gs-update-source-help
     return
-  else
+  elif [[ ! -z "$1" ]]; then
     __gs-info "Function does not take arguments. Ignoring..."
   fi
   target=${2-master}
@@ -395,10 +395,8 @@ __gs-ready-execute() {
     fi
     git add --all
     git commit -m "$1"
-  else
-    if [[ -z "$1" ]]; then
-      __gs-warning "Nothing to commit. Ignoring arguments."
-    fi
+  elif [[ ! -z "$1" ]]; then
+    __gs-warning "Nothing to commit. Ignoring arguments."
   fi
 
   local current="$(git rev-parse --abbrev-ref HEAD)"
@@ -525,7 +523,7 @@ __gs-status() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-status-help
     return
-  elif [[ -z $1 ]]; then
+  elif [[ ! -z $1 ]]; then
     __gs-ignore-args "gs status"
   fi
   git status
@@ -543,7 +541,7 @@ __gs-where() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-where-help
     return
-  elif [[ -z $1 ]]; then
+  elif [[ ! -z $1 ]]; then
     __gs-ignore-args "gs where"
   fi
   git branch
