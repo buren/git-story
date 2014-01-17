@@ -37,6 +37,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 <ul>
 <li><a href="#install-git-story">Installation</a></li>
 <li><a href="#example">Example</a></li>
+<li><a href="#command-list">Command list</a></li>
 <li><a href="#documentation">Documentation</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#license">License</a></li>
@@ -69,7 +70,28 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 
 <pre><code>gs dev branch_name                     # Sets up clean workspace based of remote master.
 gs commit "Commit message"             # Commit changes locally.
-gs done "Commit message"               # Commit changes, update master and merge.
+gs done "Commit message"               # Commit changes, update master and merge with repository.
+</code></pre>
+
+<h2>
+<a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
+
+<pre><code>gs &lt;command&gt;
+   dev               # Start developling a new feature (alias: feature)
+   pull              # Download changes from remote branch to local workspace
+   commit            # Commit changes and push branch to remote (alias: checkpoint)
+   done              # Commit changes and sync with remote (alias: release)
+   test              # Runs test command defined in .gitstoryrc (alias: pre-commit)
+   switchto          # Switch from current branch to specified branch (alias: branch, goto)
+   diff              # List status and uncomitted changes
+   pull-request      # Open current git repository on Github (alias: open, github)
+   history           # List repository commits (alias: repo-history)
+   show              # Show last or specified commit (alias: last)
+   status            # Shows the current git status
+   where             # Shows all available branches (alias: branches)
+   list              # Print command list
+   stat              # Print statistics of git repository (alias: statistics)
+   get-update        # Update git-story
 </code></pre>
 
 <h2>
@@ -83,15 +105,17 @@ gs done "Commit message"               # Commit changes, update master and merge
 gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
-<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.</p>
+<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
+Alias: feature</p>
 </li>
 <li>
 <p>Commit your changes</p>
 
-<pre><code>gs commit &lt;commit_message&gt; # alias: checkpoint
+<pre><code>gs commit &lt;commit_message&gt;
 </code></pre>
 
-<p>comment and commit to the changes you've made.</p>
+<p>comment and commit to the changes you've made.
+Alias: checkpoint</p>
 </li>
 <li>
 <p>Commit and sync with repository</p>
@@ -99,9 +123,10 @@ gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 <pre><code>gs done &lt;commit_message&gt; &lt;target_branch&gt;
 </code></pre>
 
-<p>comment and commit the changes you've made and merge changes made on . 
+<p>comment and commit the changes you've made and merge changes made on .
 <code>&lt;target_branch&gt;</code> is optional and defaults to 'master'.
-If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs pull-request</code>.</p>
+If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs pull-request</code>.
+Alias: release</p>
 </li>
 <li>
 <p>Fetch and merge</p>
@@ -113,18 +138,24 @@ If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwi
 Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.</p>
 </li>
 <li>
-<code>gs pull-request</code> opens the repository on GitHub. Aliased as <code>gs open</code>
+<code>gs pull-request</code> opens the repository on GitHub. Alias: <code>open</code>, <code>github</code>
 </li>
 <li>
-<code>gs where</code> prints all branches and marks the current one with a *.</li>
+<code>gs where</code> prints all branches and marks the current one with a *. Alias: <code>branches</code>
+</li>
 <li>
-<code>gs switchto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed.</li>
+<code>gs switchto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed. Alias: <code>branch</code>, <code>goto</code>
+</li>
 <li>
-<code>gs diff</code> view all uncommitted changes.</li>
+<code>gs diff</code> view all uncommitted changes</li>
 <li>
-<code>gs history</code> view repository commit history.</li>
+<code>gs history</code> view repository commit history. Alias: <code>repo-history</code>
+</li>
 <li>
-<code>gs list</code> list all available git-story commands.</li>
+<code>gs list</code> list all available git-story commands</li>
+<li>
+<code>gs get_update</code> gets the latest version of git-story. Alias: <code>get-update</code>, <code>getupdate</code>
+</li>
 <li>
 <p>Show commited changes</p>
 
@@ -132,14 +163,28 @@ Example: If the current branch is "test_feature" the command will try to fetch a
 gs show &lt;sha&gt;
 </code></pre>
 
-<p>view the last commit in current branch or specified commit .</p>
+<p>view the last commit in current branch or specified commit .
+Alias: <code>last</code></p>
 </li>
-</ul><h2>
+<li>
+<p>Show statistics for repository</p>
+
+<pre><code>gs stat &lt;type&gt;
+        contributions &lt;author&gt; # shows statistics for all authors or specified author (alias: contrib)
+        commits                # shows number of commits for each author
+        weekdays               # prints statistics for number of commits per weekday
+        hour                   # prints statistics for number of commits per hour
+</code></pre>
+
+<p>show statistics for repository.<br>
+Alias: statistics  </p>
+
+<h2>
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <p>Overides <code>gs</code> (Ghostscript) on Linux.</p>
-
-<h2>
+</li>
+</ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
