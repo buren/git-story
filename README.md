@@ -74,19 +74,19 @@ See [config.sh](https://raw2.github.com/buren/git-story/master/config.sh) for de
         gs dev <branch_name>
         gs dev <branch_name> <base_branch>
 this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-Alias: feature
+Alias: `feature`
 * Commit your changes
 
         gs commit <commit_message>
 comment and commit to the changes you've made.
-Alias: checkpoint
+Alias: `checkpoint`
 * Commit and sync with repository
 
         gs done <commit_message> <target_branch>
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts; make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts for ..."` and then `gs pull-request`.
-Alias: release
+Alias: `release`
 * Fetch and merge
 
         gs pull
@@ -113,8 +113,13 @@ Alias: `last`
                 weekdays               # prints statistics for number of commits per weekday
                 hour                   # prints statistics for number of commits per hour
 
+<<<<<<< HEAD
   show statistics for repository.
   Alias: statistics
+=======
+  show statistics for repository.  
+  Alias: `statistics`  
+>>>>>>> 04c069fa756ad63bb4b6298a0aca581cdc072c34
 ## Notes
 Overides ```gs``` (Ghostscript) on Linux.
 

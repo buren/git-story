@@ -409,6 +409,7 @@ __gs-ready-execute() {
   fi
 
   local current="$(git rev-parse --abbrev-ref HEAD)"
+  git pull origin $current
   git push origin $current
   target=${2:-master}
   git pull origin $target
