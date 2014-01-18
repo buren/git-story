@@ -113,13 +113,9 @@ Alias: `last`
                 weekdays               # prints statistics for number of commits per weekday
                 hour                   # prints statistics for number of commits per hour
 
-<<<<<<< HEAD
-  show statistics for repository.
-  Alias: statistics
-=======
-  show statistics for repository.  
-  Alias: `statistics`  
->>>>>>> 04c069fa756ad63bb4b6298a0aca581cdc072c34
+show statistics for repository.
+Alias: `statistics`
+
 ## Notes
 Overides ```gs``` (Ghostscript) on Linux.
 
