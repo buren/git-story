@@ -46,7 +46,7 @@ Available options:
     GS_PROMPT_BROWSE_URL (Boolean) Prompt to open project URL.        Default: true
     GS_CHECKLIST_MESSAGE (String)  Checklist string.                  Default: "1. Have you written..."
 
-See [config.sh](https://raw2.github.com/buren/git-story/master/config.sh) for details.
+See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for details.
 
 ## Command list
 
