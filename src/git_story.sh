@@ -41,7 +41,7 @@ __gs_functions() {
   elif [[ $1 == "history" ]] || [[ $1 == "repo-history" ]]; then
     __gs-history "$2"
   elif [[ $1 == "pull-request" ]] || [[ $1 == "open" ]] || [[ $1 == "github" ]]; then
-    __gs-github-open "$2"
+    __gs-browse-project "$2"
   elif [[ $1 == "show" ]] || [[ $1 == "last" ]]; then
     __gs-show "$2"
   elif [[ $1 == "status" ]]; then
@@ -58,20 +58,17 @@ __gs_functions() {
   fi
 }
 
+###########
+#  FUNCTIONS   #
+###########
+
 __gs-read-config() {
   config_file="$(git rev-parse --show-toplevel)/.gitstoryrc"
   if [[ -f $config_file ]]; then
     source $config_file
-  else
-    __gs-print "Config file not found."
-    __gs-info "Creating '$config_file'"
-    cat ~/.git-story/config.sh > $config_file
   fi
 }
 
-###########
-#  FUNCTIONS   #
-###########
 __gs-update-source-help(){
   __gs-print "
 usage:
@@ -190,22 +187,34 @@ __gs-stat-author-contrib() {
   fi
 }
 
-__gs-github-open-help() {
+__gs-browse-project-help() {
   __gs-print "
 usage:
 \t gs pull-request
 opens current projects GitHub page"
 }
 
-alias github_open="open \`git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//'\`"
-__gs-github-open() {
+__gs-browse-project() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    __gs-github-open-help
+    __gs-browse-project-help
     return
   elif [[ ! -z "$1" ]]; then
     __gs-ignore-args "gs pull-request"
   fi
-  github_open
+
+  # Check path
+  if [[ ! -z $GS_PROJECT_URL ]]; then
+    url=$GS_PROJECT_URL
+  elif [[ $GS_HAS_GITHUB == true ]]; then
+    url=$(git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//')
+  fi
+
+  # Check OS
+  if [[ "$(uname -s)" == "Linux" ]]; then
+    xdg-open $url
+  elif [ "$(uname)" == "Darwin" ]; then
+    open $url
+  fi
 }
 
 __gs-dev-help() {
@@ -410,11 +419,11 @@ __gs-ready-execute() {
   __gs-success "Successfully pulled updates from remote '$target' branch."
   echo ""
 
-  if [[ $GS_HAS_GITHUB == true ]] && [[ $GS_PROMPT_GITHUB == true ]]; then
+  if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
     while true; do
-      read -p "Would you like to open GitHub? (y\n)" yn
+      read -p "Would you like to open your projects website? (y\n)" yn
       case $yn in
-        [Yy]* ) __gs-github-open; break;;
+        [Yy]* ) __gs-browse-project; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
       esac

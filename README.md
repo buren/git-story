@@ -6,6 +6,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 
 * [Installation](#install-git-story)
 * [Example](#example)
+* [Configuration](#configuration)
 * [Command list](#command-list)
 * [Documentation](#documentation)
 * [Notes](#notes)
@@ -33,6 +34,19 @@ The principle is that you develop each new feature in its on branch. Then when y
     gs dev branch_name                     # Sets up clean workspace based of remote master.
     gs commit "Commit message"             # Commit changes locally.
     gs done "Commit message"               # Commit changes, update master and merge with repository.
+
+## Configuration
+For project specific configurations create a file named `.gitstoryrc` at the git root.
+Available options:
+
+    GS_PRE_COMMIT_HOOK   (String)  A command that runs all tests.        Default: ""
+    GS_PRINT_CHECKLIST   (Boolean) Print checklist before `gs done`.     Default: false
+    GS_HAS_GITHUB        (Boolean) Project has GitHub.                   Default: true
+    GS_PROJECT_URL       (String)  Project URL.                          Default: ""
+    GS_PROMPT_BROWSE_URL (Boolean) Prompt to open project URL.           Default: true
+    GS_CHECKLIST_MESSAGE (String)  Checklist string.                     Default: "1. Have you written tests? 2. ..."
+
+See [config.sh](https://raw2.github.com/buren/git-story/master/config.sh) for details.
 
 ## Command list
 
@@ -99,8 +113,8 @@ Alias: `last`
                 weekdays               # prints statistics for number of commits per weekday
                 hour                   # prints statistics for number of commits per hour
 
-  show statistics for repository.  
-  Alias: statistics  
+  show statistics for repository.
+  Alias: statistics
 ## Notes
 Overides ```gs``` (Ghostscript) on Linux.
 
