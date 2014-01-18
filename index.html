@@ -37,6 +37,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 <ul>
 <li><a href="#install-git-story">Installation</a></li>
 <li><a href="#example">Example</a></li>
+<li><a href="#configuration">Configuration</a></li>
 <li><a href="#command-list">Command list</a></li>
 <li><a href="#documentation">Documentation</a></li>
 <li><a href="#notes">Notes</a></li>
@@ -65,13 +66,31 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 </li>
 <li>Make a pull request on GitHub <code>gs pull-request</code>
 </li>
-</ol><h2>
+</ol><p>The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.</p>
+
+<h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
 <pre><code>gs dev branch_name                     # Sets up clean workspace based of remote master.
 gs commit "Commit message"             # Commit changes locally.
 gs done "Commit message"               # Commit changes, update master and merge with repository.
 </code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>For project specific configurations create a file named <code>.gitstoryrc</code> at the git root.
+Available options:</p>
+
+<pre><code>GS_PRE_COMMIT_HOOK   (String)  A command that runs all tests.     Default: ""
+GS_PRINT_CHECKLIST   (Boolean) Print checklist before `gs done`.  Default: false
+GS_HAS_GITHUB        (Boolean) Project has GitHub.                Default: true
+GS_PROJECT_URL       (String)  Project URL.                       Default: ""
+GS_PROMPT_BROWSE_URL (Boolean) Prompt to open project URL.        Default: true
+GS_CHECKLIST_MESSAGE (String)  Checklist string.                  Default: "1. Have you written..."
+</code></pre>
+
+<p>See <a href="https://raw2.github.com/buren/git-story/master/config.sh">config.sh</a> for details.</p>
 
 <h2>
 <a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
@@ -106,7 +125,7 @@ gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
 <p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-Alias: feature</p>
+Alias: <code>feature</code></p>
 </li>
 <li>
 <p>Commit your changes</p>
@@ -115,7 +134,7 @@ Alias: feature</p>
 </code></pre>
 
 <p>comment and commit to the changes you've made.
-Alias: checkpoint</p>
+Alias: <code>checkpoint</code></p>
 </li>
 <li>
 <p>Commit and sync with repository</p>
@@ -126,7 +145,7 @@ Alias: checkpoint</p>
 <p>comment and commit the changes you've made and merge changes made on .
 <code>&lt;target_branch&gt;</code> is optional and defaults to 'master'.
 If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs pull-request</code>.
-Alias: release</p>
+Alias: <code>release</code></p>
 </li>
 <li>
 <p>Fetch and merge</p>
@@ -175,16 +194,16 @@ Alias: <code>last</code></p>
         weekdays               # prints statistics for number of commits per weekday
         hour                   # prints statistics for number of commits per hour
 </code></pre>
-
-<p>show statistics for repository.<br>
-Alias: statistics  </p>
+</li>
+</ul><p>show statistics for repository.
+Alias: <code>statistics</code></p>
 
 <h2>
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <p>Overides <code>gs</code> (Ghostscript) on Linux.</p>
-</li>
-</ul><h2>
+
+<h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
