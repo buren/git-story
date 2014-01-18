@@ -44,7 +44,7 @@ Available options:
     GS_HAS_GITHUB        (Boolean) Project has GitHub.                   Default: true
     GS_PROJECT_URL       (String)  Project URL.                          Default: ""
     GS_PROMPT_BROWSE_URL (Boolean) Prompt to open project URL.           Default: true
-    GS_CHECKLIST_MESSAGE (String)  Checklist string.                     Default: "1. Have you written tests? 2. ..."
+    GS_CHECKLIST_MESSAGE (String)  Checklist string.                     Default: "1. Have you written..."
 
 See [config.sh](https://raw2.github.com/buren/git-story/master/config.sh) for details.
 
