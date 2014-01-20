@@ -252,7 +252,6 @@ __gs-dev() {
     fi
   done
 
-
   __gs-print "Verifying unique name for branch."
   if git show-ref --verify --quiet "refs/heads/$1"; then
     __gs-error >&2 "Branch $PURPLE'$1'$RESET already exists."
@@ -365,6 +364,11 @@ note:"
   __gs-warning "\t Can cause merge conflicts"
 }
 
+__gs-print-merged-run-hook-message() {
+  __gs-info "Remote changes from '$1' merged."
+  __gs-info "Running pre-commit hook."
+}
+
 __gs-ready() {
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-ready-help
@@ -379,6 +383,8 @@ __gs-ready() {
   else
     confirm_message="Are your sure?"
   fi
+
+  echo ""
 
   if [[ $GS_PRINT_CHECKLIST != true ]] && [[ $GS_PROMPT_ON_DONE  == false ]]; then
     __gs-ready-execute "$@"
@@ -407,15 +413,56 @@ __gs-ready-execute() {
   elif [[ ! -z "$1" ]]; then
     __gs-warning "Nothing to commit. Ignoring arguments."
   fi
-
+  # Update current branch
   local current="$(git rev-parse --abbrev-ref HEAD)"
-  git pull origin $current
+  # Pull from remote
+  __gs-info "\nPull from: '$current'"
+  pull_tail=$(git pull origin $current 2> /dev/null | tail -n1)
+  if [[ $pull_tail == *"Automatic merge failed"* ]]; then
+   __gs-automatic-merge-failed $current $current
+   return
+  elif [[ $pull_tail == *"Already up-to-date"* ]]; then
+    __gs-info "'$current' already up-to-date."
+  else
+    __gs-print-merged-run-hook-message $current
+    __gs-precommit-hook
+    while true; do
+      read -p "Did all tests pass? (y\n)" yn
+      case $yn in
+        [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
+        [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+        * ) echo "Please answer yes or no.";;
+      esac
+    done
+  fi
+  __gs-info "\n[push]"
   git push origin $current
-  target=${2:-master}
-  git pull origin $target
-  git push origin $current
-  __gs-warning "If any merge conflicts fix them and then run:"
-  __gs-print "\t gs done 'Fixed merge conflicts.'"
+
+  # Update target branch
+  local target=${2:-master}
+  # Pull from remote
+  __gs-info "\nPull from: '$target'"
+  target_pull_tail=$(git pull origin $target 2> /dev/null | tail -n1)
+  if [[ $target_pull_tail == *"Automatic merge failed"* ]]; then
+   __gs-automatic-merge-failed $target $current
+   return
+  elif [[ $target_pull_tail == *"Already up-to-date"* ]]; then
+    __gs-info "'$target' already up-to-date."
+  else
+    __gs-print-merged-run-hook-message $target
+    __gs-precommit-hook
+    while true; do
+      read -p "Did all tests pass? (y\n)" yn
+      case $yn in
+        [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
+        [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+        * ) echo "Please answer yes or no.";;
+      esac
+    done
+  fi
+  __gs-info "\n[push]"
+  git push origin $current # Push merged updates from target branch to current
+
   echo ""
   __gs-success "Successfully pulled updates from remote '$target' branch."
   echo ""
@@ -447,6 +494,7 @@ __gs-precommit-hook() {
   fi
 
   if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+    __gs-info "Running pre-commit hook."
     $GS_PRE_COMMIT_HOOK
     __gs-info "Ran all tests. Check status."
   else
@@ -565,7 +613,11 @@ Commit your changes:"
   __gs-checkpoint-help
 }
 
-
+__gs-automatic-merge-failed() {
+  __gs-print "Automatic merge with branch '$1' to '$2' failed."
+  __gs-error "Merge with '$1' failed."
+  __gs-info "Please fix all conflicts and then run 'gs done \"Fixed merge conflicts\"'."
+}
 
 ################
 #             HELP               #
