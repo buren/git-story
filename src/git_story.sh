@@ -392,7 +392,11 @@ __gs-ready() {
     __gs-ready-execute "$@"
   else
     while true; do
-      read -p "$confirm_message  (y\n)" yn
+      if [[ $SHELL == "/bin/zsh" ]]; then
+        read "? $confirm_message"
+      else
+        read -p "$confirm_message  (y\n)" yn
+      fi
       case $yn in
         [Yy]* ) __gs-ready-execute "$@"; break;;
         [Nn]* ) break;;
@@ -429,7 +433,11 @@ __gs-ready-execute() {
     __gs-print-merged-run-hook-message $current
     __gs-precommit-hook
     while true; do
-      read -p "Did all tests pass? (y\n)" yn
+      if [[ $SHELL == "/bin/zsh" ]]; then
+        read "? $confirm_message"
+      else
+        read -p "Did all tests pass? (y\n)" yn
+      fi
       case $yn in
         [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
         [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
@@ -454,7 +462,11 @@ __gs-ready-execute() {
     __gs-print-merged-run-hook-message $target
     __gs-precommit-hook
     while true; do
-      read -p "Did all tests pass? (y\n)" yn
+      if [[ $SHELL == "/bin/zsh" ]]; then
+        read "? $confirm_message"
+      else
+        read -p "Did all tests pass? (y\n)" yn
+      fi
       case $yn in
         [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
         [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
@@ -471,7 +483,11 @@ __gs-ready-execute() {
 
   if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
     while true; do
-      read -p "Would you like to open your projects website? (y\n)" yn
+      if [[ $SHELL == "/bin/zsh" ]]; then
+        read "? $confirm_message (y\n)" yn
+      else
+        read -p "Would you like to open your projects website? (y\n)" yn
+      fi
       case $yn in
         [Yy]* ) __gs-browse-project; break;;
         [Nn]* ) break;;
