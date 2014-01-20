@@ -485,11 +485,13 @@ __gs-ready-execute() {
   echo ""
 
   if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
+    local prompt_message="Would you like to open your projects website? (y\n)"
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
-        read -q "REPLY?" y (y\n)"
+        yn=""
+        vared -p "$prompt_message" yn
       else
-        read -p "Would you like to open your projects website? (y\n)" yn
+        read -p "$prompt_message" yn
       fi
       case $yn in
         [Yy]* ) __gs-browse-project; break;;
