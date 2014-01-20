@@ -393,7 +393,8 @@ __gs-ready() {
   else
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
-        read "? $confirm_message"
+        yn=""
+        vared -p "$confirm_message (y\n)" yn
       else
         read -p "$confirm_message  (y\n)" yn
       fi
@@ -434,7 +435,8 @@ __gs-ready-execute() {
     __gs-precommit-hook
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
-        read "? $confirm_message"
+        yn=""
+        vared -p "$confirm_message (y\n)" yn
       else
         read -p "Did all tests pass? (y\n)" yn
       fi
@@ -463,7 +465,8 @@ __gs-ready-execute() {
     __gs-precommit-hook
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
-        read "? $confirm_message"
+        yn=""
+        vared -p "$confirm_message (y\n)" yn
       else
         read -p "Did all tests pass? (y\n)" yn
       fi
@@ -484,7 +487,7 @@ __gs-ready-execute() {
   if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
-        read "? $confirm_message (y\n)" yn
+        read -q "REPLY?" y (y\n)"
       else
         read -p "Would you like to open your projects website? (y\n)" yn
       fi
