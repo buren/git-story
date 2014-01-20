@@ -33,7 +33,7 @@ The principle is that you develop each new feature in its on branch. Then when y
 
     gs dev branch_name                     # Sets up clean workspace based of remote master.
     gs done "Commit message"               # Commit changes, update master and merge with repository.
-Output [example](http://showterm.io/79ed166435dd0188e985d) (video).
+Output [example](http://showterm.io/74f38902aa7540458057b) (video).
 
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the git root.
