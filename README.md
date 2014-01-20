@@ -32,8 +32,8 @@ The principle is that you develop each new feature in its on branch. Then when y
 ## Example
 
     gs dev branch_name                     # Sets up clean workspace based of remote master.
-    gs commit "Commit message"             # Commit changes locally.
     gs done "Commit message"               # Commit changes, update master and merge with repository.
+Output [example](http://showterm.io/79ed166435dd0188e985d) (video).
 
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the git root.
