@@ -72,9 +72,10 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
 <pre><code>gs dev branch_name                     # Sets up clean workspace based of remote master.
-gs commit "Commit message"             # Commit changes locally.
 gs done "Commit message"               # Commit changes, update master and merge with repository.
 </code></pre>
+
+<p>Output <a href="http://showterm.io/74f38902aa7540458057b">example</a> (video).</p>
 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
@@ -82,15 +83,15 @@ gs done "Commit message"               # Commit changes, update master and merge
 <p>For project specific configurations create a file named <code>.gitstoryrc</code> at the git root.
 Available options:</p>
 
-<pre><code>GS_PRE_COMMIT_HOOK   (String)  A command that runs all tests.     Default: ""
-GS_PRINT_CHECKLIST   (Boolean) Print checklist before `gs done`.  Default: false
-GS_HAS_GITHUB        (Boolean) Project has GitHub.                Default: true
-GS_PROJECT_URL       (String)  Project URL.                       Default: ""
-GS_PROMPT_BROWSE_URL (Boolean) Prompt to open project URL.        Default: true
-GS_CHECKLIST_MESSAGE (String)  Checklist string.                  Default: "1. Have you written..."
+<pre><code>GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests.     Default: ""
+GS_PRINT_CHECKLIST   # (Boolean) Print checklist before `gs done`.  Default: false
+GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
+GS_PROJECT_URL       # (String)  Project URL.                       Default: ""
+GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL.        Default: true
+GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1. Have you written..."
 </code></pre>
 
-<p>See <a href="https://raw2.github.com/buren/git-story/master/config.sh">config.sh</a> for details.</p>
+<p>See <a href="https://github.com/buren/git-story/blob/master/config.sh">config.sh</a> for details.</p>
 
 <h2>
 <a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
