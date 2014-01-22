@@ -518,7 +518,7 @@ __gs-precommit-hook() {
 
   if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
     __gs-info "Running pre-commit hook."
-    $GS_PRE_COMMIT_HOOK
+    eval $GS_PRE_COMMIT_HOOK
     __gs-info "Ran all tests. Check status."
   else
     __gs-print "No pre-commit-hook set. Skipping..."
