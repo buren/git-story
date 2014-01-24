@@ -244,15 +244,19 @@ __gs-dev() {
     return
   fi
 
-  # git fetch origin
-  for remote in `git branch -r `; do
-    remote_result=$(git branch --track $remote 2>&1 /dev/null)
-    found_result="fatal: A branch named 'origin/$1' already exists."
-    if [[ $remote_result == $found_result ]]; then
-      __gs-error "A branch with name '$1' already exists. Please choose another branch name."
-      return
-    fi
-  done
+  # Check globally unique branch_name
+  repo_branches="$(git branch -r)"
+  if [[ $repo_branches == *"origin/$1"* ]]; then
+    __gs-error "A branch with name '$1' already exists."
+    __gs-info "Please choose another branch name."
+    return
+  fi
+  # Check that target_branch exists
+  if [[ $repo_branches != *"origin/$2"* ]]; then
+    __gs-error "Target branch with name '$2' does NOT exist."
+    __gs-info "Please choose valid target branch."
+    return
+  fi
 
   __gs-print "Verifying unique name for branch."
   if git show-ref --verify --quiet "refs/heads/$1"; then
