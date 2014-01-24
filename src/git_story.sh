@@ -423,19 +423,21 @@ __gs-ready-execute() {
   else
     __gs-print-merged-run-hook-message $current
     __gs-precommit-hook
-    while true; do
-      if [[ $SHELL == "/bin/zsh" ]]; then
-        yn=""
-        vared -p "$confirm_message (y\n)" yn
-      else
-        read -p "Did all tests pass? (y\n)" yn
-      fi
-      case $yn in
-        [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
-        [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
-        * ) echo "Please answer yes or no.";;
-      esac
-    done
+    if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+      while true; do
+        if [[ $SHELL == "/bin/zsh" ]]; then
+          yn=""
+          vared -p "$confirm_message (y\n)" yn
+        else
+          read -p "Did all tests pass? (y\n)" yn
+        fi
+        case $yn in
+          [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
+          [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+          * ) echo "Please answer yes or no.";;
+        esac
+      done
+    fi
   fi
   __gs-info "\n[push]"
   git push origin $current
@@ -453,19 +455,21 @@ __gs-ready-execute() {
   else
     __gs-print-merged-run-hook-message $target
     __gs-precommit-hook
-    while true; do
-      if [[ $SHELL == "/bin/zsh" ]]; then
-        yn=""
-        vared -p "$confirm_message (y\n)" yn
-      else
-        read -p "Did all tests pass? (y\n)" yn
-      fi
-      case $yn in
-        [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
-        [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
-        * ) echo "Please answer yes or no.";;
-      esac
-    done
+    if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+      while true; do
+        if [[ $SHELL == "/bin/zsh" ]]; then
+          yn=""
+          vared -p "$confirm_message (y\n)" yn
+        else
+          read -p "Did all tests pass? (y\n)" yn
+        fi
+        case $yn in
+          [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
+          [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+          * ) echo "Please answer yes or no.";;
+        esac
+      done
+    fi
   fi
   __gs-info "\n[push]"
   git push origin $current # Push merged updates from target branch to current
