@@ -32,6 +32,8 @@ __gs_functions() {
     __gs-checkpoint "$2"
   elif [[ $1 == "pre-commit" ]] || [[ $1 == "test" ]]; then
     __gs-precommit-hook "$2"
+  elif [[ $1 == "package" ]] || [[ $1 == "build" ]]; then
+    __gs-package "$2"
   elif [[ $1 == "done" ]] || [[ $1 == "release" ]]; then
     __gs-ready "$2" "$3"
   elif [[ $1 == "list" ]]; then
@@ -522,6 +524,25 @@ __gs-precommit-hook() {
     __gs-info "Ran all tests. Check status."
   else
     __gs-print "No pre-commit-hook set. Skipping..."
+  fi
+}
+
+__gs-package-help() {
+  __gs-print "Usage:
+\t gs package
+Runs GS_PROJECT command, if specified.
+alias: build"
+}
+
+__gs-package() {
+  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+    __gs-package-help
+    return
+  fi
+  if [[ ! -z $GS_PACKAGE ]]; then
+    __gs-info "Packaging project."
+    eval $GS_PACKAGE
+    __gs-info "Done"
   fi
 }
 

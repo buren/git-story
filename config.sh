@@ -3,6 +3,9 @@
 # Tests
 export GS_PRE_COMMIT_HOOK
 
+# Package
+export GS_PACKAGE
+
 # Done
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
