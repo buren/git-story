@@ -120,4 +120,4 @@ Alias: `statistics`
 Overides ```gs``` (Ghostscript) on Linux.
 
 ## License
-Released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
+git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
