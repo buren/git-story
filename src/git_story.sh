@@ -245,12 +245,13 @@ __gs-dev() {
   fi
 
   # Check globally unique branch_name
-  repo_branches="$(git branch -r)"
+  repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
   if [[ $repo_branches == *"origin/$1"* ]]; then
     __gs-error "A branch with name '$1' already exists."
     __gs-info "Please choose another branch name."
     return
   fi
+
   # Check that target_branch exists
   if [[ $repo_branches != *"origin/$2"* ]]; then
     __gs-error "Target branch with name '$2' does NOT exist."
@@ -258,30 +259,6 @@ __gs-dev() {
     return
   fi
 
-  __gs-print "Verifying unique name for branch."
-  if git show-ref --verify --quiet "refs/heads/$1"; then
-    __gs-error >&2 "Branch $PURPLE'$1'$RESET already exists."
-    __gs-error "Please choose another branch name."
-    return
-  else
-    echo ""
-    __gs-print "No conflicting branches found."
-    __gs-print "Proceeding..."
-  fi
-
-  if [[ ! -z "$2" ]]; then
-    if git show-ref --verify --quiet "refs/heads/$2"; then
-      __gs-print >&2 "Base branch '$2' exists."
-      __gs-print "Proceeding..."
-    else
-      __gs-print "Specified base branch: $PURPLE'$2'$RESET not found!"
-      __gs-print "Please specifiy a valid base branch."
-      __gs-print "Available branches are:"
-      git branch
-      __gs-error "ERROR: No such base branch$PURPLE '$2' $RESET"
-      return
-    fi
-  fi
   base=$2
   branch=${base:-master}
 
@@ -295,6 +272,15 @@ __gs-dev() {
   __gs-print "Based of branch:$PURPLE $branch $RESET"
   __gs-success "[SUCCESS] $RESET Successfully created new feature branch named$PURPLE '$1'$RESET based of$PURPLE '$branch'$RESET"
   echo ""
+}
+
+__gs-fetch-all-remote-branches() {
+  git fetch origin
+  __gs-info "Fetching all branches."
+  for remote in `git branch --remote | grep -v "\->"`; do
+    git fetch origin ${remote//origin\//} || __gs-warning "Fetch of '$remote' failed."
+  done
+  __gs-info "Fetched all branches."
 }
 
 __gs-pull-help() {
