@@ -93,7 +93,8 @@ Alias: `release`
         gs pull
 fetch and merge from remote.
 Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.
-* ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`. Runs GS_PRE_COMMIT_HOOK
+* ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`. Runs `GS_PRE_COMMIT_HOOK`
+* ```gs package``` Package the project. Runs `GS_PACKAGE`. Alias: `build`
 * ```gs where``` prints all branches and marks the current one with a *. Alias: `branches`
 * ```gs switchto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed. Alias: `branch`, `goto`
 * ```gs diff``` view all uncommitted changes
