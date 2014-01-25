@@ -683,6 +683,7 @@ gs commands:
 \t switchto           Switch from current branch to specified branch (alias: branch, goto)
 \t diff               List status and uncomitted changes
 \t pull-request       Open current git repository on Github (alias: open, github)
+\t package            Package the project. Runs `GS_PACKAGE` (alias: build)
 \t history            List repository commits (alias: repo-history)
 \t show               Show last or specified commit (alias: last)
 \t status             Shows the current git status
