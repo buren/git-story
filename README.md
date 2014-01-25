@@ -59,6 +59,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
        switchto          # Switch from current branch to specified branch (alias: branch, goto)
        diff              # List status and uncomitted changes
        pull-request      # Open current git repository on Github (alias: open, github)
+       package           # Package the project. Runs GS_PACKAGE (alias: build)
        history           # List repository commits (alias: repo-history)
        show              # Show last or specified commit (alias: last)
        status            # Shows the current git status
@@ -92,7 +93,8 @@ Alias: `release`
         gs pull
 fetch and merge from remote.
 Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.
-* ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`
+* ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`. Runs `GS_PRE_COMMIT_HOOK`
+* ```gs package``` Package the project. Runs `GS_PACKAGE`. Alias: `build`
 * ```gs where``` prints all branches and marks the current one with a *. Alias: `branches`
 * ```gs switchto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed. Alias: `branch`, `goto`
 * ```gs diff``` view all uncommitted changes
