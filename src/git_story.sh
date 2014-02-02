@@ -241,6 +241,25 @@ __gs-dev() {
   elif [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     __gs-dev-help
     return
+  elif [[ $2 == "--force" ]]; then
+    __gs-warning "This will not make sure that your working branch is clean."
+    __gs-print ""
+    __gs-print "You will manually have to make sure that your branch name is unique."
+    confirm_message='Are you sure?'
+    while true; do
+      if [[ $SHELL == "/bin/zsh" ]]; then
+        yn=""
+        vared -p "$confirm_message (y\n)" yn
+      else
+        read -p "$confirm_message  (y\n)" yn
+      fi
+      case $yn in
+        [Yy]* ) git checkout -b $1 && __gs-info "Make sure you run 'gs pull' afterwards to merge the latest remote updates." || __gs-error "Failed"; break;;
+        [Nn]* ) __gs-warning "Aborted."; break;;
+        * ) echo "Please answer yes or no.";;
+      esac
+    done
+    return
   elif [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     __gs-uncommitted-changes-message
     return
