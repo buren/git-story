@@ -75,6 +75,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
         gs dev <branch_name>
         gs dev <branch_name> <base_branch>
 this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
+If --force is supplied as the second argument no checks will be made.
 Alias: `feature`
 * Commit your changes
 

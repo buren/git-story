@@ -229,7 +229,9 @@ usage:
 \t gs dev <branch_name> <base_branch>
 <base_branch> is optional and will fall back to master
 
-Guarantees clean workspace from remote master (or specified branch)"
+Guarantees clean workspace from remote master (or specified branch).
+
+If --force is supplied as the second argument no checks will be made."
 }
 
 __gs-dev() {
