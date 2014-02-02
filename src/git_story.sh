@@ -266,7 +266,8 @@ __gs-dev() {
     __gs-uncommitted-changes-message
     return
   fi
-
+  
+  git fetch origin
   # Check globally unique branch_name
   repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
   if [[ $repo_branches == *"origin/$1"* ]]; then
