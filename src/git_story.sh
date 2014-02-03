@@ -266,7 +266,7 @@ __gs-dev() {
     __gs-uncommitted-changes-message
     return
   fi
-  
+
   git fetch origin
   # Check globally unique branch_name
   repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
@@ -302,9 +302,13 @@ __gs-fetch-all-remote-branches() {
   git fetch origin
   __gs-info "Fetching all branches."
   for remote in `git branch --remote | grep -v "\->"`; do
-    git fetch origin ${remote//origin\//} || __gs-warning "Fetch of '$remote' failed."
+    __gs-fetch-remote-branch ${remote//origin\//} &
   done
   __gs-info "Fetched all branches."
+}
+
+__gs-fetch-remote-branch() {
+  git fetch origin $1 || __gs-warning "Fetch of '$1' failed."
 }
 
 __gs-pull-help() {
@@ -610,7 +614,7 @@ __gs-history() {
     __gs-history-help
     return
   fi
-  git log $1
+  git log $1 --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
 }
 
 __gs-show-help() {
