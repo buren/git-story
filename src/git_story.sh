@@ -267,6 +267,12 @@ __gs-dev() {
     return
   fi
 
+  if [[ $1 == *" "* ]]; then
+    __gs-error "ERROR:"
+    __gs-error "\t Name can't contain spaces!"
+    return
+  fi
+
   git fetch origin
   # Check globally unique branch_name
   repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
