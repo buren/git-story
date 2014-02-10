@@ -65,6 +65,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
        status            # Shows the current git status
        where             # Shows all available branches (alias: branches)
        list              # Print command list
+       stash             # Manage git-stash stack.
        stat              # Print statistics of git repository (alias: statistics)
        get-update        # Update git-story
 
@@ -108,6 +109,14 @@ Example: If the current branch is "test_feature" the command will try to fetch a
         gs show <sha>
 view the last commit in current branch or specified commit <sha>.
 Alias: `last`
+* Manage git-stash stack
+
+        gs stash <arg>
+                 push          # Save all changes to stash (alias: save)
+                 apply         # Apply all changes from latest stash (alias: pop)
+                 list          # List stash stack
+                 show          # Show the latest stash
+                 clear         # Clears the entire stash stack
 * Show statistics for repository
 
         gs stat <type>
