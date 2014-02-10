@@ -75,7 +75,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 gs done "Commit message"               # Commit changes, update master and merge with repository.
 </code></pre>
 
-<p>Output <a href="http://showterm.io/74f38902aa7540458057b">example</a> (video).</p>
+<p>Output <a href="http://showterm.io/79c9eb80cf3a4f23ab047">example</a> (video).</p>
 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
@@ -111,6 +111,7 @@ GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1.
    status            # Shows the current git status
    where             # Shows all available branches (alias: branches)
    list              # Print command list
+   stash             # Manage git-stash stack.
    stat              # Print statistics of git repository (alias: statistics)
    get-update        # Update git-story
 </code></pre>
@@ -190,6 +191,17 @@ gs show &lt;sha&gt;
 
 <p>view the last commit in current branch or specified commit .
 Alias: <code>last</code></p>
+</li>
+<li>
+<p>Manage git-stash stack</p>
+
+<pre><code>gs stash &lt;arg&gt;
+         push          # Save all changes to stash (alias: save)
+         apply         # Apply all changes from latest stash (alias: pop)
+         list          # List stash stack
+         show          # Show the latest stash
+         clear         # Clears the entire stash stack
+</code></pre>
 </li>
 <li>
 <p>Show statistics for repository</p>
