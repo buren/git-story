@@ -217,9 +217,9 @@ __gs-browse-project() {
 
   # Check OS
   if [[ "$(uname -s)" == "Linux" ]]; then
-    xdg-open $url
+    xdg-open $url &
   elif [ "$(uname)" == "Darwin" ]; then
-    open $url
+    open $url &
   fi
 }
 
@@ -773,6 +773,7 @@ gs commands:
 \t status             Shows the current git status
 \t where              Shows all available branches (alias: branches)
 \t list               Prints command list
+\t stash              Manage git-stash stack.
 \t stat               Print statistics of git repository (alias: statistics)
 \t get-update         Updates git-story"
 }
