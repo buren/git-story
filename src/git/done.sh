@@ -67,7 +67,6 @@ __gs-ready-execute() {
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     if [[ -z "$1" ]]; then
       __gs-error "You have uncommited changes you must provide a commit message."
-      __gs-ready-help
       return
     fi
     git add --all
