@@ -12,7 +12,7 @@ opens current projects GitHub page"
 }
 
 __gs-browse-project() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-browse-project-help
     return
   elif [[ ! -z "$1" ]]; then
@@ -44,7 +44,7 @@ View ~/.git-story/config.sh for available config options."
 }
 
 __gs-precommit-hook() {
-  if [[ "$1" == "-help" ]] ||  [[ "$1" == "--help" ]]; then
+  if [[ "$1" == "--help" ]]; then
     __gs-precommit-hook
     return
   fi
@@ -66,7 +66,7 @@ alias: build"
 }
 
 __gs-package() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-package-help
     return
   fi

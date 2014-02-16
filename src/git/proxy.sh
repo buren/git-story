@@ -15,7 +15,7 @@ note:"
 }
 
 __gs-pull() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-pull-help
     return
   fi
@@ -44,7 +44,7 @@ __gs-checkpoint() {
     __gs-checkpoint-help
     return
   fi
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-checkpoint-help
     return
   fi
@@ -66,7 +66,7 @@ shows all your uncommitted changes"
 }
 
 __gs-diff() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-diff-help
     return
   fi
@@ -83,7 +83,7 @@ alias: branch, goto"
 }
 
 __gs-switchto() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-switchto-help
     return
   fi
@@ -102,7 +102,7 @@ if no <branch_name> is provided the current branch history will be shown"
 }
 
 __gs-history() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-history-help
     return
   fi
@@ -119,7 +119,7 @@ alias: last"
 }
 
 __gs-show() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-show-help
     return
   fi
@@ -134,7 +134,7 @@ show current git status"
 }
 
 __gs-status() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-status-help
     return
   elif [[ ! -z $1 ]]; then
@@ -152,7 +152,7 @@ Alias: branches"
 }
 
 __gs-where() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-where-help
     return
   elif [[ ! -z $1 ]]; then
@@ -177,7 +177,7 @@ __gs-stash() {
   if [[ -z $1 ]]; then
     __gs-error "Needs argument."
     return
-  elif [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  elif [[ $1 == "--help" ]]; then
     __gs-stash-help
     return
   fi
@@ -220,7 +220,7 @@ alias: abort_merge, abortmerge
 "
 }
 __gs-abort-merge() {
-  if [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
+  if [[ "$1" == "--help" ]]; then
     __gs-update-source-help
     return
   elif [[ ! -z "$1" ]]; then

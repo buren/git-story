@@ -19,7 +19,7 @@ Default: contributions"
 }
 
 __gs-stat() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-stat-help
     return
   elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then

@@ -25,6 +25,17 @@ source $gs_folder/src/integration/integration.sh
 #  git-story   #
 ###########
 
+gs() {
+  __gs-read-config
+  if [[ -z "$1" ]]; then
+    __gs-help
+  elif [[ $1 == "help" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+    __gs_functions "$2" "--help"
+  else
+    __gs_functions "$@"
+  fi
+}
+
 __gs-read-config() {
   config_file="$(git rev-parse --show-toplevel)/.gitstoryrc"
   if [[ -f $config_file ]]; then
