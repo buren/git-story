@@ -21,7 +21,7 @@ __gs-dev() {
     __gs-error "Missing argument <branch_name>"
     __gs-dev-help
     return
-  elif [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  elif [[ $1 == "--help" ]]; then
     __gs-dev-help
     return
   elif [[ $2 == "--force" ]]; then

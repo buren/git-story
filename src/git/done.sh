@@ -27,7 +27,7 @@ __gs-print-merged-run-hook-message() {
 }
 
 __gs-ready() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
+  if [[ $1 == "--help" ]]; then
     __gs-ready-help
     return
   fi
@@ -85,6 +85,7 @@ __gs-ready-execute() {
   elif [[ $pull_tail == *"Already up-to-date"* ]]; then
     __gs-info "'$current' already up-to-date."
   else
+    __gs-print "[gs] pull_tail: $pull_tail"
     __gs-print-merged-run-hook-message $current
     __gs-precommit-hook
     if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
@@ -117,6 +118,7 @@ __gs-ready-execute() {
   elif [[ $target_pull_tail == *"Already up-to-date"* ]]; then
     __gs-info "'$target' already up-to-date."
   else
+    __gs-print "[gs] pull_tail: $target_pull_tail"
     __gs-print-merged-run-hook-message $target
     __gs-precommit-hook
     if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
@@ -139,7 +141,7 @@ __gs-ready-execute() {
   git push origin $current # Push merged updates from target branch to current
 
   echo ""
-  __gs-success "Successfully pulled updates from remote '$target' branch."
+  __gs-success "Successfully merged remote '$target' branch and pushed '$current' to remote."
   echo ""
 
   if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
