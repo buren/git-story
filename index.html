@@ -53,7 +53,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p>git-story is a git branching model which tries to so simple that any VCS novice should be able to effectively use it within 5 minutes.</p>
+<p>git-story simplifies the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice should be able to effectively use it in 5 minutes.</p>
 
 <p>The model:</p>
 
@@ -64,8 +64,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 </li>
 <li>If any conflicts fix them and <code>gs done "Fixed merge conflicts in ..."</code>
 </li>
-<li>Make a pull request on GitHub <code>gs pull-request</code>
-</li>
+<li>Create a pull request on GitHub </li>
 </ol><p>The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.</p>
 
 <h2>
@@ -129,7 +128,8 @@ gs dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
 <p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-If --force is supplied as the second argument no checks will be made.
+If --force is supplied as the second argument no checks are made.
+No checks are made if --force is supplied as the second argument.
 Alias: <code>feature</code></p>
 </li>
 <li>
@@ -159,7 +159,7 @@ Alias: <code>release</code></p>
 </code></pre>
 
 <p>fetch and merge from remote.
-Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.</p>
+Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.</p>
 </li>
 <li>
 <code>gs pull-request</code> opens the repository on GitHub. Alias: <code>open</code>, <code>github</code>. Runs <code>GS_PRE_COMMIT_HOOK</code>
