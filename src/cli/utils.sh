@@ -1,3 +1,7 @@
+###########
+#  utils   #
+###########
+
 __gs-error() {
   echo -e "${BOLD}${MAGENTA}$1$RESET"
 }

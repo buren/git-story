@@ -65,6 +65,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
        status            # Shows the current git status
        where             # Shows all available branches (alias: branches)
        list              # Print command list
+       abort-merge       # Aborts current merge (alias: abort_merge, abortmerge)
        stash             # Manage git-stash stack.
        stat              # Print statistics of git repository (alias: statistics)
        get-update        # Update git-story
@@ -102,7 +103,8 @@ Example: If the current branch is "test_feature" the command will try to fetch a
 * ```gs diff``` view all uncommitted changes
 * ```gs history``` view repository commit history. Alias: `repo-history`
 * ```gs list``` list all available git-story commands
-* ```gs get_update``` gets the latest version of git-story. Alias: `get-update`, `getupdate`
+* ```gs abort-merge``` aborts current merge. Alias: `abort_merge`, `abortmerge`
+* ```gs get-update``` gets the latest version of git-story. Alias: `get_update`, `getupdate`
 * Show commited changes
 
         gs show
