@@ -111,6 +111,7 @@ GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1.
    status            # Shows the current git status
    where             # Shows all available branches (alias: branches)
    list              # Print command list
+   abort-merge       # Aborts current merge (alias: abort_merge, abortmerge)
    stash             # Manage git-stash stack.
    stat              # Print statistics of git repository (alias: statistics)
    get-update        # Update git-story
@@ -180,7 +181,10 @@ Example: If the current branch is "test_feature" the command will try to fetch a
 <li>
 <code>gs list</code> list all available git-story commands</li>
 <li>
-<code>gs get_update</code> gets the latest version of git-story. Alias: <code>get-update</code>, <code>getupdate</code>
+<code>gs abort-merge</code> aborts current merge. Alias: <code>abort_merge</code>, <code>abortmerge</code>
+</li>
+<li>
+<code>gs get-update</code> gets the latest version of git-story. Alias: <code>get_update</code>, <code>getupdate</code>
 </li>
 <li>
 <p>Show commited changes</p>
