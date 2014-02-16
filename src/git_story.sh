@@ -45,11 +45,9 @@ __gs-update-source() {
   if [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
     __gs-update-source-help
     return
-  elif [[ ! -z "$1" ]]; then
-    __gs-print-args-ignored
   fi
-  target=${2-master}
-  __gs-print "Downloading latest changes made to 'git-story' from '$target'"
+  target=${1-master}
+  __gs-print "Downloading latest changes made to 'git-story' from branch: '$target'"
   current_dir=$(pwd)
   cd ~/.git-story && __gs-pull $target
   cd $current_dir
