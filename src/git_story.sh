@@ -5,20 +5,21 @@ git config --global color.ui auto
 ###########
 #  imports   #
 ###########
+gs_folder="$HOME/.git-story/"
 
-source ~/.git-story/config.sh
+source $gs_folder/config.sh
 
-source ~/.git-story/src/cli/colors.sh
-source ~/.git-story/src/cli/cli.sh
-source ~/.git-story/src/cli/utils.sh
+source $gs_folder/src/cli/colors.sh
+source $gs_folder/src/cli/cli.sh
+source $gs_folder/src/cli/utils.sh
 
-source ~/.git-story/src/git/dev.sh
-source ~/.git-story/src/git/done.sh
-source ~/.git-story/src/git/messages.sh
-source ~/.git-story/src/git/proxy.sh
-source ~/.git-story/src/git/stats.sh
+source $gs_folder/src/git/dev.sh
+source $gs_folder/src/git/done.sh
+source $gs_folder/src/git/messages.sh
+source $gs_folder/src/git/proxy.sh
+source $gs_folder/src/git/stats.sh
 
-source ~/.git-story/src/integration/integration.sh
+source $gs_folder/src/integration/integration.sh
 
 ###########
 #  git-story   #
@@ -49,7 +50,7 @@ __gs-update-source() {
   target=${1-master}
   __gs-print "Downloading latest changes made to 'git-story' from branch: '$target'"
   current_dir=$(pwd)
-  cd ~/.git-story && __gs-pull $target
+  cd $HOME/.git-story && __gs-pull $target
   cd $current_dir
   __gs-info "Successfully updated git-story."
 }

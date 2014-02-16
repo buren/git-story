@@ -1,24 +1,24 @@
 __install-git-story() {
-  if [[ ! -d ~/.git-story/ ]]; then
-    cd ~ && git clone https://github.com/buren/git-story.git && mv git-story .git-story
+  if [[ ! -d $HOME/.git-story/ ]]; then
+    cd $HOME && git clone https://github.com/buren/git-story.git && mv git-story .git-story
   else
     echo "git-story already installed"
     echo "Exiting"
     return
   fi
 
-  if [[ -f ~/.bash_profile ]]; then
+  if [[ -f $HOME/.bash_profile ]]; then
     echo "Injecting import: bash_profile"
-    cat ~/.git-story/setup/import.sh >> ~/.bash_profile
+    cat $HOME/.git-story/setup/import.sh >> $HOME/.bash_profile
     source .bash_profile
-  elif [[ -f ~/.bashrc ]]; then
+  elif [[ -f $HOME/.bashrc ]]; then
     echo "Injecting import: bashrc"
-    cat ~/.git-story/setup/import.sh >> ~/.bashrc
-    source ~/.bashrc
-  elif [[ -f ~/.zshrc ]]; then
+    cat $HOME/.git-story/setup/import.sh >> $HOME/.bashrc
+    source $HOME/.bashrc
+  elif [[ -f $HOME/.zshrc ]]; then
     echo "Injecting import: zshrc"
-    cat ~/.git-story/setup/import.sh >> ~/.zshrc
-    source ~/.zshrc
+    cat $HOME/.git-story/setup/import.sh >> $HOME/.zshrc
+    source $HOME/.zshrc
   else
     echo "[ERROR] Neither .bash_profile, .bashrc or .zshrc found."
     echo ""

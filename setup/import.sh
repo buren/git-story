@@ -1,1 +1,1 @@
-source ~/.git-story/src/git_story.sh
+source $HOME/.git-story/src/git_story.sh
