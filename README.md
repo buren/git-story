@@ -18,14 +18,14 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 injects import of git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
 ## Getting started
-git-story is a git branching model which tries to so simple that any VCS novice should be able to effectively use it within 5 minutes.
+git-story simplifies the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice should be able to effectively use it in 5 minutes.
 
 The model:
 
 1. Start developing a feature, and name it `gs dev <name>`
 2. Save local changes and sync with remote `gs done <commit_message>`
 3. If any conflicts fix them and `gs done "Fixed merge conflicts in ..."`
-4. Make a pull request on GitHub `gs pull-request`
+4. Create a pull request on GitHub 
 
 The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.
 
@@ -77,7 +77,8 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
         gs dev <branch_name>
         gs dev <branch_name> <base_branch>
 this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-If --force is supplied as the second argument no checks will be made.
+If --force is supplied as the second argument no checks are made.
+No checks are made if --force is supplied as the second argument.
 Alias: `feature`
 * Commit your changes
 
@@ -95,7 +96,7 @@ Alias: `release`
 
         gs pull
 fetch and merge from remote.
-Example: If the current branch is "test_feature" the command will try to fetch and merge the remote version of test_feature.
+Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.
 * ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`. Runs `GS_PRE_COMMIT_HOOK`
 * ```gs package``` Package the project. Runs `GS_PACKAGE`. Alias: `build`
 * ```gs where``` prints all branches and marks the current one with a *. Alias: `branches`
