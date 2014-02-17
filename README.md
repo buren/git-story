@@ -127,7 +127,6 @@ Alias: `last`
                 commits                # shows number of commits for each author
                 weekdays               # prints statistics for number of commits per weekday
                 hour                   # prints statistics for number of commits per hour
-
 show statistics for repository.
 Alias: `statistics`
 
