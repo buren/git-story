@@ -52,6 +52,7 @@ gs commands:
 \t status             Shows the current git status
 \t where              Shows all available branches (alias: branches)
 \t abort-merge        Aborts current merge (alias: abort_merge, abortmerge)
+\t tag-release        Create a new tagged release (alias: tag_release, tagrelease)
 \t list               Prints command list
 \t stash              Manage git-stash stack.
 \t stat               Print statistics of git repository (alias: statistics)

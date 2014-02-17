@@ -25,7 +25,7 @@ The model:
 1. Start developing a feature, and name it `gs dev <name>`
 2. Save local changes and sync with remote `gs done <commit_message>`
 3. If any conflicts fix them and `gs done "Fixed merge conflicts in ..."`
-4. Create a pull request on GitHub 
+4. Create a pull request on GitHub
 
 The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.
 
@@ -104,6 +104,7 @@ Example: If the current branch is "test_feature" it will try to fetch and merge 
 * ```gs diff``` view all uncommitted changes
 * ```gs history``` view repository commit history. Alias: `repo-history`
 * ```gs list``` list all available git-story commands
+* ```gs tag-release``` Create a new tagged release (alias: tag_release, tagrelease)
 * ```gs abort-merge``` aborts current merge. Alias: `abort_merge`, `abortmerge`
 * ```gs get-update``` gets the latest version of git-story. Alias: `get_update`, `getupdate`
 * Show commited changes
