@@ -17,9 +17,9 @@ If --force is supplied as the second argument no checks will be made."
 
 __gs-dev() {
   if [[ -z "$1" ]]; then
+    __gs-dev-help
     __gs-error "You must provide a branch name"
     __gs-error "Missing argument <branch_name>"
-    __gs-dev-help
     return
   elif [[ $1 == "--help" ]]; then
     __gs-dev-help
@@ -27,7 +27,7 @@ __gs-dev() {
   elif [[ $2 == "--force" ]]; then
     __gs-warning "This will not make sure that your working branch is clean."
     __gs-print ""
-    __gs-print "You will manually have to make sure that your branch name is unique."
+    __gs-print "You will manually have to make sure that your branch name is unique. \n"
     confirm_message='Are you sure?'
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
@@ -37,7 +37,7 @@ __gs-dev() {
         read -p "$confirm_message  (y\n)" yn
       fi
       case $yn in
-        [Yy]* ) git checkout -b $1 && __gs-info "Make sure you run 'gs pull' afterwards to merge the latest remote updates." || __gs-error "Failed"; break;;
+        [Yy]* ) git checkout -b $1 && __gs-info "Make sure you run 'gs commit \"Commit message\"', followed by 'gs pull' afterwards (to merge the latest remote updates)." || __gs-error "Failed to checkout new branch '$1'"; break;;
         [Nn]* ) __gs-warning "Aborted."; break;;
         * ) echo "Please answer yes or no.";;
       esac

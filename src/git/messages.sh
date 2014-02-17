@@ -41,7 +41,7 @@ gs commands:
 \t dev                Start developling a new feature (alias: feature)
 \t pull               Download changes from remote branch to local workspace
 \t commit             Commit changes and push branch to remote (alias: checkpoint)
-\t done               Commit changes and sync with remote (alias: release)
+\t done               Commit changes and sync with remote
 \t test               Runs test command defined in .gitstoryrc (alias: pre-commit)
 \t switchto           Switch from current branch to specified branch (alias: branch, goto)
 \t diff               List status and uncomitted changes

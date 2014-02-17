@@ -2,6 +2,41 @@
 #  proxy   #
 ###########
 
+__gs-tag-release-help() {
+  __gs-print "
+usage:
+  gs tag-release
+lists all releases and prompts for a version number to tag the current branch with."
+}
+
+__gs-tag-release() {
+  git fetch --tags
+  __gs-print "Previous releases:"
+  __gs-print "========================"
+  git tag
+  __gs-print "========================"
+  __gs-print "Example tag: \n\t v0.9.1"
+
+  version_prompt='What tag would you like to give this version?  (example: v0.9.1)'
+  if [[ $SHELL == "/bin/zsh" ]]; then
+    version_no=""
+    vared -p "$version_prompt" version_no
+  else
+    read -p "$version_prompt " version_no
+  fi
+
+  if [[ $1 == *" "* ]]; then
+    __gs-error "ERROR:"
+    __gs-error "\t Tag must not contain spaces!"
+    return
+  fi
+
+  git tag -a $version_no -m "Version $version_no" && \
+  git push --tags && \
+  __gs-success "Sucessfully tagged version: $version_no" || \
+  __gs-error "Something went wrong creating the tag."
+}
+
 # Methods which pretty much just calls the eqvivalent git method
 
 __gs-pull-help() {
