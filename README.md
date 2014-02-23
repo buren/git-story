@@ -60,6 +60,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
        diff              # List status and uncomitted changes
        pull-request      # Open current git repository on Github (alias: open, github)
        package           # Package the project. Runs GS_PACKAGE (alias: build)
+       release           # Release the project. Runs `GS_RELEASE`
        history           # List repository commits (alias: repo-history)
        show              # Show last or specified commit (alias: last)
        status            # Shows the current git status

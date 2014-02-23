@@ -47,6 +47,7 @@ gs commands:
 \t diff               List status and uncomitted changes
 \t pull-request       Open current git repository on Github (alias: open, github)
 \t package            Package the project. Runs `GS_PACKAGE` (alias: build)
+\t release            Release the project. Runs `GS_RELEASE`
 \t history            List repository commits (alias: repo-history)
 \t show               Show last or specified commit (alias: last)
 \t status             Shows the current git status
