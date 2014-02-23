@@ -61,7 +61,7 @@ __gs-precommit-hook() {
 __gs-package-help() {
   __gs-print "Usage:
 \t gs package
-Runs GS_PROJECT command, if specified.
+Runs GS_PACKAGE command, if specified.
 alias: build"
 }
 
@@ -73,6 +73,26 @@ __gs-package() {
   if [[ ! -z $GS_PACKAGE ]]; then
     __gs-info "Packaging project."
     eval $GS_PACKAGE
+    __gs-info "Done"
+  fi
+}
+
+
+__gs-release-help() {
+  __gs-print "Usage:
+\t gs release
+Runs GS_RELEASE command, if specified.
+"
+}
+
+__gs-release() {
+  if [[ $1 == "--help" ]]; then
+    __gs-release-help
+    return
+  fi
+  if [[ ! -z $GS_RELEASE ]]; then
+    __gs-info "Packaging project."
+    eval $GS_RELEASE
     __gs-info "Done"
   fi
 }

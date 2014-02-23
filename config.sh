@@ -5,6 +5,7 @@ export GS_PRE_COMMIT_HOOK
 
 # Package
 export GS_PACKAGE
+export GS_RELEASE
 
 # Done
 export GS_PRINT_CHECKLIST=false

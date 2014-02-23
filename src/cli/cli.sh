@@ -29,6 +29,9 @@ __gs_functions() {
     "package" | "build" )
       __gs-package "$prim_arg" "$sec_arg"
       ;;
+    "release" )
+      __gs-release "$prim_arg" "$sec_arg"
+      ;;
     "tag_release" | "tag-release" | "tagrelease" )
       __gs-tag-release "$prim_arg" "$sec_arg"
       ;;
