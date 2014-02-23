@@ -58,7 +58,7 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
        test              # Runs test command defined in .gitstoryrc (alias: pre-commit)
        switchto          # Switch from current branch to specified branch (alias: branch, goto)
        diff              # List status and uncomitted changes
-       pull-request      # Open current git repository on Github (alias: open, github)
+       open              # Open current git repository on Github (alias: pull-request, github)
        package           # Package the project. Runs GS_PACKAGE (alias: build)
        release           # Release the project. Runs `GS_RELEASE`
        history           # List repository commits (alias: repo-history)
@@ -91,15 +91,15 @@ Alias: `checkpoint`
         gs done <commit_message> <target_branch>
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
-If no merge conflicts; make a pull request `gs pull-request`. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts for ..."` and then `gs pull-request`.
-Alias: `release`
+If no merge conflicts; make a pull request. Otherwise fix all merge conflicts and run `gs done "Fixed merge conflicts for ..."` and then `gs open` (to open project repository).
 * Fetch and merge
 
         gs pull
 fetch and merge from remote.
 Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.
-* ```gs pull-request``` opens the repository on GitHub. Alias: `open`, `github`. Runs `GS_PRE_COMMIT_HOOK`
+* ```gs open``` opens the repository on GitHub. Alias: `pull-request`, `github`. Runs `GS_PRE_COMMIT_HOOK`
 * ```gs package``` Package the project. Runs `GS_PACKAGE`. Alias: `build`
+* ```gs release``` Package the project. Runs `GS_RELEASE`
 * ```gs where``` prints all branches and marks the current one with a *. Alias: `branches`
 * ```gs switchto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed. Alias: `branch`, `goto`
 * ```gs diff``` view all uncommitted changes

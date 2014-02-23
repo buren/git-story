@@ -45,7 +45,7 @@ gs commands:
 \t test               Runs test command defined in .gitstoryrc (alias: pre-commit)
 \t switchto           Switch from current branch to specified branch (alias: branch, goto)
 \t diff               List status and uncomitted changes
-\t pull-request       Open current git repository on Github (alias: open, github)
+\t open               Open current git repository on Github (alias: pull-request, github)
 \t package            Package the project. Runs `GS_PACKAGE` (alias: build)
 \t release            Release the project. Runs `GS_RELEASE`
 \t history            List repository commits (alias: repo-history)

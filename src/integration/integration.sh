@@ -7,8 +7,9 @@
 __gs-browse-project-help() {
   __gs-print "
 usage:
-\t gs pull-request
-opens current projects GitHub page"
+\t gs open
+opens current project page
+alias: pull-request, github"
 }
 
 __gs-browse-project() {
@@ -16,7 +17,7 @@ __gs-browse-project() {
     __gs-browse-project-help
     return
   elif [[ ! -z "$1" ]]; then
-    __gs-ignore-args "gs pull-request"
+    __gs-ignore-args "gs open"
   fi
 
   # Check path

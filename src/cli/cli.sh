@@ -50,7 +50,7 @@ __gs_functions() {
     "history" | "repo-history" )
       __gs-history "$prim_arg" "$sec_arg"
       ;;
-    "pull-request" | "open" | "github" )
+    "open" | "pull-request" | "github" )
       __gs-browse-project "$prim_arg" "$sec_arg"
       ;;
     "show" | "last" )
