@@ -31,8 +31,8 @@ The principle is that you develop each new feature in its on branch. Then when y
 
 ## Example
 
-    gs dev branch_name                     # Sets up clean workspace based of remote master.
-    gs done "Commit message"               # Commit changes, update master and merge with repository.
+    gs dev branch_name        # Sets up clean workspace based of remote master.
+    gs done "Commit message"  # Commit changes, update master and merge with repository.
 Output [example](http://showterm.io/79c9eb80cf3a4f23ab047) (video).
 
 ## Configuration
@@ -51,25 +51,25 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
 ## Command list
 
     gs <command>
-       dev               # Start developling a new feature (alias: feature)
-       pull              # Download changes from remote branch to local workspace
-       commit            # Commit changes and push branch to remote (alias: checkpoint)
-       done              # Commit changes and sync with remote (alias: release)
-       test              # Runs test command defined in .gitstoryrc (alias: pre-commit)
-       switchto          # Switch from current branch to specified branch (alias: branch, goto)
-       diff              # List status and uncomitted changes
-       open              # Open current git repository on Github (alias: pull-request, github)
-       package           # Package the project. Runs GS_PACKAGE (alias: build)
-       release           # Release the project. Runs `GS_RELEASE`
-       history           # List repository commits (alias: repo-history)
-       show              # Show last or specified commit (alias: last)
-       status            # Shows the current git status
-       where             # Shows all available branches (alias: branches)
-       list              # Print command list
-       abort-merge       # Aborts current merge (alias: abort_merge, abortmerge)
-       stash             # Manage git-stash stack.
-       stat              # Print statistics of git repository (alias: statistics)
-       get-update        # Update git-story
+       dev          # Start developling a new feature (alias: feature)
+       pull         # Download changes from remote branch to local workspace
+       commit       # Commit changes and push branch to remote (alias: checkpoint)
+       done         # Commit changes and sync with remote (alias: release)
+       test         # Runs test command defined in .gitstoryrc (alias: pre-commit)
+       switchto     # Switch from current branch to specified branch (alias: branch, goto)
+       diff         # List status and uncomitted changes
+       open         # Open current git repository on Github (alias: pull-request, github)
+       package      # Package the project. Runs GS_PACKAGE (alias: build)
+       release      # Release the project. Runs `GS_RELEASE`
+       history      # List repository commits (alias: repo-history)
+       show         # Show last or specified commit (alias: last)
+       status       # Shows the current git status
+       where        # Shows all available branches (alias: branches)
+       list         # Print command list
+       abort-merge  # Aborts current merge (alias: abort_merge, abortmerge)
+       stash        # Manage git-stash stack.
+       stat         # Print statistics of git repository (alias: statistics)
+       get-update   # Update git-story
 
 ## Documentation
 
@@ -117,18 +117,18 @@ Alias: `last`
 * Manage git-stash stack
 
         gs stash <arg>
-                 push          # Save all changes to stash (alias: save)
-                 apply         # Apply all changes from latest stash (alias: pop)
-                 list          # List stash stack
-                 show          # Show the latest stash
-                 clear         # Clears the entire stash stack
+                 push    # Save all changes to stash (alias: save)
+                 apply   # Apply all changes from latest stash (alias: pop)
+                 list    # List stash stack
+                 show    # Show the latest stash
+                 clear   # Clears the entire stash stack
 * Show statistics for repository
 
         gs stat <type>
-                contributions <author> # shows statistics for all authors or specified author (alias: contrib)
-                commits                # shows number of commits for each author
-                weekdays               # prints statistics for number of commits per weekday
-                hour                   # prints statistics for number of commits per hour
+                contributions   # shows statistics for all authors or specified author (alias: contrib)
+                commits         # shows number of commits for each author
+                weekdays        # prints statistics for number of commits per weekday
+                hour            # prints statistics for number of commits per hour
 show statistics for repository.
 Alias: `statistics`
 
