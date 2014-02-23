@@ -103,7 +103,7 @@ GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1.
    test              # Runs test command defined in .gitstoryrc (alias: pre-commit)
    switchto          # Switch from current branch to specified branch (alias: branch, goto)
    diff              # List status and uncomitted changes
-   pull-request      # Open current git repository on Github (alias: open, github)
+   open              # Open current git repository on Github (alias: pull-request, github)
    package           # Package the project. Runs GS_PACKAGE (alias: build)
    release           # Release the project. Runs `GS_RELEASE`
    history           # List repository commits (alias: repo-history)
@@ -150,8 +150,7 @@ Alias: <code>checkpoint</code></p>
 
 <p>comment and commit the changes you've made and merge changes made on .
 <code>&lt;target_branch&gt;</code> is optional and defaults to 'master'.
-If no merge conflicts; make a pull request <code>gs pull-request</code>. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs pull-request</code>.
-Alias: <code>release</code></p>
+If no merge conflicts; make a pull request. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs open</code> (to open project repository).</p>
 </li>
 <li>
 <p>Fetch and merge</p>
@@ -163,10 +162,13 @@ Alias: <code>release</code></p>
 Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.</p>
 </li>
 <li>
-<code>gs pull-request</code> opens the repository on GitHub. Alias: <code>open</code>, <code>github</code>. Runs <code>GS_PRE_COMMIT_HOOK</code>
+<code>gs open</code> opens the repository on GitHub. Alias: <code>pull-request</code>, <code>github</code>. Runs <code>GS_PRE_COMMIT_HOOK</code>
 </li>
 <li>
 <code>gs package</code> Package the project. Runs <code>GS_PACKAGE</code>. Alias: <code>build</code>
+</li>
+<li>
+<code>gs release</code> Package the project. Runs <code>GS_RELEASE</code>
 </li>
 <li>
 <code>gs where</code> prints all branches and marks the current one with a *. Alias: <code>branches</code>
