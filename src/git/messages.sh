@@ -29,7 +29,7 @@ __gs-help() {
   __gs-list-commands
   __gs-print "
 help:
-\t gs 'command' -help
+\t gs 'command' --help
 usage:
 \t gs dev story23
 \t gs done 'Implemented Story 23'"
@@ -38,26 +38,26 @@ usage:
 __gs-list-commands() {
   __gs-print "
 gs commands:
-\t dev                Start developling a new feature (alias: feature)
-\t pull               Download changes from remote branch to local workspace
-\t commit             Commit changes and push branch to remote (alias: checkpoint)
-\t done               Commit changes and sync with remote
-\t test               Runs test command defined in .gitstoryrc (alias: pre-commit)
-\t switchto           Switch from current branch to specified branch (alias: branch, goto)
-\t diff               List status and uncomitted changes
-\t open               Open current git repository on Github (alias: pull-request, github)
-\t package            Package the project. Runs `GS_PACKAGE` (alias: build)
-\t release            Release the project. Runs `GS_RELEASE`
-\t history            List repository commits (alias: repo-history)
-\t show               Show last or specified commit (alias: last)
-\t status             Shows the current git status
-\t where              Shows all available branches (alias: branches)
-\t abort-merge        Aborts current merge (alias: abort_merge, abortmerge)
-\t tag-release        Create a new tagged release (alias: tag_release, tagrelease)
-\t list               Prints command list
-\t stash              Manage git-stash stack.
-\t stat               Print statistics of git repository (alias: statistics)
-\t get-update         Updates git-story"
+\t dev             Start developling a new feature (alias: feature)
+\t pull            Download changes from remote branch to local workspace
+\t commit          Commit changes and push branch to remote (alias: checkpoint)
+\t done            Commit changes and sync with remote
+\t test            Runs test command defined in .gitstoryrc (alias: pre-commit)
+\t switchto        Switch from current branch to specified branch (alias: branch, goto)
+\t diff            List status and uncomitted changes
+\t open            Open current git repository on Github (alias: pull-request, github)
+\t package         Package the project. Runs GS_PACKAGE (alias: build)
+\t release         Release the project. Runs GS_RELEASE
+\t history         List repository commits (alias: repo-history)
+\t show            Show last or specified commit (alias: last)
+\t status          Shows the current git status
+\t where           Shows all available branches (alias: branches)
+\t abort-merge     Aborts current merge (alias: abort_merge, abortmerge)
+\t tag-release     Create a new tagged release (alias: tag_release, tagrelease)
+\t list            Prints command list
+\t stash           Manage git-stash stack.
+\t stat            Print statistics of git repository (alias: statistics)
+\t get-update      Updates git-story"
 }
 
 __gs-ready-checklist-print() {
