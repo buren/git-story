@@ -246,7 +246,7 @@ __gs-stash() {
   fi
 }
 
-__gs-abort-merge-help(){
+__gs-abort-merge-help() {
   __gs-print "
 usage:
 \t gs abort-merge
@@ -256,7 +256,7 @@ alias: abort_merge, abortmerge
 }
 __gs-abort-merge() {
   if [[ "$1" == "--help" ]]; then
-    __gs-update-source-help
+    __gs-abort-merge-help
     return
   elif [[ ! -z "$1" ]]; then
     __gs-print-args-ignored

@@ -41,7 +41,7 @@ __gs-ready() {
     confirm_message="Are your sure?"
   fi
 
-  echo ""
+  __gs-print ""
 
   if [[ $GS_PRINT_CHECKLIST != true ]] && [[ $GS_PROMPT_ON_DONE  == false ]]; then
     __gs-ready-execute "$@"
@@ -140,9 +140,9 @@ __gs-ready-execute() {
   __gs-info "\n[push]"
   git push origin $current # Push merged updates from target branch to current
 
-  echo ""
+  __gs-print ""
   __gs-success "Successfully merged remote '$target' branch and pushed '$current' to remote."
-  echo ""
+  __gs-print ""
 
   if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
     local prompt_message="Would you like to open your projects website? (y\n)"
