@@ -1,4 +1,5 @@
 # Default options
+export GS_GIT_STORY_BRANCH='master'
 
 # Tests
 export GS_PRE_COMMIT_HOOK

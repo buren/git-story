@@ -58,7 +58,7 @@ __gs-update-source() {
     __gs-update-source-help
     return
   fi
-  target=${1-master}
+  target=${1-$GS_GIT_STORY_BRANCH}
   __gs-print "Downloading latest changes made to 'git-story' from branch: '$target'"
   current_dir=$(pwd)
   cd $HOME/.git-story && __gs-pull $target
