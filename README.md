@@ -133,7 +133,8 @@ show statistics for repository.
 Alias: `statistics`
 
 ## Notes
-Overides ```gs``` (Ghostscript) on Linux.
+* Tested on Linux/OSX
+* Overides ```gs``` (Ghostscript) on Linux.
 
 ## License
 git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
