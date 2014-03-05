@@ -31,8 +31,10 @@
           <h1>
 <a name="git-story-beta" class="anchor" href="#git-story-beta"><span class="octicon octicon-link"></span></a>git-story (beta)</h1>
 
-<p>Simplified git workflow.
-Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a>.</p>
+<h4>
+<a name="simplified-git-workflow" class="anchor" href="#simplified-git-workflow"><span class="octicon octicon-link"></span></a>Simplified git workflow.</h4>
+
+<p>Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a>.</p>
 
 <ul>
 <li><a href="#install-git-story">Installation</a></li>
@@ -45,7 +47,7 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 </ul><h2>
 <a name="install-git-story" class="anchor" href="#install-git-story"><span class="octicon octicon-link"></span></a>Install git-story</h2>
 
-<pre><code>curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+<pre><code>curl https://raw2.github.com/buren/git-story/master/setup/install | bash
 </code></pre>
 
 <p>injects import of git-story script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).</p>
@@ -53,68 +55,69 @@ Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p>git-story simplifies the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice should be able to effectively use it in 5 minutes.</p>
+<p>git-story tries to simplify the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice can use it within 5 minutes.</p>
 
 <p>The model:</p>
 
 <ol>
-<li>Start developing a feature, and name it <code>gs dev &lt;name&gt;</code>
+<li>Start developing a feature, and name it <code>git dev &lt;name&gt;</code>
 </li>
-<li>Save local changes and sync with remote <code>gs done &lt;commit_message&gt;</code>
+<li>Save local changes and sync with remote <code>git done &lt;commit_message&gt;</code>
 </li>
-<li>If any conflicts fix them and <code>gs done "Fixed merge conflicts in ..."</code>
+<li>If any conflicts fix them and <code>git done "Fixed merge conflicts in ..."</code>
 </li>
-<li>Create a pull request on GitHub</li>
-</ol><p>The principle is that you develop each new feature in its on branch. Then when you're ready you go to the projects GitHub page and create a pull request.</p>
+<li>Create a pull request on GitHub (or any other host)</li>
+</ol><p>The principle is that you develop each new feature in its on branch. Then when you're ready you push it and create a pull request.</p>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<pre><code>gs dev branch_name        # Sets up clean workspace based of remote master.
-gs done "Commit message"  # Commit changes, update master and merge with repository.
+<pre><code>git dev branch_name        # Sets up clean workspace based of remote master.
+git done "Commit message"  # Commit changes, update master and merge with repository.
 </code></pre>
 
-<p>Output <a href="http://showterm.io/79c9eb80cf3a4f23ab047">example</a> (video).</p>
+<p>Output <a href="http://showterm.io/238c04d003bfb22f1d91d">example</a> (video).</p>
 
 <h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>For project specific configurations create a file named <code>.gitstoryrc</code> at the git root.
+<p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.
 Available options:</p>
 
-<pre><code>GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests.     Default: ""
-GS_PRINT_CHECKLIST   # (Boolean) Print checklist before `gs done`.  Default: false
+<pre><code>GS_GIT_STORY_BRANCH  # (String)  Target branch for 'git done'       Default: "master"
+GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests      Default: ""
+GS_PACKAGE           # (String)  Shell command for 'package'        Default: ""
+GS_RELEASE           # (String)  Shell command for 'release'        Default: ""
+GS_PROMPT_ON_DONE    # (Boolean) Prompt user before executing done  Default: false
+GS_PRINT_CHECKLIST   # (Boolean) Print checklist before 'done'      Default: false
 GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
-GS_PROJECT_URL       # (String)  Project URL.                       Default: ""
-GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL.        Default: true
-GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1. Have you written..."
+GS_PROJECT_URL       # (String)  Project URL                        Default: ""
+GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL on done Default: true
+GS_CHECKLIST_MESSAGE # (String)  Checklist string for 'done'        Default: "1. Have you..."
+GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "What tag..."
 </code></pre>
 
-<p>See <a href="https://github.com/buren/git-story/blob/master/config.sh">config.sh</a> for details.</p>
+<p>See <a href="https://github.com/buren/git-story/blob/master/config">config</a> for details.</p>
 
 <h2>
 <a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
 
-<pre><code>gs &lt;command&gt;
-   dev          # Start developling a new feature (alias: feature)
-   pull         # Download changes from remote branch to local workspace
-   commit       # Commit changes and push branch to remote (alias: checkpoint)
-   done         # Commit changes and sync with remote (alias: release)
-   test         # Runs test command defined in .gitstoryrc (alias: pre-commit)
-   switchto     # Switch from current branch to specified branch (alias: branch, goto)
-   diff         # List status and uncomitted changes
-   open         # Open current git repository on Github (alias: pull-request, github)
-   package      # Package the project. Runs GS_PACKAGE (alias: build)
-   release      # Release the project. Runs `GS_RELEASE`
-   history      # List repository commits (alias: repo-history)
-   show         # Show last or specified commit (alias: last)
-   status       # Shows the current git status
-   where        # Shows all available branches (alias: branches)
-   list         # Print command list
-   abort-merge  # Aborts current merge (alias: abort_merge, abortmerge)
-   stash        # Manage git-stash stack.
-   stat         # Print statistics of git repository (alias: statistics)
-   get-update   # Update git-story
+<pre><code>git
+   dev             Start developling a new feature
+   done            Commit changes and sync with remote
+   goto            Switch from current branch to specified branch
+   history         List repository commits
+   abort-merge     Aborts current merge
+   tag-release     Create a new tag
+   stat            Print statistics of git repository
+   fetch-branches  Fetches all branches from remote
+   open            Open current git repository on Github
+   test            Runs test command defined in .gitstoryrc
+   package         Runs package command defined in .gitstoryrc
+   release         Runs release command defined in .gitstoryrc
+   extend-with     Add new git-story extension to git
+   list-extended   Lists all git-story commands
+   get-update      Updates git-story
 </code></pre>
 
 <h2>
@@ -124,113 +127,75 @@ GS_CHECKLIST_MESSAGE # (String)  Checklist string.                  Default: "1.
 <li>
 <p>Start developing a feature</p>
 
-<pre><code>gs dev &lt;branch_name&gt;
-gs dev &lt;branch_name&gt; &lt;base_branch&gt;
+<pre><code>git dev &lt;branch_name&gt;
+git dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
 <p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
 If --force is supplied as the second argument no checks are made.
-No checks are made if --force is supplied as the second argument.
-Alias: <code>feature</code></p>
-</li>
-<li>
-<p>Commit your changes</p>
-
-<pre><code>gs commit &lt;commit_message&gt;
-</code></pre>
-
-<p>comment and commit to the changes you've made.
-Alias: <code>checkpoint</code></p>
+No checks are made if --force is supplied as the second argument.</p>
 </li>
 <li>
 <p>Commit and sync with repository</p>
 
-<pre><code>gs done &lt;commit_message&gt; &lt;target_branch&gt;
+<pre><code>git done &lt;commit_message&gt; &lt;target_branch&gt;
 </code></pre>
 
 <p>comment and commit the changes you've made and merge changes made on .
 <code>&lt;target_branch&gt;</code> is optional and defaults to 'master'.
-If no merge conflicts; make a pull request. Otherwise fix all merge conflicts and run <code>gs done "Fixed merge conflicts for ..."</code> and then <code>gs open</code> (to open project repository).</p>
+If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run <code>git done "Fixed merge conflicts for ..."</code>.</p>
 </li>
 <li>
 <p>Fetch and merge</p>
 
-<pre><code>gs pull
+<pre><code>git pull
 </code></pre>
 
 <p>fetch and merge from remote.
 Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.</p>
 </li>
 <li>
-<code>gs open</code> opens the repository on GitHub. Alias: <code>pull-request</code>, <code>github</code>. Runs <code>GS_PRE_COMMIT_HOOK</code>
+<code>git browse</code>  opens the repository on GitHub.</li>
+<li>
+<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>.</li>
+<li>
+<code>git release</code> Package the project. Runs <code>GS_RELEASE</code>
 </li>
 <li>
-<code>gs package</code> Package the project. Runs <code>GS_PACKAGE</code>. Alias: <code>build</code>
-</li>
+<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
 <li>
-<code>gs release</code> Package the project. Runs <code>GS_RELEASE</code>
-</li>
+<code>git goto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed.</li>
 <li>
-<code>gs where</code> prints all branches and marks the current one with a *. Alias: <code>branches</code>
-</li>
+<code>git history</code> view repository commit history.</li>
 <li>
-<code>gs switchto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed. Alias: <code>branch</code>, <code>goto</code>
-</li>
+<code>git tag-release</code> Create a new tagged release</li>
 <li>
-<code>gs diff</code> view all uncommitted changes</li>
+<code>git abort-merge</code> aborts current merge</li>
 <li>
-<code>gs history</code> view repository commit history. Alias: <code>repo-history</code>
-</li>
+<code>git extend-with &lt;extension-name&gt;</code> add new git-story extension to git</li>
 <li>
-<code>gs list</code> list all available git-story commands</li>
+<code>git fetch-branches</code> .</li>
 <li>
-<code>gs tag-release</code> Create a new tagged release (alias: tag_release, tagrelease)</li>
-<li>
-<code>gs abort-merge</code> aborts current merge. Alias: <code>abort_merge</code>, <code>abortmerge</code>
-</li>
-<li>
-<code>gs get-update</code> gets the latest version of git-story. Alias: <code>get_update</code>, <code>getupdate</code>
-</li>
-<li>
-<p>Show commited changes</p>
-
-<pre><code>gs show
-gs show &lt;sha&gt;
-</code></pre>
-
-<p>view the last commit in current branch or specified commit .
-Alias: <code>last</code></p>
-</li>
-<li>
-<p>Manage git-stash stack</p>
-
-<pre><code>gs stash &lt;arg&gt;
-         push    # Save all changes to stash (alias: save)
-         apply   # Apply all changes from latest stash (alias: pop)
-         list    # List stash stack
-         show    # Show the latest stash
-         clear   # Clears the entire stash stack
-</code></pre>
-</li>
+<code>git update-git-story</code> gets the latest version of git-story.</li>
 <li>
 <p>Show statistics for repository</p>
 
-<pre><code>gs stat &lt;type&gt;
+<pre><code>git stat &lt;type&gt;
         contributions   # shows statistics for all authors or specified author (alias: contrib)
         commits         # shows number of commits for each author
         weekdays        # prints statistics for number of commits per weekday
         hour            # prints statistics for number of commits per hour
 </code></pre>
 
-<p>show statistics for repository.
-Alias: <code>statistics</code></p>
+<p>show statistics for repository.</p>
 </li>
 </ul><h2>
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
-<p>Overides <code>gs</code> (Ghostscript) on Linux.</p>
-
-<h2>
+<ul>
+<li>Tested on Linux/OSX</li>
+<li>The software is supplied “as is” and all use is at your own risk.</li>
+</ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>git-story is released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
