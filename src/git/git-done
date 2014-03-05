@@ -2,9 +2,9 @@
 source $GS_INIT_PATH
 __git-story-init
 
-###########
-#  done   #
-###########
+##########
+#  done  #
+##########
 
 usage() {
   __gs-print "

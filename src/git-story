@@ -48,7 +48,7 @@ git-story() {
     __gs-help
   elif [[ "$1" == "update" ]]; then
     git update-git-story "$2"
-  elif [[ "$1" == "add-command" ]]; then
-    __gs-add-command-boilerplate "$1"
+  elif [[ "$1" == "extend-with" ]]; then
+    git extend-with "$2"
   fi
 }

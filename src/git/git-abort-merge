@@ -11,7 +11,7 @@ aborts current merge.
 }
 
 main() {
-  if [[ "$1" == "--help" ]]; then
+  if [[ "$1" == "--usage" ]]; then
     usage
     return
   elif [[ ! -z "$1" ]]; then

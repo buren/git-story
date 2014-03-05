@@ -22,9 +22,9 @@ __gs-print-args-ignored() {
   __gs-info "Function does not take arguments. Ignoring..."
 }
 
-################
-#             HELP               #
-################
+##########
+#  help  #
+##########
 
 __gs-print-command-list() {
   __gs-print "$(cat $HOME/.git-story/docs/command_list.txt)"

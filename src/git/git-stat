@@ -3,7 +3,7 @@ source $GS_INIT_PATH
 __git-story-init
 
 ###########
-#  stats   #
+#  stats  #
 ###########
 
 usage() {
