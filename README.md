@@ -97,7 +97,7 @@ Example: If the current branch is "test_feature" it will try to fetch and merge 
 * ```git package``` Package the project. Runs `GS_PACKAGE`.
 * ```git release``` Package the project. Runs `GS_RELEASE`
 * ```git test```    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
-* ```git goto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed. branch`
+* ```git goto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed.
 * ```git history``` view repository commit history.
 * ```git tag-release``` Create a new tagged release
 * ```git abort-merge``` aborts current merge
