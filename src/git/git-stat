@@ -9,16 +9,15 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs stat <type>
-\t         contributions <author> # shows statistics for all authors or specified author (alias: contrib)
-\t         commits                # shows number of commits for each author
-\t         weekdays               # prints statistics for number of commits per weekday
-\t         hour                   # prints statistics for number of commits per hour
+\t git stat <type>
+\t          contributions <author> # shows statistics for all authors or specified author (alias: contrib)
+\t          commits                # shows number of commits for each author
+\t          weekdays               # prints statistics for number of commits per weekday
+\t          hour                   # prints statistics for number of commits per hour
 prints statistics of given type.
-Alias: stats, statistics
 
 example:
-\t gs stat contributions
+\t git stat contributions
 Default: contributions"
 }
 
@@ -39,7 +38,7 @@ main() {
     fi
   elif [[ "$1" == "commits" ]] || [[ "$1" == "commit" ]]; then
     if [[ ! -z "$2" ]]; then
-      __gs-ignore-args "gs stat $1 $2"
+      __gs-ignore-args "git stat $1 $2"
     fi
     __gs-stat-commits
   elif [[ "$1" == "weekday" ]] || [[ "$1" == "weekdays" ]] || [[ "$1" == "week" ]]; then

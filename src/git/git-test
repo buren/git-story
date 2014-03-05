@@ -4,10 +4,9 @@ __git-story-init
 
 usage() {
   __gs-print "
-To set global pre-commit command edit ~/.git-story/config.sh.
-
-To set project specific pre-commit command create '.gitstoryrc' at git root.
-See ~/.git-story/config for available config options."
+usage:
+\t git test
+Runs GS_PRE_COMMIT_HOOK command, if specified."
 }
 
 main() {

@@ -5,7 +5,7 @@ __git-story-init
 usage(){
   __gs-print "
 usage:
-\t gs get_update <target_branch>
+\t git update-git-story <target_branch>
 updates git-story.
 <target_branch> is optional and defaults to master.
 "

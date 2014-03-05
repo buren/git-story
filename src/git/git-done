@@ -9,18 +9,11 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs done
+\t git done
 only if all changes have been committed.
 otherwise run:
-\t gs done 'Commit message' <target_branch>
-will fetch and merge <target_branch>. <target_branch> is optional and defaults to 'master'.
-
-Commit message example:
-\t 'Implemented story 13.
-\t Updated FileReaderInterface.
-\t Fixed merge conflict.
-\t etc.....'
-
+\t git done 'Commit message' <target_branch>
+will fetch and merge <target_branch>. <target_branch> is optional and defaults to $GS_GIT_STORY_BRANCH.
 note:"
   __gs-warning "\t Can cause merge conflicts"
 }
@@ -101,26 +94,26 @@ gs-ready-execute() {
           read -p "Did all tests pass? (y\n)" yn
         fi
         case $yn in
-          [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
-          [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+          [Yy]* ) __gs-success "Resuming.."; break;;
+          [Nn]* ) __gs-warning "Aborted."; return; break;;
           * ) echo "Please answer yes or no.";;
         esac
       done
     fi
   fi
-  __gs-info "\n[push]"
+  __gs-print "\n[push]"
   git push origin $current
 
   # Update target branch
   local target=${2:-master}
   # Pull from remote
-  __gs-info "\nPull from: '$target'"
+  __gs-print "\nPull from: '$target'"
   target_pull_tail=$(git pull origin $target 2> /dev/null | tail -n1)
   if [[ $target_pull_tail == *"Automatic merge failed"* ]]; then
    __gs-automatic-merge-failed $target $current
    return
   elif [[ $target_pull_tail == *"Already up-to-date"* ]]; then
-    __gs-info "'$target' already up-to-date."
+    __gs-print "'$target' already up-to-date."
   else
     __gs-print "[gs] pull_tail: $target_pull_tail"
     __gs-print-merged-run-hook-message $target
@@ -134,8 +127,8 @@ gs-ready-execute() {
           read -p "Did all tests pass? (y\n)" yn
         fi
         case $yn in
-          [Yy]* ) __gs-success "All tests pass. Resuming 'gs done'."; break;;
-          [Nn]* ) __gs-warning "Aborting 'gs done'. Fix all tests.."; return; break;;
+          [Yy]* ) __gs-success "Resuming.."; break;;
+          [Nn]* ) __gs-warning "Aborted."; return; break;;
           * ) echo "Please answer yes or no.";;
         esac
       done
@@ -158,7 +151,7 @@ gs-ready-execute() {
         read -p "$prompt_message" yn
       fi
       case $yn in
-        [Yy]* ) __gs-browse-project; break;;
+        [Yy]* ) git browse; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
       esac

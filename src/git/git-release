@@ -4,7 +4,7 @@ __git-story-init
 
 usage() {
   __gs-print "Usage:
-\t gs release
+\t git release
 Runs GS_RELEASE command, if specified.
 "
 }

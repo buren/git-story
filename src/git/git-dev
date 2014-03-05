@@ -11,7 +11,7 @@ usage() {
 description:
 \t start implenting your feature.
 usage:
-\t gs dev <branch_name> <base_branch>
+\t git dev <branch_name> <base_branch>
 <base_branch> is optional and will fall back to master
 
 Guarantees clean workspace from remote master (or specified branch).
@@ -41,7 +41,7 @@ main() {
         read -p "$confirm_message  (y\n)" yn
       fi
       case $yn in
-        [Yy]* ) git checkout -b $1 && __gs-info "Make sure you run 'gs commit \"Commit message\"', followed by 'gs pull' afterwards (to merge the latest remote updates)." || __gs-error "Failed to checkout new branch '$1'"; break;;
+        [Yy]* ) git checkout -b $1 || __gs-error "Failed to checkout new branch '$1'"; break;;
         [Nn]* ) __gs-warning "Aborted."; break;;
         * ) echo "Please answer yes or no.";;
       esac

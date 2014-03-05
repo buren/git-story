@@ -5,9 +5,9 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs switchto <branch_name>
+\t git goto <branch_name>
 change the current workspace to <branch_name>
-alias: goto"
+"
 }
 
 main() {

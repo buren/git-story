@@ -5,9 +5,9 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs open
+\t git browse
 opens current project page
-alias: pull-request, github"
+"
 }
 
 main() {
@@ -15,7 +15,7 @@ main() {
     usage
     return
   elif [[ ! -z "$1" ]]; then
-    __gs-ignore-args "gs open"
+    __gs-ignore-args "git browse"
   fi
 
   # Check path

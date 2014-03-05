@@ -5,8 +5,9 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs log <branch_name>
-if no <branch_name> is provided the current branch history will be shown"
+\t git history
+List repository commits and branch network
+"
 }
 
 main() {

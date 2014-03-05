@@ -5,9 +5,8 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t gs abort-merge
+\t git abort-merge
 aborts current merge.
-alias: abort_merge, abortmerge
 "
 }
 
