@@ -29,7 +29,7 @@ main() {
     return
   fi
 
-  __gs-precommit-hook
+  git test
 
   if [[ $GS_PRINT_CHECKLIST == true ]]; then
     __gs-ready-checklist-print
@@ -84,7 +84,7 @@ gs-ready-execute() {
   else
     __gs-print "[gs] pull_tail: $pull_tail"
     __gs-print-merged-run-hook-message $current
-    __gs-precommit-hook
+    git test
     if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
       while true; do
         if [[ $SHELL == "/bin/zsh" ]]; then
@@ -117,7 +117,7 @@ gs-ready-execute() {
   else
     __gs-print "[gs] pull_tail: $target_pull_tail"
     __gs-print-merged-run-hook-message $target
-    __gs-precommit-hook
+    git test
     if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
       while true; do
         if [[ $SHELL == "/bin/zsh" ]]; then
