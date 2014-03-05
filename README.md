@@ -114,7 +114,8 @@ Example: If the current branch is "test_feature" it will try to fetch and merge 
 show statistics for repository.
 
 ## Notes
-The software is supplied “as is” and all use is at your own risk.
+* Tested on Linux/OSX
+* The software is supplied “as is” and all use is at your own risk.
 
 ## License
 git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
