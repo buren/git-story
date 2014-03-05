@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Default options
 export GS_GIT_STORY_BRANCH='master'
 
@@ -26,3 +28,5 @@ Checklist:
 \t 2. Do all tests pass?
 \t 3. Have you refactored your code?
 \t 4. Are you ready for possible merge conflicts?"
+
+export GS_NEW_TAG_PROMPT="What tag would you like to give this version?  (example: v0.9.1)"

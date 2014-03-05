@@ -1,0 +1,31 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t gs fetch-branches
+fetches all branches at remote.
+"
+}
+
+main() {
+  if [[ ! -z $1 ]]; then
+    __gs-ignore-args "gs fetch-remote"
+  elif [[ "$1" == "--usage" ]]; then
+    usage
+  fi
+  git fetch origin
+  __gs-info "Fetching all branches."
+  for remote in `git branch --remote | grep -v "\->" 2> /dev/null`; do
+    __gs-fetch-remote-branch ${remote//origin\//} &
+  done
+  __gs-info "Fetched all branches."
+}
+
+__gs-fetch-remote-branch() {
+  git fetch origin $1 2> /dev/null || __gs-warning "Fetch of '$1' failed."
+}
+
+main "$@"

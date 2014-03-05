@@ -1,0 +1,20 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t gs log <branch_name>
+if no <branch_name> is provided the current branch history will be shown"
+}
+
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    return
+  fi
+  git log $1 --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+}
+
+main "$@"

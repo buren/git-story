@@ -14,7 +14,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 
 ## Install git-story
 
-    curl https://raw2.github.com/buren/git-story/master/setup/install.sh | bash
+    curl https://raw2.github.com/buren/git-story/master/setup/install | bash
 injects import of git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
 ## Getting started
@@ -50,26 +50,21 @@ See [config.sh](https://github.com/buren/git-story/blob/master/config.sh) for de
 
 ## Command list
 
-    gs <command>
-       dev          # Start developling a new feature (alias: feature)
-       pull         # Download changes from remote branch to local workspace
-       commit       # Commit changes and push branch to remote (alias: checkpoint)
-       done         # Commit changes and sync with remote (alias: release)
-       test         # Runs test command defined in .gitstoryrc (alias: pre-commit)
-       switchto     # Switch from current branch to specified branch (alias: branch, goto)
-       diff         # List status and uncomitted changes
-       open         # Open current git repository on Github (alias: pull-request, github)
-       package      # Package the project. Runs GS_PACKAGE (alias: build)
-       release      # Release the project. Runs `GS_RELEASE`
-       history      # List repository commits (alias: repo-history)
-       show         # Show last or specified commit (alias: last)
-       status       # Shows the current git status
-       where        # Shows all available branches (alias: branches)
-       list         # Print command list
-       abort-merge  # Aborts current merge (alias: abort_merge, abortmerge)
-       stash        # Manage git-stash stack.
-       stat         # Print statistics of git repository (alias: statistics)
-       get-update   # Update git-story
+    git
+       dev             Start developling a new feature
+       done            Commit changes and sync with remote
+       goto            Switch from current branch to specified branch
+       history         List repository commits
+       abort-merge     Aborts current merge
+       tag-release     Create a new tag
+       stat            Print statistics of git repository
+       fetch-branches  Fetches all branches from remote
+       open            Open current git repository on Github
+       test            Runs test command defined in .gitstoryrc
+       package         Runs package command defined in .gitstoryrc
+       release         Runs release command defined in .gitstoryrc
+       list-extended   Lists all git-story commands
+       get-update      Updates git-story
 
 ## Documentation
 

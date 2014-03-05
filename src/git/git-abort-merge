@@ -1,0 +1,24 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t gs abort-merge
+aborts current merge.
+alias: abort_merge, abortmerge
+"
+}
+
+main() {
+  if [[ "$1" == "--help" ]]; then
+    usage
+    return
+  elif [[ ! -z "$1" ]]; then
+    __gs-print-args-ignored
+  fi
+  git merge --abort && __gs-success "Successfully aborted merge." || __gs-warning "No merge to abort."
+}
+
+main "$@"

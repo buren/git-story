@@ -1,0 +1,29 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git extend-with
+Creates a new file with specified name in $GS_EXENSIONS_FOLDER
+
+example:
+\t git extend-with goto-root
+will make it possible to run:
+\t git goto-root
+"
+}
+
+main() {
+  full_script_path="$GS_EXENSIONS_FOLDER/git-$1"
+  command_template=$(cat $GS_FOLDER/docs/new-extension-template)
+  echo "$command_template" > $full_script_path
+  __gs-print "Copied new extension template to $full_script_path"
+  __gs-print "Sudo permissions to make script executable."
+  sudo chmod +x $full_script_path
+  __gs-success "Added command."
+  __gs-info "Edit extension at: $full_script_path"
+}
+
+main "$@"

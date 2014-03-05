@@ -1,8 +1,12 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
 ###########
 #  stats   #
 ###########
 
-__gs-stat-help() {
+usage() {
   __gs-print "
 usage:
 \t gs stat <type>
@@ -11,16 +15,16 @@ usage:
 \t         weekdays               # prints statistics for number of commits per weekday
 \t         hour                   # prints statistics for number of commits per hour
 prints statistics of given type.
-Alias: statistics
+Alias: stats, statistics
 
 example:
 \t gs stat contributions
 Default: contributions"
 }
 
-__gs-stat() {
-  if [[ $1 == "--help" ]]; then
-    __gs-stat-help
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
     return
   elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
     if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
@@ -51,7 +55,7 @@ __gs-stat() {
       __gs-safe-path-operation "$(git ls-files |  wc -l)" "$2" "Unique files:"
   else
     __gs-error "Error '$1' unrecognized argument."
-    __gs-stat-help
+    usage
   fi
 }
 
@@ -91,6 +95,8 @@ __gs-stat-author-contrib() {
     echo ""
   else
     __gs-error "[ERROR] No argument supplied for __gs-stat-author-contrib."
-    __gs-stat-help
+    usage
   fi
 }
+
+main "$@"

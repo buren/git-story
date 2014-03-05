@@ -1,8 +1,12 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
 ###########
 #  done   #
 ###########
 
-__gs-ready-help() {
+usage() {
   __gs-print "
 usage:
 \t gs done
@@ -26,9 +30,9 @@ __gs-print-merged-run-hook-message() {
   __gs-info "Running pre-commit hook."
 }
 
-__gs-ready() {
-  if [[ $1 == "--help" ]]; then
-    __gs-ready-help
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
     return
   fi
 
@@ -44,7 +48,7 @@ __gs-ready() {
   __gs-print ""
 
   if [[ $GS_PRINT_CHECKLIST != true ]] && [[ $GS_PROMPT_ON_DONE  == false ]]; then
-    __gs-ready-execute "$@"
+    gs-ready-execute "$@"
   else
     while true; do
       if [[ $SHELL == "/bin/zsh" ]]; then
@@ -54,7 +58,7 @@ __gs-ready() {
         read -p "$confirm_message  (y\n)" yn
       fi
       case $yn in
-        [Yy]* ) __gs-ready-execute "$@"; break;;
+        [Yy]* ) gs-ready-execute "$@"; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
       esac
@@ -63,7 +67,7 @@ __gs-ready() {
   fi
 }
 
-__gs-ready-execute() {
+gs-ready-execute() {
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     if [[ -z "$1" ]]; then
       __gs-error "You have uncommited changes you must provide a commit message."
@@ -161,3 +165,5 @@ __gs-ready-execute() {
     done
   fi
 }
+
+main "$@"
