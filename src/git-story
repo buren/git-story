@@ -1,0 +1,54 @@
+#!/bin/bash
+
+######################
+#  git-story export  #
+######################
+
+export GS_FOLDER="$HOME/.git-story"
+export GS_INIT_PATH=$GS_FOLDER/src/git-story
+export GS_EXENSIONS_FOLDER=$GS_FOLDER/src/git
+
+####################
+#  git-story init  #
+####################
+
+__git-story-init() {
+  __gs-read-default-config
+  for file in $GS_FOLDER/src/common/*; do
+    source $file
+  done
+  __gs-read-project-config
+  . "$(git --exec-path)/git-sh-setup"
+}
+
+__gs-print-command-list() {
+  __gs-print "$(cat $HOME/.git-story/docs/command_list.txt)"
+}
+
+__gs-read-default-config() {
+  source $HOME/.git-story/config
+}
+
+####################
+#  git-story help  #
+####################
+
+__gs-help() {
+  __gs-print-command-list
+  __gs-print "Run git-story extension command followed by '--usage' for command details."
+}
+
+
+###################
+#  git-story cli  #
+###################
+
+git-story() {
+  if [[ -z $1 ]] || [[ "$1" == "--usage" || "$1" == "--list" ]]; then
+    __gs-help
+  elif [[ "$1" == "update" ]]; then
+    git update-git-story "$2"
+  elif [[ "$1" == "extend-with" ]]; then
+    git extend-with "$2"
+  fi
+}

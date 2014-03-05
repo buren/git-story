@@ -1,26 +1,29 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
 ###########
-#  stats   #
+#  stats  #
 ###########
 
-__gs-stat-help() {
+usage() {
   __gs-print "
 usage:
-\t gs stat <type>
-\t         contributions <author> # shows statistics for all authors or specified author (alias: contrib)
-\t         commits                # shows number of commits for each author
-\t         weekdays               # prints statistics for number of commits per weekday
-\t         hour                   # prints statistics for number of commits per hour
+\t git stat <type>
+\t          contributions <author> # shows statistics for all authors or specified author (alias: contrib)
+\t          commits                # shows number of commits for each author
+\t          weekdays               # prints statistics for number of commits per weekday
+\t          hour                   # prints statistics for number of commits per hour
 prints statistics of given type.
-Alias: statistics
 
 example:
-\t gs stat contributions
+\t git stat contributions
 Default: contributions"
 }
 
-__gs-stat() {
-  if [[ $1 == "--help" ]]; then
-    __gs-stat-help
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
     return
   elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
     if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
@@ -35,7 +38,7 @@ __gs-stat() {
     fi
   elif [[ "$1" == "commits" ]] || [[ "$1" == "commit" ]]; then
     if [[ ! -z "$2" ]]; then
-      __gs-ignore-args "gs stat $1 $2"
+      __gs-ignore-args "git stat $1 $2"
     fi
     __gs-stat-commits
   elif [[ "$1" == "weekday" ]] || [[ "$1" == "weekdays" ]] || [[ "$1" == "week" ]]; then
@@ -51,7 +54,7 @@ __gs-stat() {
       __gs-safe-path-operation "$(git ls-files |  wc -l)" "$2" "Unique files:"
   else
     __gs-error "Error '$1' unrecognized argument."
-    __gs-stat-help
+    usage
   fi
 }
 
@@ -91,6 +94,8 @@ __gs-stat-author-contrib() {
     echo ""
   else
     __gs-error "[ERROR] No argument supplied for __gs-stat-author-contrib."
-    __gs-stat-help
+    usage
   fi
 }
+
+main "$@"

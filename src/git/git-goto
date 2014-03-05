@@ -1,0 +1,25 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git goto <branch_name>
+change the current workspace to <branch_name>
+"
+}
+
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    return
+  fi
+  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    __gs-uncommitted-changes-message
+    return
+  fi
+  git checkout $1
+}
+
+main "$@"

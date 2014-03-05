@@ -1,0 +1,24 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "Usage:
+\t gs package
+Runs GS_PACKAGE command, if specified.
+"
+}
+
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    return
+  fi
+  if [[ ! -z $GS_PACKAGE ]]; then
+    __gs-info "Packaging project."
+    eval $GS_PACKAGE
+    __gs-info "Done"
+  fi
+}
+
+main "$@"

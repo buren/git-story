@@ -1,0 +1,36 @@
+#!/bin/bash
+
+###########
+#  messages   #
+###########
+
+__gs-uncommitted-changes-message() {
+  __gs-warning "
+You have uncommited changes.
+Please commit or stash you're changes before implementing you're new feature.
+Commit your changes:"
+  __gs-checkpoint-help
+}
+
+__gs-automatic-merge-failed() {
+  __gs-print "Automatic merge with branch '$1' to '$2' failed."
+  __gs-error "Merge with '$1' failed."
+  __gs-info "Please fix all conflicts and then run 'gs done \"Fixed merge conflicts\"'."
+}
+
+__gs-print-args-ignored() {
+  __gs-info "Function does not take arguments. Ignoring..."
+}
+
+##########
+#  help  #
+##########
+
+__gs-print-command-list() {
+  __gs-print "$(cat $HOME/.git-story/docs/command_list.txt)"
+}
+
+__gs-ready-checklist-print() {
+  __gs-warning "$GS_CHECKLIST_MESSAGE"
+  echo ""
+}

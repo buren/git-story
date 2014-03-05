@@ -1,0 +1,21 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git list-extended
+Lists all git-story extensions to git.
+"
+}
+
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    return
+  fi
+  __gs-print-command-list
+}
+
+main "$@"

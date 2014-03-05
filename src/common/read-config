@@ -1,0 +1,10 @@
+#!/bin/bash
+
+__gs-read-project-config() {
+  config_file="$(git rev-parse --show-toplevel)/.gitstoryrc"
+  if [[ -f $config_file ]]; then
+    source $config_file
+  fi
+}
+
+__gs-read-project-config "$@"

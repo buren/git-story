@@ -1,0 +1,27 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git test
+Runs GS_PRE_COMMIT_HOOK command, if specified."
+}
+
+main() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    return
+  fi
+
+  if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+    __gs-info "Running pre-commit hook."
+    eval $GS_PRE_COMMIT_HOOK
+    __gs-info "Ran all tests. Check status."
+  else
+    __gs-print "No pre-commit-hook set. Skipping..."
+  fi
+}
+
+main "$@"
