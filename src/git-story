@@ -34,8 +34,8 @@ __gs-read-default-config() {
 ####################
 
 __gs-help() {
-  __gs-print "Run git-story extension command followed by '--usage' for command details."
   __gs-print-command-list
+  __gs-print "Run git-story extension command followed by '--usage' for command details."
 }
 
 
@@ -44,7 +44,7 @@ __gs-help() {
 ###################
 
 git-story() {
-  if [[ "$1" == "--usage" || "$1" == "--list" ]]; then
+  if [[ -z $1 ]] || [[ "$1" == "--usage" || "$1" == "--list" ]]; then
     __gs-help
   elif [[ "$1" == "update" ]]; then
     git update-git-story "$2"
