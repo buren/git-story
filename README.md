@@ -1,7 +1,7 @@
 # git-story (beta)
 
+#### Simplified git workflow.
 
-Simplified git workflow.
 Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
 
 * [Installation](#install-git-story)
