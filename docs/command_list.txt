@@ -13,5 +13,6 @@ git
    test            Runs test command defined in .gitstoryrc
    package         Runs package command defined in .gitstoryrc
    release         Runs release command defined in .gitstoryrc
+   extend-with     Add new git-story extension to git
    list-extended   Lists all git-story commands
    get-update      Updates git-story
