@@ -80,7 +80,7 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * ```git tag-release``` Create a new tagged release
 * ```git abort-merge``` aborts current merge
 * ```git extend-with <extension-name>``` add new git-story extension to git
-* ```git fetch-branches``` .
+* ```git fetch-branches``` fetches all remote branches.
 * ```git update-git-story``` gets the latest version of git-story.
 * Show statistics for repository
 
