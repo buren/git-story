@@ -17,13 +17,13 @@ install-git-story() {
 
   if [[ -f $HOME/.bash_profile ]]; then
     echo "Injecting import: ~/.bash_profile"
-    cat $HOME/.git-story/setup/import >> $HOME/.bash_profile
+    cat $HOME/.git-story/setup/import_install >> $HOME/.bash_profile
   elif [[ -f $HOME/.bashrc ]]; then
     echo "Injecting import: ~/.bashrc"
-    cat $HOME/.git-story/setup/import >> $HOME/.bashrc
+    cat $HOME/.git-story/setup/import_install >> $HOME/.bashrc
   elif [[ -f $HOME/.zshrc ]]; then
     echo "Injecting import: ~/.zshrc"
-    cat $HOME/.git-story/setup/import >> $HOME/.zshrc
+    cat $HOME/.git-story/setup/import_install >> $HOME/.zshrc
   else
     echo "[ERROR] Neither .bash_profile, .bashrc or .zshrc found."
     echo ""
