@@ -5,6 +5,7 @@
 Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
 
 * [Installation](#install-git-story)
+* [Getting Started](#getting-started)
 * [Example](#example)
 * [Configuration](#configuration)
 * [Command list](#command-list)
@@ -24,7 +25,7 @@ The model:
 
 1. Start developing a feature, and name it `git dev <name>`
 2. Save local changes and sync with remote `git done <commit_message>`
-3. If any conflicts fix them and `git done "Fixed merge conflicts in ..."`
+3. If any conflicts fix them and run `git done "Fixed merge conflicts in ..."`
 4. Create a pull request on GitHub (or any other host)
 
 The principle is that you develop each new feature in its on branch. Then when you're ready you push it and create a pull request.
