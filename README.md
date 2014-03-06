@@ -1,7 +1,7 @@
 # git-story (beta)
 
+#### Simplified git workflow.
 
-Simplified git workflow.
 Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
 
 * [Installation](#install-git-story)
@@ -34,24 +34,6 @@ The principle is that you develop each new feature in its on branch. Then when y
     git dev branch_name        # Sets up clean workspace based of remote master.
     git done "Commit message"  # Commit changes, update master and merge with repository.
 Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
-
-## Configuration
-For project specific configurations create a file named `.gitstoryrc` at the project's git root.
-Available options:
-
-    GS_GIT_STORY_BRANCH  # (String)  Target branch for 'git done'       Default: "master"
-    GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests      Default: ""
-    GS_PACKAGE           # (String)  Shell command for 'package'        Default: ""
-    GS_RELEASE           # (String)  Shell command for 'release'        Default: ""
-    GS_PROMPT_ON_DONE    # (Boolean) Prompt user before executing done  Default: false
-    GS_PRINT_CHECKLIST   # (Boolean) Print checklist before 'done'      Default: false
-    GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
-    GS_PROJECT_URL       # (String)  Project URL                        Default: ""
-    GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL on done Default: true
-    GS_CHECKLIST_MESSAGE # (String)  Checklist string for 'done'        Default: "1. Have you..."
-    GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "What tag..."
-
-See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Command list
 
@@ -97,7 +79,7 @@ Example: If the current branch is "test_feature" it will try to fetch and merge 
 * ```git package``` Package the project. Runs `GS_PACKAGE`.
 * ```git release``` Package the project. Runs `GS_RELEASE`
 * ```git test```    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
-* ```git goto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed. branch`
+* ```git goto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed.
 * ```git history``` view repository commit history.
 * ```git tag-release``` Create a new tagged release
 * ```git abort-merge``` aborts current merge
@@ -112,6 +94,24 @@ Example: If the current branch is "test_feature" it will try to fetch and merge 
                 weekdays        # prints statistics for number of commits per weekday
                 hour            # prints statistics for number of commits per hour
 show statistics for repository.
+
+## Configuration
+For project specific configurations create a file named `.gitstoryrc` at the project's git root.
+Available options:
+
+    GS_GIT_STORY_BRANCH  # (String)  Target branch for 'git done'       Default: "master"
+    GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests      Default: ""
+    GS_PACKAGE           # (String)  Shell command for 'package'        Default: ""
+    GS_RELEASE           # (String)  Shell command for 'release'        Default: ""
+    GS_PROMPT_ON_DONE    # (Boolean) Prompt user before executing done  Default: false
+    GS_PRINT_CHECKLIST   # (Boolean) Print checklist before 'done'      Default: false
+    GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
+    GS_PROJECT_URL       # (String)  Project URL                        Default: ""
+    GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL on done Default: true
+    GS_CHECKLIST_MESSAGE # (String)  Checklist string for 'done'        Default: "1. Have you..."
+    GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "What tag..."
+
+See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
 * Tested on Linux/OSX
