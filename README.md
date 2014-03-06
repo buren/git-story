@@ -71,11 +71,6 @@ No checks are made if --force is supplied as the second argument.
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done "Fixed merge conflicts for ..."`.
-* Fetch and merge
-
-        git pull
-fetch and merge from remote.
-Example: If the current branch is "test_feature" it will try to fetch and merge the remote version of test_feature.
 * ```git browse```  opens the repository on GitHub.
 * ```git package``` Package the project. Runs `GS_PACKAGE`.
 * ```git release``` Package the project. Runs `GS_RELEASE`
