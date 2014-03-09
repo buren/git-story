@@ -23,6 +23,8 @@ main-exec() {
   git tag
   __gs-print "========================"
 
+  __gs-print "Parent tag and current commit:"
+  __gs-info "$(git describe)"
   version_no="$(__gs-prompt-for-result "$GS_NEW_TAG_PROMPT")"
   if [[ "$version_no" == *" "* ]]; then
     __gs-error "ERROR:"
