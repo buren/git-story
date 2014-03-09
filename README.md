@@ -41,16 +41,11 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
     git
        dev               Start developling a new feature
        done              Commit changes and sync with remote
-       branch-points     Shows the last common commit with current branch
-       branch-status     Shows current branch status
-       churn             Count number of changes for each file
-       conflicted        List files with merge-conflicts
        create-branch     Create and checkout a new branch on remote and local
        delete-branch     Delete branch from remote and local
-       divergence        Show the difference between current branch and the same remote branch
        goto              Switch from current branch to specified branch
-       history           List repository commits
        abort-merge       Aborts current merge
+       history           List repository commits
        tag-release       Create a new tag
        stat              Print statistics of git repository
        fetch-branches    Fetches all branches from remote
@@ -58,6 +53,12 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
        test              Runs test command defined in .gitstoryrc
        package           Runs package command defined in .gitstoryrc
        release           Runs release command defined in .gitstoryrc
+       trail             Show the last common commit with current branch
+       neck              Show commits until first branching point
+       branch-status     Show current branch status
+       churn             Count number of changes for each file
+       conflicted        List files with merge-conflicts
+       divergence        Show difference between current branch and remote branch
        git-story         List git-story extensions
        git-story-extend  Add new git-story extension to git
        git-story-update  Update git-story to its latest version
@@ -91,7 +92,8 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git git-story-update` gets the latest version of git-story.
 * `git git-story-extend` add new git-story extension to git.
 * `git git-story` list git-story extensions.
-* `branch-points` shows the last common commit with current branch
+* `trail` shows the last common commit with current branch
+* `neck` show commits until first branching point
 * `branch-status` shows current branch status
 * `churn` count number of changes for each file
 * `conflicted` list files with merge-conflicts

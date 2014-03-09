@@ -1,5 +1,5 @@
 #!/bin/bash
-# Shameless steal from: https://github.com/cypher/dotfiles/blob/master/bin/git-trail
+# Shameless steal from: http://chneukirchen.org/blog/archive/2013/01/a-grab-bag-of-git-tricks.html
 
 source $GS_INIT_PATH
 __git-story-init
@@ -7,8 +7,8 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t git branch-points
-Shows the last common commit with current branch.
+\t git trail
+Show last common commit with current branch.
 Args:
 \t -r flag for remotes.
 \t -t flag for tags.
