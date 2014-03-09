@@ -1,18 +1,24 @@
-git-story extensions:
-
 git
-   dev             Start developling a new feature
-   done            Commit changes and sync with remote
-   goto            Switch from current branch to specified branch
-   history         List repository commits
-   abort-merge     Aborts current merge
-   tag-release     Create a new tag
-   stat            Print statistics of git repository
-   fetch-branches  Fetches all branches from remote
-   open            Open current git repository on Github
-   test            Runs test command defined in .gitstoryrc
-   package         Runs package command defined in .gitstoryrc
-   release         Runs release command defined in .gitstoryrc
-   extend-with     Add new git-story extension to git
-   list-extended   Lists all git-story commands
-   get-update      Updates git-story
+   dev               Start developling a new feature
+   done              Commit changes and sync with remote
+   create-branch     Create and checkout a new branch on remote and local
+   delete-branch     Delete branch from remote and local
+   goto              Switch from current branch to specified branch
+   abort-merge       Aborts current merge
+   history           List repository commits
+   tag-release       Create a new tag
+   stat              Print statistics of git repository
+   fetch-branches    Fetches all branches from remote
+   browse            Open current git repository on Github
+   test              Runs test command defined in .gitstoryrc
+   package           Runs package command defined in .gitstoryrc
+   release           Runs release command defined in .gitstoryrc
+   trail             Show the last common commit with current branch
+   neck              Show commits until first branching point
+   branch-status     Show current branch status
+   churn             Count number of changes for each file
+   conflicted        List files with merge-conflicts
+   divergence        Show difference between current branch and remote branch
+   git-story         List git-story extensions
+   git-story-extend  Add new git-story extension to git
+   git-story-update  Update git-story to its latest version

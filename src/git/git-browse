@@ -11,10 +11,12 @@ opens current project page
 }
 
 main() {
-  if [[ $1 == "--usage" ]]; then
-    usage
-    return
-  elif [[ ! -z "$1" ]]; then
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ ! -z "$1" ]]; then
     __gs-ignore-args "git browse"
   fi
 

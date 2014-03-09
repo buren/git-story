@@ -11,11 +11,14 @@ Description goes here...
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  __gs-info "TODO:$RESET Add code to: $(cd `dirname "${BASH_SOURCE[0]}"` && pwd)/`basename "${BASH_SOURCE[0]}"`" # Remove this line
   # Add execution code here
+  # ...
 }
 
 main "$@"

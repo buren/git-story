@@ -1,0 +1,24 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git conflicted
+Lists all filenames that has merge conflicts.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  filenames="$(grep -rl "<<<<<<< HEAD" *)"
+  __gs-print "$filenames"
+  __gs-info "Conflicting files: $(echo $filenames | wc -w)"
+}
+
+main "$@"

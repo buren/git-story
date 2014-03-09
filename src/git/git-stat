@@ -14,6 +14,10 @@ usage:
 \t          commits                # shows number of commits for each author
 \t          weekdays               # prints statistics for number of commits per weekday
 \t          hour                   # prints statistics for number of commits per hour
+\t          files                  # prints number of files and lines
+\t          diff                   # Print stat of uncomitted changes
+\t          log                    # Print log with stat
+\t          modified               # Print stat of most modified files
 prints statistics of given type.
 
 example:
@@ -22,10 +26,12 @@ Default: contributions"
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  elif [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
     if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
       commit_summary="$(git shortlog --summary --numbered --no-merges)"
       __gs-list-authors | while read line; do
@@ -36,26 +42,36 @@ main() {
     else
       __gs-stat-author-contrib "$2"
     fi
-  elif [[ "$1" == "commits" ]] || [[ "$1" == "commit" ]]; then
-    if [[ ! -z "$2" ]]; then
-      __gs-ignore-args "git stat $1 $2"
-    fi
-    __gs-stat-commits
-  elif [[ "$1" == "weekday" ]] || [[ "$1" == "weekdays" ]] || [[ "$1" == "week" ]]; then
-      for i in Mon Tue Wed Thu Fri Sat Sun; do
-        echo $( echo " $i: "; git shortlog  -n --format='%ad %s'| grep "$i " | wc -l) # must use 'echo'
-      done
-  elif [[ "$1" == "hour" ]] || [[ "$1" == "hours" ]]; then
-      for i in `seq -w 0 23`; do
-        echo $( echo " $i:"; git shortlog  -n --format='%ad %s' | grep " $i:" | wc -l) # must use 'echo'
-      done
-  elif [[ "$1" == "files" ]] || [[ "$1" == "lines" ]] || [[ "$1" == "loc" ]]; then
-      __gs-safe-path-operation "$(git ls-files | xargs cat | wc -l)" "$2" "Lines:       "
-      __gs-safe-path-operation "$(git ls-files |  wc -l)" "$2" "Unique files:"
-  else
-    __gs-error "Error '$1' unrecognized argument."
-    usage
+    die
   fi
+
+  case $1 in
+    "commits" | "commit" )
+      __gs-stat-commits "$2" "$3"
+      ;;
+    "weekday" | "weekdays" | "week" )
+      __gs-stat-week "$2" "$3"
+      ;;
+    "hour" | "hours" )
+      __gs-stat-hour "$2" "$3"
+      ;;
+    "files" | "lines" | "loc" )
+      __gs-stat-files "$2" "$3"
+      ;;
+    "diff" | "changes" )
+      __gs-stat-changes "$2" "$3"
+      ;;
+    "log" )
+      __gs-stat-log "$2" "$3"
+      ;;
+    "modified" | "most-modified" )
+      _gs-stat-most-modified "$2" "$3"
+      ;;
+    *)
+      usage
+      __gs-error "Error '$1' unrecognized argument."
+      ;;
+  esac
 }
 
 __gs-safe-path-operation() {
@@ -75,6 +91,7 @@ __gs-list-authors() {
 
 __gs-stat-commits() {
   git shortlog --summary --numbered --no-merges
+  __gs-print "Commits per author (no-merge-commits are counted)."
 }
 
 __gs-stat-author-contrib() {
@@ -96,6 +113,35 @@ __gs-stat-author-contrib() {
     __gs-error "[ERROR] No argument supplied for __gs-stat-author-contrib."
     usage
   fi
+}
+
+__gs-stat-week() {
+  for i in Mon Tue Wed Thu Fri Sat Sun; do
+    echo $( echo " $i: "; git shortlog  -n --format='%ad %s'| grep "$i " | wc -l) # must use 'echo'
+  done
+}
+
+__gs-stat-hour() {
+  for i in `seq -w 0 23`; do
+    echo $( echo " $i:"; git shortlog  -n --format='%ad %s' | grep " $i:" | wc -l) # must use 'echo'
+  done
+}
+
+__gs-stat-files() {
+  __gs-safe-path-operation "$(git ls-files | xargs cat | wc -l)" "$2" "Lines:       "
+  __gs-safe-path-operation "$(git ls-files |  wc -l)" "$2" "Unique files:"
+}
+
+__gs-stat-changes() {
+  git diff --stat
+}
+
+__gs-stat-log() {
+  git log --stat
+}
+
+_gs-stat-most-modified() {
+  git churn
 }
 
 main "$@"

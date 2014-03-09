@@ -5,16 +5,17 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t git list-extended
+\t git git-story
 Lists all git-story extensions to git.
 "
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
   __gs-print-command-list
 }
 

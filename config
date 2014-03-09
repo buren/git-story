@@ -6,7 +6,10 @@ export GS_GIT_STORY_BRANCH='master'
 # Tests
 export GS_PRE_COMMIT_HOOK
 
-# Package
+# General
+export GS_TEST_ON_AUTO_MERGE=true
+
+# Project integration
 export GS_PACKAGE
 export GS_RELEASE
 
@@ -14,10 +17,8 @@ export GS_RELEASE
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
 
-# GitHub
-export GS_HAS_GITHUB=true
-
 # Project Website
+export GS_HAS_GITHUB=true
 export GS_PROJECT_URL # No need to setup if project hosted on Github. If set it overrides GitHub path.
 export GS_PROMPT_BROWSE_URL=true
 
@@ -29,4 +30,4 @@ Checklist:
 \t 3. Have you refactored your code?
 \t 4. Are you ready for possible merge conflicts?"
 
-export GS_NEW_TAG_PROMPT="What tag would you like to give this version?  (example: v0.9.1)"
+export GS_NEW_TAG_PROMPT="What tag would you like to give this version?"

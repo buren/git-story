@@ -10,10 +10,11 @@ Runs GS_RELEASE command, if specified.
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
   if [[ ! -z $GS_RELEASE ]]; then
     __gs-info "Packaging project."
     eval $GS_RELEASE

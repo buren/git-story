@@ -1,0 +1,24 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git delete-branch <branch_name>
+Deletes branch <branch_name> from local and remote.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git push origin :refs/heads/$1 && \
+  git remote prune origin && \
+  git branch -D $1
+}
+
+main "$@"

@@ -12,29 +12,24 @@ alias: tag_release, tagrelease
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
   git fetch --tags
   __gs-print "Previous releases:"
   __gs-print "========================"
   git tag
   __gs-print "========================"
-  __gs-print "Example tag: \n\t v0.9.1"
 
-  version_prompt="$GS_NEW_TAG_PROMPT"
-  if [[ $SHELL == "/bin/zsh" ]]; then
-    version_no=""
-    vared -p "$version_prompt" version_no
-  else
-    read -p "$version_prompt " version_no
-  fi
-
-  if [[ $1 == *" "* ]]; then
+  __gs-print "Parent tag and current commit:"
+  __gs-info "$(git describe)"
+  version_no="$(__gs-prompt-for-result "$GS_NEW_TAG_PROMPT")"
+  if [[ "$version_no" == *" "* ]]; then
     __gs-error "ERROR:"
-    __gs-error "\t Tag must not contain spaces!"
-    return
+    __gs-error "\t Tag can *not* contain spaces!"
+    die
   fi
 
   git tag -a $version_no -m "Version $version_no" && \

@@ -1,0 +1,27 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git create-branch <branch_name>
+Create a new branch  <branch_name> and push it to remote.
+Command will exit if <branch_name> already exists at remote.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git push origin HEAD:refs/heads/$1 && \
+  git fetch origin && \
+  git branch --track $1 origin/$1 && \
+  cd . && \
+  git checkout $1
+}
+
+main "$@"

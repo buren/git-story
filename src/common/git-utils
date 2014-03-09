@@ -1,0 +1,69 @@
+#!/bin/bash
+
+#####################
+#  git-story utils  #
+#####################
+
+__gs-check-usage-param() {
+  if [[ "$1" == "--usage" ]]; then
+    usage
+    die
+  fi
+}
+
+# $1 : target branch
+# $2 : current branch
+# $3 : merge failed warning message
+__gs-pull-and-check-status() {
+  pull_tail=$(git pull origin $branch 2> /dev/null | tail -n1)
+  if [[ $pull_tail == *"Automatic merge failed"* ]]; then
+   __gs-automatic-merge-failed $1 $2
+   if [[ ! -z $3 ]]; then
+     __gs-warning $3
+   fi
+   die
+  elif [[ $pull_tail == *"Already up-to-date"* ]]; then
+    __gs-success "'$1' already up-to-date."
+  else
+    __gs-success "Automatic merge with '$1' successfull."
+    if [[ $GS_TEST_ON_AUTO_MERGE == true ]]; then
+      __gs-print "Running tests..."
+      git test
+      if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+        __gs-continue-prompt "Check tests status. Would you like to continue?"
+      fi
+    fi
+  fi
+}
+
+__gs-clean-or-die() {
+  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    __gs-uncommitted-changes-message
+    die
+  fi
+}
+
+__gs-continue-prompt() {
+  while true; do
+    yn="$(__gs-prompt-for-result "$1 (y\n)")"
+    case $yn in
+      [Yy]* ) __gs-success "Resuming.."; break;;
+      [Nn]* ) __gs-warning "Aborted."; die; break;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
+__gs-prompt-for-result() {
+  if [[ $SHELL == "/bin/zsh" ]]; then
+    p_res=""
+    vared -p "$1" p_res
+  else
+    read -p  "$1" p_res
+  fi
+  echo $p_res
+}
+
+__gs-current-branch() {
+  echo "$(git rev-parse --abbrev-ref HEAD)"
+}
