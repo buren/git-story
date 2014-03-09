@@ -53,6 +53,7 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
        test              Runs test command defined in .gitstoryrc
        package           Runs package command defined in .gitstoryrc
        release           Runs release command defined in .gitstoryrc
+       install-project   Runs install command defined in .gitstoryrc
        trail             Show the last common commit with current branch
        neck              Show commits until first branching point
        branch-status     Show current branch status
@@ -82,6 +83,7 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git browse`  opens the repository on GitHub.
 * `git package` Package the project. Runs `GS_PACKAGE`.
 * `git release` Package the project. Runs `GS_RELEASE`
+* `git install-project` Install the project. Runs `GS_INSTALL`
 * `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
 * `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed.
 * `git history` view repository commit history.

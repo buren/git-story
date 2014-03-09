@@ -1,0 +1,26 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git install project
+Runs GS_INSTALL command, if specified.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ ! -z $GS_INSTALL ]]; then
+    __gs-info "Installing project."
+    eval $GS_INSTALL
+    __gs-info "Done"
+  fi
+}
+
+main "$@"

@@ -12,6 +12,7 @@ export GS_TEST_ON_AUTO_MERGE=true
 # Project integration
 export GS_PACKAGE
 export GS_RELEASE
+export GS_INSTALL
 
 # Done
 export GS_PRINT_CHECKLIST=false
