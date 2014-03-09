@@ -101,7 +101,6 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `delete-branch` delete branch from remote and local
 * `divergence` show the difference between current branch and the same remote
 * `git-story` list git-story extensions
-
 * Show statistics for repository
 
         git stat <type>

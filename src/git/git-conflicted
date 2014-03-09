@@ -16,7 +16,7 @@ main() {
 }
 
 main-exec() {
-  filenames="$(grep -rl '<<<<<<< HEAD' *)"
+  filenames="$(grep -rl "<<<<<<< HEAD" *)"
   __gs-print "$filenames"
   __gs-info "Conflicting files: $(echo $filenames | wc -w)"
 }
