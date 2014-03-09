@@ -11,10 +11,12 @@ aborts current merge.
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  elif [[ ! -z "$1" ]]; then
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ ! -z "$1" ]]; then
     __gs-print-args-ignored
   fi
   git merge --abort && __gs-success "Successfully aborted merge." || __gs-warning "No merge to abort."

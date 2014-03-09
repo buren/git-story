@@ -11,10 +11,11 @@ Description goes here...
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
   # Add execution code here
 }
 

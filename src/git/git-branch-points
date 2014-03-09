@@ -1,0 +1,46 @@
+#!/bin/bash
+# Shameless steal from: https://github.com/cypher/dotfiles/blob/master/bin/git-trail
+
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git branch-points
+Shows branch point dates.
+Args:
+\t -r flag for remotes.
+\t -t flag for tags.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  [ "$1" = -r ] && shift || REMOTES="-e refs/remotes/"
+  [ "$1" = -t ] && shift || TAGS="-e refs/tags/"
+  COMMIT=$(git rev-parse --no-flags --default HEAD "$@")
+
+  { git for-each-ref | grep -v -e '^$' $TAGS $REMOTES
+    git log --date=short --format="%cd %h %H" "$@"
+  } | awk '
+      $2 == "commit" || $2 == "tag" {
+        "git merge-base '$COMMIT' " $1 | getline mb
+        merge[mb] = merge[mb] " " $3
+      }
+      {
+        if ($3 in merge) {
+          split(merge[$3], mbs, " ")
+          for (i in mbs) {
+            "git name-rev --name-only --refs=\"" mbs[i] "\" " $3 | getline nr
+            if (nr != "undefined") print $1, $2, nr   # skip unreachable commits
+          }
+        }
+      }' | git -p column   # paginate output
+}
+
+main "$@"

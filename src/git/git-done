@@ -18,17 +18,12 @@ note:"
   __gs-warning "\t Can cause merge conflicts"
 }
 
-__gs-print-merged-run-hook-message() {
-  __gs-info "Remote changes from '$1' merged."
-  __gs-info "Running pre-commit hook."
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
 }
 
-main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
-
+main-exec() {
   git test
 
   if [[ $GS_PRINT_CHECKLIST == true ]]; then
@@ -40,123 +35,43 @@ main() {
 
   __gs-print ""
 
-  if [[ $GS_PRINT_CHECKLIST != true ]] && [[ $GS_PROMPT_ON_DONE  == false ]]; then
-    gs-ready-execute "$@"
-  else
-    while true; do
-      if [[ $SHELL == "/bin/zsh" ]]; then
-        yn=""
-        vared -p "$confirm_message (y\n)" yn
-      else
-        read -p "$confirm_message  (y\n)" yn
-      fi
-      case $yn in
-        [Yy]* ) gs-ready-execute "$@"; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-      esac
-    done
-    return
+  if [[ $GS_PROMPT_ON_DONE  == true ]]; then
+    __gs-continue-prompt "$confirm_message"
   fi
+  gs-ready-execute "$@"
 }
 
 gs-ready-execute() {
   if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
     if [[ -z "$1" ]]; then
       __gs-error "You have uncommited changes you must provide a commit message."
-      return
+      __gs-print "example: "
+      __gs-print "\t git done 'Any message'"
+      die
     fi
     git add --all
     git commit -m "$1"
   elif [[ ! -z "$1" ]]; then
     __gs-warning "Nothing to commit. Ignoring arguments."
   fi
-  # Update current branch
-  local current="$(git rev-parse --abbrev-ref HEAD)"
-  # Pull from remote
-  __gs-info "\nPull from: '$current'"
-  pull_tail=$(git pull origin $current 2> /dev/null | tail -n1)
-  if [[ $pull_tail == *"Automatic merge failed"* ]]; then
-   __gs-automatic-merge-failed $current $current
-   return
-  elif [[ $pull_tail == *"Already up-to-date"* ]]; then
-    __gs-info "'$current' already up-to-date."
-  else
-    __gs-print "[gs] pull_tail: $pull_tail"
-    __gs-print-merged-run-hook-message $current
-    git test
-    if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
-      while true; do
-        if [[ $SHELL == "/bin/zsh" ]]; then
-          yn=""
-          vared -p "$confirm_message (y\n)" yn
-        else
-          read -p "Did all tests pass? (y\n)" yn
-        fi
-        case $yn in
-          [Yy]* ) __gs-success "Resuming.."; break;;
-          [Nn]* ) __gs-warning "Aborted."; return; break;;
-          * ) echo "Please answer yes or no.";;
-        esac
-      done
-    fi
-  fi
-  __gs-print "\n[push]"
-  git push origin $current
 
-  # Update target branch
+  local current="$(__gs-current-branch)"
+  __gs-sync-branch $current $current
+
   local target=${2:-master}
-  # Pull from remote
-  __gs-print "\nPull from: '$target'"
-  target_pull_tail=$(git pull origin $target 2> /dev/null | tail -n1)
-  if [[ $target_pull_tail == *"Automatic merge failed"* ]]; then
-   __gs-automatic-merge-failed $target $current
-   return
-  elif [[ $target_pull_tail == *"Already up-to-date"* ]]; then
-    __gs-print "'$target' already up-to-date."
-  else
-    __gs-print "[gs] pull_tail: $target_pull_tail"
-    __gs-print-merged-run-hook-message $target
-    git test
-    if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
-      while true; do
-        if [[ $SHELL == "/bin/zsh" ]]; then
-          yn=""
-          vared -p "$confirm_message (y\n)" yn
-        else
-          read -p "Did all tests pass? (y\n)" yn
-        fi
-        case $yn in
-          [Yy]* ) __gs-success "Resuming.."; break;;
-          [Nn]* ) __gs-warning "Aborted."; return; break;;
-          * ) echo "Please answer yes or no.";;
-        esac
-      done
-    fi
-  fi
-  __gs-info "\n[push]"
-  git push origin $current # Push merged updates from target branch to current
+  __gs-sync-branch $target $current
 
   __gs-print ""
-  __gs-success "Successfully merged remote '$target' branch and pushed '$current' to remote."
-  __gs-print ""
+  __gs-success "Success."
+  __gs-print "Merged remote '$target' and pushed '$current' to remote."
+}
 
-  if [[ $GS_PROMPT_BROWSE_URL == true ]]; then
-    local prompt_message="Would you like to open your projects website? (y\n)"
-    while true; do
-      if [[ $SHELL == "/bin/zsh" ]]; then
-        yn=""
-        vared -p "$prompt_message" yn
-      else
-        read -p "$prompt_message" yn
-      fi
-      case $yn in
-        [Yy]* ) git browse; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-      esac
-    done
-  fi
+# $1 : remote target
+# $2 : current
+__gs-sync-branch() {
+  __gs-info "Pull from: '$1'"
+  __gs-pull-and-check-status $1 $2
+  git push origin $2
 }
 
 main "$@"

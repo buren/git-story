@@ -10,11 +10,11 @@ Runs GS_PRE_COMMIT_HOOK command, if specified."
 }
 
 main() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    return
-  fi
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
 
+main-exec() {
   if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
     __gs-info "Running pre-commit hook."
     eval $GS_PRE_COMMIT_HOOK

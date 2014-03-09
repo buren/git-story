@@ -11,10 +11,13 @@ fetches all branches at remote.
 }
 
 main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
   if [[ ! -z $1 ]]; then
     __gs-ignore-args "git fetch-branches"
-  elif [[ "$1" == "--usage" ]]; then
-    usage
   fi
   git fetch origin
   __gs-info "Fetching all branches."
