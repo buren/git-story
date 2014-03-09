@@ -16,6 +16,8 @@ usage:
 \t          hour                   # prints statistics for number of commits per hour
 \t          files                  # prints number of files and lines
 \t          diff                   # Print stat of uncomitted changes
+\t          log                    # Print log with stat
+\t          modified               # Print stat of most modified files
 prints statistics of given type.
 
 example:
@@ -45,22 +47,25 @@ main-exec() {
 
   case $1 in
     "commits" | "commit" )
-      __gs-stat-commits
+      __gs-stat-commits "$2" "$3"
       ;;
     "weekday" | "weekdays" | "week" )
-      __gs-stat-week
+      __gs-stat-week "$2" "$3"
       ;;
     "hour" | "hours" )
-      __gs-stat-hour
+      __gs-stat-hour "$2" "$3"
       ;;
     "files" | "lines" | "loc" )
-      __gs-stat-files
+      __gs-stat-files "$2" "$3"
       ;;
     "diff" | "changes" )
-      __gs-stat-changes
+      __gs-stat-changes "$2" "$3"
       ;;
     "log" )
-      __gs-stat-log
+      __gs-stat-log "$2" "$3"
+      ;;
+    "modified" | "most-modified" )
+      _gs-stat-most-modified "$2" "$3"
       ;;
     *)
       usage
@@ -133,6 +138,10 @@ __gs-stat-changes() {
 
 __gs-stat-log() {
   git log --stat
+}
+
+_gs-stat-most-modified() {
+  git churn
 }
 
 main "$@"

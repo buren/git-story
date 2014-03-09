@@ -39,21 +39,28 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
 ## Command list
 
     git
-       dev             Start developling a new feature
-       done            Commit changes and sync with remote
-       goto            Switch from current branch to specified branch
-       history         List repository commits
-       abort-merge     Aborts current merge
-       tag-release     Create a new tag
-       stat            Print statistics of git repository
-       fetch-branches  Fetches all branches from remote
-       open            Open current git repository on Github
-       test            Runs test command defined in .gitstoryrc
-       package         Runs package command defined in .gitstoryrc
-       release         Runs release command defined in .gitstoryrc
-       extend-with     Add new git-story extension to git
-       list-extended   Lists all git-story commands
-       get-update      Updates git-story
+       dev               Start developling a new feature
+       done              Commit changes and sync with remote
+       branch-points     Shows the last common commit with current branch
+       branch-status     Shows current branch status
+       churn             Count number of changes for each file
+       conflicted        List files with merge-conflicts
+       create-branch     Create and checkout a new branch on remote and local
+       delete-branch     Delete branch from remote and local
+       divergence        Show the difference between current branch and the same remote branch
+       goto              Switch from current branch to specified branch
+       history           List repository commits
+       abort-merge       Aborts current merge
+       tag-release       Create a new tag
+       stat              Print statistics of git repository
+       fetch-branches    Fetches all branches from remote
+       browse            Open current git repository on Github
+       test              Runs test command defined in .gitstoryrc
+       package           Runs package command defined in .gitstoryrc
+       release           Runs release command defined in .gitstoryrc
+       git-story         List git-story extensions
+       git-story-extend  Add new git-story extension to git
+       git-story-update  Update git-story to its latest version
 
 
 ## Documentation
@@ -71,17 +78,28 @@ No checks are made if --force is supplied as the second argument.
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done "Fixed merge conflicts for ..."`.
-* ```git browse```  opens the repository on GitHub.
-* ```git package``` Package the project. Runs `GS_PACKAGE`.
-* ```git release``` Package the project. Runs `GS_RELEASE`
-* ```git test```    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
-* ```git goto <branch_name>``` switches to branch <branch_name> if all changes are stashed or committed.
-* ```git history``` view repository commit history.
-* ```git tag-release``` Create a new tagged release
-* ```git abort-merge``` aborts current merge
-* ```git extend-with <extension-name>``` add new git-story extension to git
-* ```git fetch-branches``` .
-* ```git update-git-story``` gets the latest version of git-story.
+* `git browse`  opens the repository on GitHub.
+* `git package` Package the project. Runs `GS_PACKAGE`.
+* `git release` Package the project. Runs `GS_RELEASE`
+* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
+* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed.
+* `git history` view repository commit history.
+* `git tag-release` Create a new tagged release
+* `git abort-merge` aborts current merge
+* `git extend-with <extension-name>` add new git-story extension to git
+* `git fetch-branches` .
+* `git git-story-update` gets the latest version of git-story.
+* `git git-story-extend` add new git-story extension to git.
+* `git git-story` list git-story extensions.
+* `branch-points` shows the last common commit with current branch
+* `branch-status` shows current branch status
+* `churn` count number of changes for each file
+* `conflicted` list files with merge-conflicts
+* `create-branch` create and checkout a new branch on remote and local
+* `delete-branch` delete branch from remote and local
+* `divergence` show the difference between current branch and the same remote
+* `git-story` list git-story extensions
+
 * Show statistics for repository
 
         git stat <type>
@@ -89,6 +107,10 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
                 commits         # shows number of commits for each author
                 weekdays        # prints statistics for number of commits per weekday
                 hour            # prints statistics for number of commits per hour
+                files           # prints number of files and lines
+                diff            # print stat of uncomitted changes
+                log             # print log with stat
+                modified        # print stat of most modified files
 show statistics for repository.
 
 ## Configuration

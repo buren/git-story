@@ -5,7 +5,7 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t git list-extended
+\t git git-story
 Lists all git-story extensions to git.
 "
 }

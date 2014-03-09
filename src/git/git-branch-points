@@ -8,7 +8,7 @@ usage() {
   __gs-print "
 usage:
 \t git branch-points
-Shows branch point dates.
+Shows the last common commit with current branch.
 Args:
 \t -r flag for remotes.
 \t -t flag for tags.

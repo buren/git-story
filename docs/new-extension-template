@@ -17,6 +17,8 @@ main() {
 
 main-exec() {
   # Add execution code here
+  absolute_path=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)/`basename "${BASH_SOURCE[0]}"`
+  __gs-info "TODO:$RESET Add code to: $absolute_path"
 }
 
 main "$@"
