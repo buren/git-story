@@ -32,7 +32,7 @@ The principle is that you develop each new feature in its on branch. Then when y
 
 ## Example
 
-    git dev branch_name        # Sets up clean workspace based of remote master.
+    git dev branch_name        # Sets up clean workspace based on remote master.
     git done "Commit message"  # Commit changes, updates current and local branch.
 Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
 
@@ -109,7 +109,7 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
                 weekdays        # prints statistics for number of commits per weekday
                 hour            # prints statistics for number of commits per hour
                 files           # prints number of files and lines
-                diff            # print stat of uncomitted changes
+                diff            # print stat of uncommitted changes
                 log             # print log with stat
                 modified        # print stat of most modified files
 show statistics for repository.
