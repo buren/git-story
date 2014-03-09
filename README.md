@@ -39,7 +39,7 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
 ## Command list
 
     git
-       dev               Start developling a new feature
+       dev               Start developing a new feature
        done              Commit changes and sync with remote
        create-branch     Create and checkout a new branch on remote and local
        delete-branch     Delete branch from remote and local
