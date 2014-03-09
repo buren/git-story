@@ -7,7 +7,7 @@ export GS_GIT_STORY_BRANCH='master'
 export GS_PRE_COMMIT_HOOK
 
 # General
-export GS_RUN_TEST_ON_AUTO_MERGE=true
+export GS_TEST_ON_AUTO_MERGE=true
 
 # Project integration
 export GS_PACKAGE
@@ -17,11 +17,8 @@ export GS_RELEASE
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
 
-
-# GitHub
-export GS_HAS_GITHUB=true
-
 # Project Website
+export GS_HAS_GITHUB=true
 export GS_PROJECT_URL # No need to setup if project hosted on Github. If set it overrides GitHub path.
 export GS_PROMPT_BROWSE_URL=true
 

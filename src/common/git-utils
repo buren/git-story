@@ -26,7 +26,7 @@ __gs-pull-and-check-status() {
     __gs-success "'$1' already up-to-date."
   else
     __gs-success "Automatic merge with '$1' successfull."
-    if [[ $GS_RUN_TEST_ON_AUTO_MERGE == true ]]; then
+    if [[ $GS_TEST_ON_AUTO_MERGE == true ]]; then
       __gs-print "Running tests..."
       git test
       if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then

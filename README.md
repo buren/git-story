@@ -92,15 +92,15 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git git-story-update` gets the latest version of git-story.
 * `git git-story-extend` add new git-story extension to git.
 * `git git-story` list git-story extensions.
-* `trail` shows the last common commit with current branch
-* `neck` show commits until first branching point
-* `branch-status` shows current branch status
-* `churn` count number of changes for each file
-* `conflicted` list files with merge-conflicts
-* `create-branch` create and checkout a new branch on remote and local
-* `delete-branch` delete branch from remote and local
-* `divergence` show the difference between current branch and the same remote
-* `git-story` list git-story extensions
+* `git trail` shows the last common commit with current branch
+* `git neck` show commits until first branching point
+* `git branch-status` shows current branch status
+* `git churn` count number of changes for each file
+* `git conflicted` list files with merge-conflicts
+* `git create-branch` create and checkout a new branch on remote and local
+* `git delete-branch` delete branch from remote and local
+* `git divergence` show the difference between current branch and the same remote
+* `git git-story` list git-story extensions
 * Show statistics for repository
 
         git stat <type>
@@ -118,22 +118,23 @@ show statistics for repository.
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 Available options:
 
-    GS_GIT_STORY_BRANCH  # (String)  Target branch for 'git done'       Default: "master"
-    GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests      Default: ""
-    GS_PACKAGE           # (String)  Shell command for 'package'        Default: ""
-    GS_RELEASE           # (String)  Shell command for 'release'        Default: ""
-    GS_PROMPT_ON_DONE    # (Boolean) Prompt user before executing done  Default: false
-    GS_PRINT_CHECKLIST   # (Boolean) Print checklist before 'done'      Default: false
-    GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
-    GS_PROJECT_URL       # (String)  Project URL                        Default: ""
-    GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL on done Default: true
-    GS_CHECKLIST_MESSAGE # (String)  Checklist string for 'done'        Default: "1. Have you..."
-    GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "What tag..."
+    GS_GIT_STORY_BRANCH       # (String)  Target branch for 'git done'       Default: "master"
+    GS_PRE_COMMIT_HOOK        # (String)  A command that runs all tests      Default: ""
+    GS_PACKAGE                # (String)  Shell command for 'package'        Default: ""
+    GS_RELEASE                # (String)  Shell command for 'release'        Default: ""
+    GS_PROMPT_ON_DONE         # (Boolean) Prompt user before executing done  Default: false
+    GS_PRINT_CHECKLIST        # (Boolean) Print checklist before 'done'      Default: false
+    GS_HAS_GITHUB             # (Boolean) Project has GitHub.                Default: true
+    GS_PROJECT_URL            # (String)  Project URL                        Default: ""
+    GS_PROMPT_BROWSE_URL      # (Boolean) Prompt to open project URL on done Default: true
+    GS_CHECKLIST_MESSAGE      # (String)  Checklist string for 'done'        Default: "1. Have you..."
+    GS_NEW_TAG_PROMPT         # (String)  Prompt text for tag-release        Default: "What tag..."
+    GS_TEST_ON_AUTO_MERGE     # (Boolean) Run tests command on auto merge    Default: true
 
 See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
-* Tested on Linux/OSX
+* Tested on Linux/OSX using both zsh and bash
 * The software is supplied “as is” and all use is at your own risk.
 
 ## License
