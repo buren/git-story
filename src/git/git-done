@@ -63,7 +63,6 @@ gs-ready-execute() {
 
   __gs-print ""
   __gs-success "Success."
-  __gs-print "Merged remote '$target' and pushed '$current' to remote."
 }
 
 # $1 : remote target
