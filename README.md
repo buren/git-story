@@ -34,7 +34,7 @@ The principle is that you develop each new feature in its on branch. Then when y
 
     git dev branch_name        # Sets up clean workspace based on remote master.
     git done "Commit message"  # Commit changes, updates current and local branch.
-Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
+Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
 ## Command list
 
