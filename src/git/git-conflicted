@@ -17,8 +17,13 @@ main() {
 
 main-exec() {
   filenames="$(grep -rl "<<<<<<< HEAD" *)"
-  __gs-print "$filenames"
-  __gs-info "Conflicting files: $(echo $filenames | wc -w)"
+  number_of_files=$(echo $filenames | wc -w 2> /dev/null)
+  if [[ $number_of_files -eq 0 ]]; then
+    __gs-success "No conflicting files."
+  else
+    __gs-print "$filenames"
+    __gs-warning "Conflicting files: $number_of_files"
+  fi
 }
 
 main "$@"
