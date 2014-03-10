@@ -70,7 +70,7 @@ gs-ready-execute() {
 __gs-sync-branch() {
   __gs-info "Pull from: '$1'"
   __gs-pull-and-check-status $1 $2
-  git push origin $2
+  git push $GS_DEFAULT_REMOTE $2
 }
 
 main "$@"

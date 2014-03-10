@@ -16,8 +16,8 @@ main() {
 }
 
 main-exec() {
-  git push origin :refs/heads/$1 && \
-  git remote prune origin && \
+  git push $GS_DEFAULT_REMOTE :refs/heads/$1 && \
+  git remote prune $GS_DEFAULT_REMOTE && \
   git branch -D $1
 }
 

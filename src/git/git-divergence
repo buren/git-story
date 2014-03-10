@@ -44,7 +44,7 @@ main-exec() {
           REMOTE=$1
       else
           LOCAL=`branch`
-          REMOTE=origin/$LOCAL
+          REMOTE=$GS_DEFAULT_REMOTE/$LOCAL
       fi
 
       ensure_valid_ref $LOCAL

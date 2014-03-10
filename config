@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Default options
+export GS_DEFAULT_REMOTE='origin'
 export GS_GIT_STORY_BRANCH='master'
 
 # Tests
@@ -13,6 +14,9 @@ export GS_TEST_ON_AUTO_MERGE=true
 export GS_PACKAGE
 export GS_RELEASE
 export GS_INSTALL
+export GS_PRODUCTION_BRANCH='heads/master'
+export GS_NEXT_VERSION_BRANCH
+export GS_EDGE_BRANCH
 
 # Done
 export GS_PRINT_CHECKLIST=false

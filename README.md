@@ -120,24 +120,29 @@ show statistics for repository.
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 Available options:
 
-    GS_GIT_STORY_BRANCH       # (String)  Target branch for 'git done'       Default: "master"
-    GS_PRE_COMMIT_HOOK        # (String)  A command that runs all tests      Default: ""
-    GS_PACKAGE                # (String)  Shell command for 'package'        Default: ""
-    GS_RELEASE                # (String)  Shell command for 'release'        Default: ""
+    GS_DEFAULT_REMOTE         # (String)  Default remote for git story       Default: 'origin'
+    GS_GIT_STORY_BRANCH       # (String)  Target branch for 'git done'       Default: 'master'
+    GS_PRE_COMMIT_HOOK        # (String)  A command that runs all tests      Default: ''
+    GS_PACKAGE                # (String)  Shell command for 'package'        Default: ''
+    GS_RELEASE                # (String)  Shell command for 'release'        Default: ''
     GS_PROMPT_ON_DONE         # (Boolean) Prompt user before executing done  Default: false
     GS_PRINT_CHECKLIST        # (Boolean) Print checklist before 'done'      Default: false
     GS_HAS_GITHUB             # (Boolean) Project has GitHub.                Default: true
-    GS_PROJECT_URL            # (String)  Project URL                        Default: ""
+    GS_PROJECT_URL            # (String)  Project URL                        Default: ''
     GS_PROMPT_BROWSE_URL      # (Boolean) Prompt to open project URL on done Default: true
-    GS_CHECKLIST_MESSAGE      # (String)  Checklist string for 'done'        Default: "1. Have you..."
-    GS_NEW_TAG_PROMPT         # (String)  Prompt text for tag-release        Default: "What tag..."
+    GS_CHECKLIST_MESSAGE      # (String)  Checklist string for 'done'        Default: '1. Have you...'
+    GS_NEW_TAG_PROMPT         # (String)  Prompt text for tag-release        Default: 'What tag...'
     GS_TEST_ON_AUTO_MERGE     # (Boolean) Run tests command on auto merge    Default: true
+    GS_PRODUCTION_BRANCH      # (String) Integration branch for production   Default: 'heads/master'
+    GS_NEXT_VERSION_BRANCH    # (String) Integration branch for next version Default: ''
+    GS_EDGE_BRANCH            # (String) Integration branch for edge branch  Default: ''
 
 See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
 * Tested on Linux/OSX using both zsh and bash
-* The software is supplied “as is” and all use is at your own risk.
+* The software is supplied “as is” and all use is at your own risk
+* `git branch-status` uses requires Ruby 1.8.7 or greater
 
 ## License
 git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).

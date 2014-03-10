@@ -40,17 +40,17 @@ main-exec() {
     die
   fi
 
-  git fetch origin
+  git fetch $GS_DEFAULT_REMOTE
   # Check globally unique branch_name
   repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
-  if [[ $repo_branches == *"origin/$1"* ]]; then
+  if [[ $repo_branches == *"$GS_DEFAULT_REMOTE/$1"* ]]; then
     __gs-error "A branch with name '$1' already exists."
     __gs-info "Please choose another branch name."
     die
   fi
 
   # Check that target_branch exists
-  if [[ $repo_branches != *"origin/$2"* ]]; then
+  if [[ $repo_branches != *"$GS_DEFAULT_REMOTE/$2"* ]]; then
     __gs-error "Target branch with name '$2' does NOT exist."
     __gs-info "Please choose valid target branch."
     die

@@ -15,7 +15,7 @@ __gs-check-usage-param() {
 # $2 : current branch
 # $3 : merge failed warning message
 __gs-pull-and-check-status() {
-  pull_tail=$(git pull origin $branch 2> /dev/null | tail -n1)
+  pull_tail=$(git pull $GS_DEFAULT_REMOTE $branch 2> /dev/null | tail -n1)
   if [[ $pull_tail == *"Automatic merge failed"* ]]; then
    __gs-automatic-merge-failed $1 $2
    if [[ ! -z $3 ]]; then
