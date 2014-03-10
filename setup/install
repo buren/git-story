@@ -28,11 +28,10 @@ install-git-story() {
     echo "[ERROR] Neither .bash_profile, .bashrc or .zshrc found."
     echo ""
     echo -e "To install add the below line to your bash profile."
-    echo -e "\t source ~/.git-story/setup/import.sh"
+    echo -e "\t source ~/.git-story/setup/import"
   fi
-  echo "Importing to current shell"
-  source $HOME/.git-story/setup/import
-  echo "Initialized"
+  echo "Installed."
+  echo "Please reload your shell to enable git-story extensions."
 }
 
 install-git-story
