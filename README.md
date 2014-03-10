@@ -148,6 +148,7 @@ See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
 * Tested on Linux/OSX using both zsh and bash
+* Wont work with sh
 * The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE)
 * `git branch-status` uses requires Ruby 1.8.7 or greater
 
