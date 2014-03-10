@@ -150,7 +150,7 @@ See [config](https://github.com/buren/git-story/blob/master/config) for details.
 * Tested on Linux/OSX using both zsh and bash
 * Wont work with sh
 * The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE)
-* `git branch-status` uses requires Ruby 1.8.7 or greater
+* `git branch-status` requires Ruby 1.8.7 or greater
 
 ## License
 git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
