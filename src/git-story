@@ -18,6 +18,7 @@ __git-story-init() {
     source $file
   done
   __gs-read-project-config
+  cd "$(__gs-git-root-dir)"
   . "$(git --exec-path)/git-sh-setup"
 }
 
