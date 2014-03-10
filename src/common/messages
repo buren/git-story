@@ -29,7 +29,7 @@ __gs-print-command-list() {
   __gs-print "$(cat $HOME/.git-story/docs/command_list.txt)"
 }
 
-__gs-ready-checklist-print() {
+__gs-done-checklist-print() {
   __gs-warning "$GS_CHECKLIST_MESSAGE"
   echo ""
 }

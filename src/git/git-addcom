@@ -1,0 +1,30 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git addcom 'Commit message'
+Adds all in project files and commits them.
+If no message is supplied it will run 'git add' in
+interactive mode followed by a 'git commit'.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ -z $1 ]]; then
+    git add -p
+    git commit
+  else
+    git add --all :/ && \
+    git commit -m "$1"
+  fi
+}
+
+main "$@"

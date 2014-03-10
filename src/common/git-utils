@@ -64,6 +64,19 @@ __gs-prompt-for-result() {
   echo $p_res
 }
 
+# $1 : remote target
+# $2 : current
+__gs-sync-branch() {
+  __gs-info "Pull from: '$1'"
+  __gs-pull-and-check-status $1 $2
+  git push $GS_DEFAULT_REMOTE $2
+}
+
+
 __gs-current-branch() {
   echo "$(git rev-parse --abbrev-ref HEAD)"
+}
+
+__gs-git-root-dir() {
+  echo "$(git rev-parse --show-toplevel)"
 }

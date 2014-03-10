@@ -1,0 +1,24 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git fuckit <message>
+Commit all files with optional <message> and push current branch.
+Default message is 'Update'.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git addcom ${1:-Update}
+  git push $GS_DEFAULT_REMOTE $(__gs-current-branch)
+}
+
+main "$@"

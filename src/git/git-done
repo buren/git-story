@@ -24,10 +24,22 @@ main() {
 }
 
 main-exec() {
+  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    if [[ -z "$1" ]]; then
+      __gs-error "You have uncommited changes you must provide a commit message."
+      __gs-print "example: "
+      __gs-print "\t git done 'Any commit message'"
+      die
+    fi
+    git addcom "$1"
+  elif [[ ! -z "$1" ]]; then
+    __gs-warning "Nothing to commit. Ignoring commit message."
+  fi
+
   git test
 
   if [[ $GS_PRINT_CHECKLIST == true ]]; then
-    __gs-ready-checklist-print
+    __gs-done-checklist-print
     confirm_message="Have you answered yes to all of the above?"
   else
     confirm_message="Are your sure?"
@@ -38,23 +50,10 @@ main-exec() {
   if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     __gs-continue-prompt "$confirm_message"
   fi
-  gs-ready-execute "$@"
+  gs-done-execute "$@"
 }
 
-gs-ready-execute() {
-  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
-    if [[ -z "$1" ]]; then
-      __gs-error "You have uncommited changes you must provide a commit message."
-      __gs-print "example: "
-      __gs-print "\t git done 'Any message'"
-      die
-    fi
-    git add --all
-    git commit -m "$1"
-  elif [[ ! -z "$1" ]]; then
-    __gs-warning "Nothing to commit. Ignoring arguments."
-  fi
-
+gs-done-execute() {
   local current="$(__gs-current-branch)"
   __gs-sync-branch $current $current
 
@@ -63,14 +62,6 @@ gs-ready-execute() {
 
   __gs-print ""
   __gs-success "Success."
-}
-
-# $1 : remote target
-# $2 : current
-__gs-sync-branch() {
-  __gs-info "Pull from: '$1'"
-  __gs-pull-and-check-status $1 $2
-  git push $GS_DEFAULT_REMOTE $2
 }
 
 main "$@"
