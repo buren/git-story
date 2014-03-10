@@ -20,6 +20,8 @@ main-exec() {
     __gs-info "Installing project."
     eval $GS_INSTALL
     __gs-info "Done"
+  else
+    __gs-warning "No install command set in .gitstoryrc"
   fi
 }
 

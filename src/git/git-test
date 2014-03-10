@@ -20,7 +20,7 @@ main-exec() {
     eval $GS_PRE_COMMIT_HOOK
     __gs-info "Ran all tests. Check status."
   else
-    __gs-print "No pre-commit-hook set. Skipping..."
+    __gs-print "No test command set in .gitstoryrc. Skipping..."
   fi
 }
 

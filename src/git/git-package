@@ -19,6 +19,8 @@ main-exec() {
     __gs-info "Packaging project."
     eval $GS_PACKAGE
     __gs-info "Done"
+  else
+    __gs-warning "No package command set in .gitstoryrc"
   fi
 }
 
