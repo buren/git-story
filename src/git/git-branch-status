@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
-# Shameless steal: https://github.com/cypher/dotfiles/blob/master/bin/git-wtf
+# Original source: https://github.com/cypher/dotfiles/blob/master/bin/git-wtf
 
 HELP = <<EOS
-git-wtf displays the state of your repository in a readable, easy-to-scan
+branch-status displays the state of your repository in a readable, easy-to-scan
 format. It's useful for getting a summary of how a branch relates to a remote
 server, and for wrangling many topic branches.
 
-git-wtf can show you:
+branch-status can show you:
 - How a branch relates to the remote repo, if it's a tracking branch.
 - How a branch relates to integration branches, if it's a feature branch.
 - How a branch relates to the feature branches, if it's an integration
   branch.
 
-git-wtf is best used before a git push, or between a git fetch and a git
+branch-status is best used before a git push, or between a git fetch and a git
 merge. Be sure to set color.ui to auto or yes for maximum viewing pleasure.
 EOS
 
@@ -25,39 +25,28 @@ KEY:
 x merge occurs both locally and remotely
 ~ merge occurs only locally
   (space) branch isn't merged in
-
-(It's possible for merges to occur remotely and not locally, of course, but
-that's a less common case and git-wtf currently doesn't display anything
-special for it.)
 EOS
 
 USAGE = <<EOS
-Usage: git wtf [branch+] [options]
+Usage: git branch-status [branch+] [options]
 
-If [branch] is not specified, git-wtf will use the current branch. The possible
-[options] are:
+If [branch] is not specified, branch-status will use the current branch.
+The possible [options] are:
 
   -l, --long          include author info and date for each commit
   -a, --all           show all branches across all remote repos, not just
                       those from origin
   -A, --all-commits   show all commits, not just the first 5
   -s, --short         don't show commits
-  -k, --key           show key
   -r, --relations     show relation to features / integration branches
-      --dump-config   print out current configuration and exit
 
-git-wtf uses some heuristics to determine which branches are integration
-branches, and which are feature branches. (Specifically, it assumes the
-integration branches are named "master", "next" and "edge".) If it guesses
-incorrectly, you will have to create a .git-wtfrc file.
+branch-status uses some heuristics to determine which branches are integration
+branches, and which are feature branches.
+branch-status only assumes that the only integration branch is named "master".
+If you have next and edge integration branches you can specify them in the
+projects .gitstoryrc file.
 
-To start building a configuration file, run "git-wtf --dump-config >
-.git-wtfrc" and edit it. The config file is a YAML file that specifies the
-integration branches, any branches to ignore, and the max number of commits to
-display when --all-commits isn't used.  git-wtf will look for a .git-wtfrc file
-starting in the current directory, and recursively up to the root.
-
-IMPORTANT NOTE: all local branches referenced in .git-wtfrc must be prefixed
+IMPORTANT NOTE: all local branches referenced in .gitstoryrc must be prefixed
 with heads/, e.g. "heads/master". Remote branches must be of the form
 remotes/<remote>/<branch>.
 EOS
@@ -75,14 +64,31 @@ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 more details.
 
 You can find the GNU General Public License at: http://www.gnu.org/licenses/
+
+=================================
+
+CHANGES MADE:
+2014-03 (by Jacob Burenstam, <burenstam at gmail dot com>):
+* Renamed git-wtf to git-branch-status
+* Added --usage as an alias to --help
+* Get integration branch names from git-story ENV variables
+* Always print key
+* Remove usage of .git-wtfrc conflig file
+* Removed find_file method
+* Added init git-story
 EOS
 
+# BEGIN init git-story
+require 'shellwords'
+gs_init_command= 'source $GS_INIT_PATH; __git-story-init'
+system "bash -c #{Shellwords.escape(gs_init_command)}"
+# END init git-story
+
 require 'yaml'
-CONFIG_FN = ".git-wtfrc"
 
 class Numeric; def pluralize s; "#{to_s} #{s}" + (self != 1 ? "s" : "") end end
 
-if ARGV.delete("--help") || ARGV.delete("-h")
+if ARGV.delete("--usage") || ARGV.delete("--help") || ARGV.delete("-h")
   puts USAGE
   exit
 end
@@ -92,20 +98,8 @@ $long = ARGV.delete("--long") || ARGV.delete("-l")
 $short = ARGV.delete("--short") || ARGV.delete("-s")
 $all = ARGV.delete("--all") || ARGV.delete("-a")
 $all_commits = ARGV.delete("--all-commits") || ARGV.delete("-A")
-$dump_config = ARGV.delete("--dump-config")
-$key = ARGV.delete("--key") || ARGV.delete("-k")
 $show_relations = ARGV.delete("--relations") || ARGV.delete("-r")
 ARGV.each { |a| abort "Error: unknown argument #{a}." if a =~ /^--/ }
-
-## search up the path for a file
-def find_file fn
-  while true
-    return fn if File.exist? fn
-    fn2 = File.join("..", fn)
-    return nil if File.expand_path(fn2) == File.expand_path(fn)
-    fn = fn2
-  end
-end
 
 want_color = `git config color.wtf`
 want_color = `git config color.ui` if want_color.empty?
@@ -258,23 +252,28 @@ def show_relations b, all_branches
   end
 end
 
-#### EXECUTION STARTS HERE ####
-
-## find config file and load it
-$config = { "integration-branches" => %w(heads/master heads/next heads/edge), "ignore" => [], "max_commits" => 5 }.merge begin
-  fn = find_file CONFIG_FN
-  if fn && (h = YAML::load_file(fn)) # yaml turns empty files into false
-    h["integration-branches"] ||= h["versions"] # support old nomenclature
-    h
+def blank? obj
+  case obj.class
+  when String
+    obj.strip.empty?
+  when NilClass
+    true
   else
-    {}
+    false
   end
 end
 
-if $dump_config
-  puts $config.to_yaml
-  exit
-end
+#### EXECUTION STARTS HERE ####
+# get integration branches from git-story ENV variables
+integration_branches = Array.new
+integration_branches << ENV['GS_PRODUCTION_BRANCH']   unless blank?(ENV['GS_PRODUCTION_BRANCH'])
+integration_branches << ENV['GS_NEXT_VERSION_BRANCH'] unless blank?(ENV['GS_NEXT_VERSION_BRANCH'])
+integration_branches << ENV['GS_EDGE_BRANCH']         unless blank?(ENV['GS_EDGE_BRANCH'])
+$config = {
+  "integration-branches" => integration_branches,
+  "ignore" => [],
+  "max_commits" => 5
+}
 
 ## first, index registered remotes
 remotes = `git config --get-regexp ^remote\.\*\.url`.split(/[\r\n]+/).inject({}) do |hash, l|
@@ -345,6 +344,8 @@ else
   ARGV.map { |x| x.sub(/^heads\//, "") }
 end.map { |t| branches[t] or abort "Error: can't find branch #{t.inspect}." }
 
+puts KEY
+
 targets.each do |t|
   show t
   show_relations t, branches if $show_relations || t[:remote_branch].nil?
@@ -352,11 +353,6 @@ end
 
 modified = show_dirty && `git ls-files -m` != ""
 uncommitted = show_dirty &&  `git diff-index --cached HEAD` != ""
-
-if $key
-  puts
-  puts KEY
-end
 
 puts if modified || uncommitted
 puts "#{red "NOTE"}: working directory contains modified files." if modified
