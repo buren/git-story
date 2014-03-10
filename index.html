@@ -108,9 +108,9 @@ git done "Commit message"  # Commit changes, updates current and local branch.
    churn             Count number of changes for each file
    conflicted        List files with merge-conflicts
    divergence        Show difference between current branch and remote branch
-   git-story         List git-story extensions
-   git-story-extend  Add new git-story extension to git
-   git-story-update  Update git-story to its latest version
+   gs                List git-story extensions
+   gs-extend         Add new git-story extension to git
+   gs-update         Update git-story to its latest version
 </code></pre>
 
 <h2>
@@ -139,13 +139,13 @@ No checks are made if --force is supplied as the second argument.</p>
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run <code>git done "Fixed merge conflicts for ..."</code>.</p>
 </li>
 <li>
-<code>update</code> pull current branch's remote changes</li>
+<code>git update</code> pull current branch's remote changes</li>
 <li>
-<code>addcom</code> adds all files and commits them</li>
+<code>git addcom</code> adds all files and commits them</li>
 <li>
-<code>fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'</li>
+<code>git fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'</li>
 <li>
-<code>push-branch</code> push the current branch to remote</li>
+<code>git push-branch</code> push the current branch to remote</li>
 <li>
 <code>git browse</code>  opens the repository on GitHub</li>
 <li>
@@ -172,11 +172,11 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 <code>git extend-with &lt;extension-name&gt;</code> add new git-story extension to git</li>
 <li><code>git fetch-branches</code></li>
 <li>
-<code>git git-story-update</code> gets the latest version of git-story</li>
+<code>git gs-update</code> gets the latest version of git-story</li>
 <li>
-<code>git git-story-extend</code> add new git-story extension to git</li>
+<code>git gs-extend</code> add new git-story extension to git</li>
 <li>
-<code>git git-story</code> list git-story extensions.</li>
+<code>git gs</code> list git-story extensions.</li>
 <li>
 <code>git trail</code> shows the last common commit with current branch</li>
 <li>
@@ -193,8 +193,6 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 <code>git delete-branch</code> delete branch from remote and local</li>
 <li>
 <code>git divergence</code> show the difference between current branch and the same remote</li>
-<li>
-<code>git git-story</code> list git-story extensions</li>
 <li>
 <p>Show statistics for repository</p>
 
@@ -217,22 +215,22 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 <p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.
 Available options:</p>
 
-<pre><code>GS_DEFAULT_REMOTE         # (String)  Default remote for git story       Default: 'origin'
-GS_GIT_STORY_BRANCH       # (String)  Target branch for 'git done'       Default: 'master'
-GS_PRE_COMMIT_HOOK        # (String)  A command that runs all tests      Default: ''
-GS_PACKAGE                # (String)  Shell command for 'package'        Default: ''
-GS_RELEASE                # (String)  Shell command for 'release'        Default: ''
-GS_PROMPT_ON_DONE         # (Boolean) Prompt user before executing done  Default: false
-GS_PRINT_CHECKLIST        # (Boolean) Print checklist before 'done'      Default: false
-GS_HAS_GITHUB             # (Boolean) Project has GitHub.                Default: true
-GS_PROJECT_URL            # (String)  Project URL                        Default: ''
-GS_PROMPT_BROWSE_URL      # (Boolean) Prompt to open project URL on done Default: true
-GS_CHECKLIST_MESSAGE      # (String)  Checklist string for 'done'        Default: '1. Have you...'
-GS_NEW_TAG_PROMPT         # (String)  Prompt text for tag-release        Default: 'What tag...'
-GS_TEST_ON_AUTO_MERGE     # (Boolean) Run tests command on auto merge    Default: true
-GS_PRODUCTION_BRANCH      # (String) Integration branch for production   Default: 'heads/master'
-GS_NEXT_VERSION_BRANCH    # (String) Integration branch for next version Default: ''
-GS_EDGE_BRANCH            # (String) Integration branch for edge branch  Default: ''
+<pre><code>GS_DEFAULT_REMOTE         # Default remote for git story        Default: 'origin'
+GS_GIT_STORY_BRANCH       # Target branch for 'git done'        Default: 'master'
+GS_PRE_COMMIT_HOOK        # A command that runs all tests       Default: ''
+GS_PACKAGE                # Shell command for 'package'         Default: ''
+GS_RELEASE                # Shell command for 'release'         Default: ''
+GS_PROMPT_ON_DONE         # Prompt user before executing done   Default: false
+GS_PRINT_CHECKLIST        # Print checklist before 'done'       Default: false
+GS_HAS_GITHUB             # Project has GitHub.                 Default: true
+GS_PROJECT_URL            # Project URL                         Default: ''
+GS_PROMPT_BROWSE_URL      # Prompt to open project URL on done  Default: true
+GS_CHECKLIST_MESSAGE      # Checklist string for 'done'         Default: '1. Have you...'
+GS_NEW_TAG_PROMPT         # Prompt text for tag-release         Default: 'What tag...'
+GS_TEST_ON_AUTO_MERGE     # Run tests command on auto merge     Default: true
+GS_PRODUCTION_BRANCH      # Integration branch for production   Default: 'heads/master'
+GS_NEXT_VERSION_BRANCH    # Integration branch for next version Default: ''
+GS_EDGE_BRANCH            # Integration branch for edge branch  Default: ''
 </code></pre>
 
 <p>See <a href="https://github.com/buren/git-story/blob/master/config">config</a> for details.</p>
@@ -242,9 +240,11 @@ GS_EDGE_BRANCH            # (String) Integration branch for edge branch  Default
 
 <ul>
 <li>Tested on Linux/OSX using both zsh and bash</li>
-<li>The software is supplied “as is” and all use is at your own risk</li>
+<li>Wont work with sh</li>
+<li>The software is supplied “as is” and all use is at your own risk (see <a href="https://github.com/buren/git-story/blob/master/LICENSE">license</a>
+</li>
 <li>
-<code>git branch-status</code> uses requires Ruby 1.8.7 or greater</li>
+<code>git branch-status</code> requires Ruby 1.8.7 or greater</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
