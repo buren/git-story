@@ -81,7 +81,7 @@ __gs-dir-clean-or-die() {
 }
 
 __gs-is-clean-dir() {
-  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+  if [[ $(git status 2> /dev/null | tail -n1) == *"working directory clean"* ]]; then
     echo "clean"
   else
     echo "dirty"
