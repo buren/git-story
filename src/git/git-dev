@@ -32,7 +32,7 @@ main-exec() {
     die
   fi
 
-  __gs-clean-or-die
+  __gs-dir-clean-or-die
 
   if [[ $1 == *" "* ]]; then
     __gs-error "ERROR:"

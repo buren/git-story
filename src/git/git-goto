@@ -16,7 +16,7 @@ main() {
 }
 
 main-exec() {
-  __gs-clean-or-die
+  __gs-dir-clean-or-die
   git checkout $1
 }
 

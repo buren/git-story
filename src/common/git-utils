@@ -36,13 +36,6 @@ __gs-pull-and-check-status() {
   fi
 }
 
-__gs-clean-or-die() {
-  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
-    __gs-uncommitted-changes-message
-    die
-  fi
-}
-
 __gs-continue-prompt() {
   while true; do
     yn="$(__gs-prompt-for-result "$1 (y\n)")"
@@ -72,11 +65,25 @@ __gs-sync-branch() {
   git push $GS_DEFAULT_REMOTE $2
 }
 
-
 __gs-current-branch() {
   echo "$(git rev-parse --abbrev-ref HEAD)"
 }
 
 __gs-git-root-dir() {
   echo "$(git rev-parse --show-toplevel)"
+}
+
+__gs-dir-clean-or-die() {
+  if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
+    __gs-uncommitted-changes-message
+    die
+  fi
+}
+
+__gs-is-clean-dir() {
+  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    echo "clean"
+  else
+    echo "dirty"
+  fi
 }

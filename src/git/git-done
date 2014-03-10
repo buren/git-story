@@ -24,7 +24,7 @@ main() {
 }
 
 main-exec() {
-  if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+  if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
     if [[ -z "$1" ]]; then
       __gs-error "You have uncommited changes you must provide a commit message."
       __gs-print "example: "
