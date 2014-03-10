@@ -1,5 +1,5 @@
 #!/bin/bash
-# Shameless steal: https://github.com/cypher/dotfiles/blob/master/bin/git-divergence
+# Original source: https://github.com/cypher/dotfiles/blob/master/bin/git-divergence
 
 source $GS_INIT_PATH
 __git-story-init

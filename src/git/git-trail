@@ -1,5 +1,5 @@
 #!/bin/bash
-# Shameless steal from: http://chneukirchen.org/blog/archive/2013/01/a-grab-bag-of-git-tricks.html
+# Original source: http://chneukirchen.org/blog/archive/2013/01/a-grab-bag-of-git-tricks.html
 
 source $GS_INIT_PATH
 __git-story-init
