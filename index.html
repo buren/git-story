@@ -73,7 +73,7 @@
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<pre><code>git dev branch_name        # Sets up clean workspace based of remote master.
+<pre><code>git dev branch_name        # Sets up clean workspace based on remote master.
 git done "Commit message"  # Commit changes, updates current and local branch.
 </code></pre>
 
@@ -83,21 +83,34 @@ git done "Commit message"  # Commit changes, updates current and local branch.
 <a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
 
 <pre><code>git
-   dev             Start developling a new feature
-   done            Commit changes and sync with remote
-   goto            Switch from current branch to specified branch
-   history         List repository commits
-   abort-merge     Aborts current merge
-   tag-release     Create a new tag
-   stat            Print statistics of git repository
-   fetch-branches  Fetches all branches from remote
-   open            Open current git repository on Github
-   test            Runs test command defined in .gitstoryrc
-   package         Runs package command defined in .gitstoryrc
-   release         Runs release command defined in .gitstoryrc
-   extend-with     Add new git-story extension to git
-   list-extended   Lists all git-story commands
-   get-update      Updates git-story
+   dev               Start developing a new feature
+   done              Commit changes and sync with remote
+   update            Pull current branch's remote changes
+   addcom            Adds all files and commits them
+   fuckit            Commit all files and push current branch
+   push-branch       Push the current branch to remote
+   create-branch     Create and checkout a new branch on remote and local
+   delete-branch     Delete branch from remote and local
+   goto              Switch from current branch to specified branch
+   abort-merge       Aborts current merge
+   history           List repository commits
+   tag-release       Create a new tag
+   stat              Print statistics of git repository
+   fetch-branches    Fetches all branches from remote
+   browse            Open current git repository on Github
+   test              Runs test command defined in .gitstoryrc
+   package           Runs package command defined in .gitstoryrc
+   release           Runs release command defined in .gitstoryrc
+   install-project   Runs install command defined in .gitstoryrc
+   trail             Show the last common commit with current branch
+   neck              Show commits until first branching point
+   branch-status     Show current branch status
+   churn             Count number of changes for each file
+   conflicted        List files with merge-conflicts
+   divergence        Show difference between current branch and remote branch
+   git-story         List git-story extensions
+   git-story-extend  Add new git-story extension to git
+   git-story-update  Update git-story to its latest version
 </code></pre>
 
 <h2>
@@ -126,28 +139,62 @@ No checks are made if --force is supplied as the second argument.</p>
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run <code>git done "Fixed merge conflicts for ..."</code>.</p>
 </li>
 <li>
-<code>git browse</code>  opens the repository on GitHub.</li>
+<code>update</code> pull current branch's remote changes</li>
 <li>
-<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>.</li>
+<code>addcom</code> adds all files and commits them</li>
+<li>
+<code>fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'</li>
+<li>
+<code>push-branch</code> push the current branch to remote</li>
+<li>
+<code>git browse</code>  opens the repository on GitHub</li>
+<li>
+<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>
+</li>
 <li>
 <code>git release</code> Package the project. Runs <code>GS_RELEASE</code>
 </li>
 <li>
-<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
+<code>git install-project</code> Install the project. Runs <code>GS_INSTALL</code>
+</li>
 <li>
-<code>git goto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed.</li>
+<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>
+</li>
 <li>
-<code>git history</code> view repository commit history.</li>
+<code>git goto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed</li>
+<li>
+<code>git history</code> view repository commit history</li>
 <li>
 <code>git tag-release</code> Create a new tagged release</li>
 <li>
 <code>git abort-merge</code> aborts current merge</li>
 <li>
 <code>git extend-with &lt;extension-name&gt;</code> add new git-story extension to git</li>
+<li><code>git fetch-branches</code></li>
 <li>
-<code>git fetch-branches</code> .</li>
+<code>git git-story-update</code> gets the latest version of git-story</li>
 <li>
-<code>git update-git-story</code> gets the latest version of git-story.</li>
+<code>git git-story-extend</code> add new git-story extension to git</li>
+<li>
+<code>git git-story</code> list git-story extensions.</li>
+<li>
+<code>git trail</code> shows the last common commit with current branch</li>
+<li>
+<code>git neck</code> show commits until first branching point</li>
+<li>
+<code>git branch-status</code> shows current branch status</li>
+<li>
+<code>git churn</code> count number of changes for each file</li>
+<li>
+<code>git conflicted</code> list files with merge-conflicts</li>
+<li>
+<code>git create-branch</code> create and checkout a new branch on remote and local</li>
+<li>
+<code>git delete-branch</code> delete branch from remote and local</li>
+<li>
+<code>git divergence</code> show the difference between current branch and the same remote</li>
+<li>
+<code>git git-story</code> list git-story extensions</li>
 <li>
 <p>Show statistics for repository</p>
 
@@ -156,6 +203,10 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
         commits         # shows number of commits for each author
         weekdays        # prints statistics for number of commits per weekday
         hour            # prints statistics for number of commits per hour
+        files           # prints number of files and lines
+        diff            # print stat of uncommitted changes
+        log             # print log with stat
+        modified        # print stat of most modified files
 </code></pre>
 
 <p>show statistics for repository.</p>
@@ -166,17 +217,22 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 <p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.
 Available options:</p>
 
-<pre><code>GS_GIT_STORY_BRANCH  # (String)  Target branch for 'git done'       Default: "master"
-GS_PRE_COMMIT_HOOK   # (String)  A command that runs all tests      Default: ""
-GS_PACKAGE           # (String)  Shell command for 'package'        Default: ""
-GS_RELEASE           # (String)  Shell command for 'release'        Default: ""
-GS_PROMPT_ON_DONE    # (Boolean) Prompt user before executing done  Default: false
-GS_PRINT_CHECKLIST   # (Boolean) Print checklist before 'done'      Default: false
-GS_HAS_GITHUB        # (Boolean) Project has GitHub.                Default: true
-GS_PROJECT_URL       # (String)  Project URL                        Default: ""
-GS_PROMPT_BROWSE_URL # (Boolean) Prompt to open project URL on done Default: true
-GS_CHECKLIST_MESSAGE # (String)  Checklist string for 'done'        Default: "1. Have you..."
-GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "What tag..."
+<pre><code>GS_DEFAULT_REMOTE         # (String)  Default remote for git story       Default: 'origin'
+GS_GIT_STORY_BRANCH       # (String)  Target branch for 'git done'       Default: 'master'
+GS_PRE_COMMIT_HOOK        # (String)  A command that runs all tests      Default: ''
+GS_PACKAGE                # (String)  Shell command for 'package'        Default: ''
+GS_RELEASE                # (String)  Shell command for 'release'        Default: ''
+GS_PROMPT_ON_DONE         # (Boolean) Prompt user before executing done  Default: false
+GS_PRINT_CHECKLIST        # (Boolean) Print checklist before 'done'      Default: false
+GS_HAS_GITHUB             # (Boolean) Project has GitHub.                Default: true
+GS_PROJECT_URL            # (String)  Project URL                        Default: ''
+GS_PROMPT_BROWSE_URL      # (Boolean) Prompt to open project URL on done Default: true
+GS_CHECKLIST_MESSAGE      # (String)  Checklist string for 'done'        Default: '1. Have you...'
+GS_NEW_TAG_PROMPT         # (String)  Prompt text for tag-release        Default: 'What tag...'
+GS_TEST_ON_AUTO_MERGE     # (Boolean) Run tests command on auto merge    Default: true
+GS_PRODUCTION_BRANCH      # (String) Integration branch for production   Default: 'heads/master'
+GS_NEXT_VERSION_BRANCH    # (String) Integration branch for next version Default: ''
+GS_EDGE_BRANCH            # (String) Integration branch for edge branch  Default: ''
 </code></pre>
 
 <p>See <a href="https://github.com/buren/git-story/blob/master/config">config</a> for details.</p>
@@ -185,8 +241,10 @@ GS_NEW_TAG_PROMPT    # (String)  Prompt text for tag-release        Default: "Wh
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <ul>
-<li>Tested on Linux/OSX</li>
-<li>The software is supplied “as is” and all use is at your own risk.</li>
+<li>Tested on Linux/OSX using both zsh and bash</li>
+<li>The software is supplied “as is” and all use is at your own risk</li>
+<li>
+<code>git branch-status</code> uses requires Ruby 1.8.7 or greater</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
