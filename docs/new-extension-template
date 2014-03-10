@@ -5,7 +5,7 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t git <new-command>
+\t git NEWCOMMANDNAME
 Description goes here...
 "
 }

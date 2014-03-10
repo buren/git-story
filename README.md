@@ -64,9 +64,9 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
        churn             Count number of changes for each file
        conflicted        List files with merge-conflicts
        divergence        Show difference between current branch and remote branch
-       git-story         List git-story extensions
-       git-story-extend  Add new git-story extension to git
-       git-story-update  Update git-story to its latest version
+       gs                List git-story extensions
+       gs-extend  Add new git-story extension to git
+       gs-update  Update git-story to its latest version
 
 
 ## Documentation
@@ -99,9 +99,9 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git abort-merge` aborts current merge
 * `git extend-with <extension-name>` add new git-story extension to git
 * `git fetch-branches`
-* `git git-story-update` gets the latest version of git-story
-* `git git-story-extend` add new git-story extension to git
-* `git git-story` list git-story extensions.
+* `git gs-update` gets the latest version of git-story
+* `git gs-extend` add new git-story extension to git
+* `git gs` list git-story extensions.
 * `git trail` shows the last common commit with current branch
 * `git neck` show commits until first branching point
 * `git branch-status` shows current branch status
@@ -110,7 +110,6 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git create-branch` create and checkout a new branch on remote and local
 * `git delete-branch` delete branch from remote and local
 * `git divergence` show the difference between current branch and the same remote
-* `git git-story` list git-story extensions
 * Show statistics for repository
 
         git stat <type>
@@ -149,7 +148,7 @@ See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
 * Tested on Linux/OSX using both zsh and bash
-* The software is supplied “as is” and all use is at your own risk
+* The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE)
 * `git branch-status` uses requires Ruby 1.8.7 or greater
 
 ## License

@@ -9,7 +9,7 @@ usage:
 Creates a new file with specified name in $GS_EXENSIONS_FOLDER
 
 example:
-\t git git-story-extend goto-root
+\t git gs-extend goto-root
 will make it possible to run:
 \t git goto-root
 "
@@ -23,7 +23,8 @@ main() {
 main-exec() {
   full_script_path="$GS_EXENSIONS_FOLDER/git-$1"
   command_template=$(cat $GS_FOLDER/docs/new-extension-template)
-  echo "$command_template" > $full_script_path
+  replace_cmd_name="s/NEWCOMMANDNAME/$1/g"
+  echo "$command_template" | sed $replace_cmd_name > $full_script_path
   __gs-print "Copied new extension template to $full_script_path"
   __gs-print "Sudo permissions to make script executable."
   sudo chmod +x $full_script_path && \
