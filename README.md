@@ -43,6 +43,8 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
        done              Commit changes and sync with remote
        update            Pull current branch's remote changes
        addcom            Adds all files and commits them
+       fuckit            Commit all files and push current branch
+       push-branch       Push the current branch to remote
        create-branch     Create and checkout a new branch on remote and local
        delete-branch     Delete branch from remote and local
        goto              Switch from current branch to specified branch
@@ -82,19 +84,23 @@ No checks are made if --force is supplied as the second argument.
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done "Fixed merge conflicts for ..."`.
-* `git browse`  opens the repository on GitHub.
-* `git package` Package the project. Runs `GS_PACKAGE`.
+* `update` pull current branch's remote changes
+* `addcom` adds all files and commits them
+* `fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'
+* `push-branch` push the current branch to remote
+* `git browse`  opens the repository on GitHub
+* `git package` Package the project. Runs `GS_PACKAGE`
 * `git release` Package the project. Runs `GS_RELEASE`
 * `git install-project` Install the project. Runs `GS_INSTALL`
-* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
-* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed.
-* `git history` view repository commit history.
+* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`
+* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed
+* `git history` view repository commit history
 * `git tag-release` Create a new tagged release
 * `git abort-merge` aborts current merge
 * `git extend-with <extension-name>` add new git-story extension to git
-* `git fetch-branches` .
-* `git git-story-update` gets the latest version of git-story.
-* `git git-story-extend` add new git-story extension to git.
+* `git fetch-branches`
+* `git git-story-update` gets the latest version of git-story
+* `git git-story-extend` add new git-story extension to git
 * `git git-story` list git-story extensions.
 * `git trail` shows the last common commit with current branch
 * `git neck` show commits until first branching point
