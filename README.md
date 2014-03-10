@@ -65,8 +65,8 @@ Output [example](http://showterm.io/238c04d003bfb22f1d91d) (video).
        conflicted        List files with merge-conflicts
        divergence        Show difference between current branch and remote branch
        gs                List git-story extensions
-       gs-extend  Add new git-story extension to git
-       gs-update  Update git-story to its latest version
+       gs-extend         Add new git-story extension to git
+       gs-update         Update git-story to its latest version
 
 
 ## Documentation
