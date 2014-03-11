@@ -4,7 +4,7 @@
 
 git-story tries to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
 
-It also includes various extensions to git, which are documented below.
+It also includes various extensions to git, documented below.
 
 * [Installation](#install-git-story)
 * [Getting Started](#getting-started)
@@ -30,7 +30,7 @@ The model:
 3. If any conflicts fix them and run `git done "Fixed merge conflicts in ..."`
 4. Create a pull request on GitHub (or any other host)
 
-The principle is that you develop each new feature in its on branch. Then when you're done you push it and create a pull request.
+The principle is that you develop each new feature in its own branch. Then when you're done you push it and create a pull request.
 
 ## Example
 
@@ -78,9 +78,7 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
         git dev <branch_name>
         git dev <branch_name> <base_branch>
-this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-If --force is supplied as the second argument no checks are made.
-No checks are made if --force is supplied as the second argument.
+this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 * Commit and sync with repository
 
         git done <commit_message> <target_branch>
@@ -88,7 +86,7 @@ comment and commit the changes you've made and merge changes made on <target_bra
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done "Fixed merge conflicts for ..."`.
 * `git update` pull current branch's remote changes.
-* `git addcom <commit_message>` adds all files and commits them if a <commit_message> is supplied. Otherwise it enters interactive add mode and then prompts for commit message.
+* `git addcom <commit_message>` add all files and commit.
 * `git fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'.
 * `git push-branch` push the current branch to remote.
 * `git browse`  opens the repository on GitHub.
@@ -96,7 +94,7 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 * `git release` Package the project. Runs `GS_RELEASE`.
 * `git install-project` Install the project. Runs `GS_INSTALL`.
 * `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
-* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed.
+* `git goto <branch_name>` switches to branch <branch_name> if the working directory is clean.
 * `git history` view repository commit history.
 * `git tag-release` Create a new tagged release.
 * `git redo-commit` Redo last commit.
