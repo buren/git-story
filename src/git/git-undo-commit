@@ -1,0 +1,22 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "
+usage:
+\t git undo-commit
+Undo last commit and keep all added files in index.
+"
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git commit --amend
+}
+
+main "$@"
