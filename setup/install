@@ -4,7 +4,7 @@ install-git-story() {
   if [[ ! -d $HOME/.git-story/ ]]; then
     current_folder=$(pwd)
     cd $HOME && \
-    git clone https://github.com/buren/git-story.git && \
+    git clone --depth=1 https://github.com/buren/git-story.git && \
     mv git-story .git-story || echo "Something went wrong."
     cd $current_folder
     echo "sudo permissions needed to make ~/.git-story/src/git executable"
