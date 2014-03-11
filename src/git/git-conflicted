@@ -3,11 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git conflicted
-Lists all filenames that has merge conflicts.
-"
+Lists all filenames that has merge conflicts."
 }
 
 main() {

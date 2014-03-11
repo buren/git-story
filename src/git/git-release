@@ -3,7 +3,7 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "Usage:
+  __gs-print "usage:
 \t git release
 Runs GS_RELEASE command, if specified.
 "

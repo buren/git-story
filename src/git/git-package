@@ -3,10 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "Usage:
+  __gs-print "usage:
 \t gs package
-Runs GS_PACKAGE command, if specified.
-"
+Runs GS_PACKAGE command, if specified."
 }
 
 main() {

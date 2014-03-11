@@ -31,3 +31,49 @@ No arguements allowed for:
 Ignoring arguments."
 echo ""
 }
+
+__gs-abort-and-die() {
+  __gs-warning "Aborted." && die
+}
+
+__gs-empty-string() {
+  if [[ -z "$(__gs-trim-whitspace $1)" ]]; then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
+
+__gs-trim-whitspace() {
+  echo "$(echo "$1" | awk '{gsub(/^ +| +$/,"")} {print "" $0 ""}')"
+}
+
+__gs-no-spaces-or-die() {
+  if [[ "$1" == *" "* ]]; then
+    __gs-error "ERROR:"
+    __gs-print "Supplied argument: '$1'"
+    __gs-print "Branch name can *not* contain spaces!"
+    die
+  fi
+}
+
+__gs-continue-prompt() {
+  while true; do
+    yn="$(__gs-prompt-for-result "$1 [y\n]")"
+    case $yn in
+      [Yy]* ) __gs-print "Resuming.."; break;;
+      [Nn]* ) __gs-warning "Aborted."; die; break;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
+__gs-prompt-for-result() {
+  if [[ $SHELL == "/bin/zsh" ]]; then
+    p_res=""
+    vared -p "$1" p_res
+  else
+    read -p  "$1" p_res
+  fi
+  echo $p_res
+}

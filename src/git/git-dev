@@ -7,11 +7,9 @@ __git-story-init
 #########
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git dev <branch_name> <base_branch>
 <base_branch> is optional and will default to master
-If --force is supplied as the second argument no checks will be made.
 
 Guarantees clean workspace from remote master (or specified branch)."
 }
@@ -22,51 +20,59 @@ main() {
 }
 
 main-exec() {
-  if [[ -z "$1" ]]; then
+  new_branch="$1"
+  target_branch="$2"
+  if [[ -z "$new_branch" ]]; then
     usage
     __gs-error "You must provide a branch name"
     __gs-error "Missing argument <branch_name>"
     die
-  elif [[ "$2" == "--force" ]]; then
-    git checkout -b $1
-    die
   fi
 
   __gs-dir-clean-or-die
+  __gs-no-spaces-or-die "$new_branch"
+  __gs-no-spaces-or-die "$new_branch"
 
-  if [[ $1 == *" "* ]]; then
-    __gs-error "ERROR:"
-    __gs-error "\t Name can't contain spaces!"
-    die
-  fi
-
-  git fetch $GS_DEFAULT_REMOTE
-  # Check globally unique branch_name
-  repo_branches="$(git branch --remote | grep -v "\->")" 2> /dev/null
-  if [[ $repo_branches == *"$GS_DEFAULT_REMOTE/$1"* ]]; then
-    __gs-error "A branch with name '$1' already exists."
-    __gs-info "Please choose another branch name."
-    die
-  fi
-
-  # Check that target_branch exists
-  if [[ $repo_branches != *"$GS_DEFAULT_REMOTE/$2"* ]]; then
-    __gs-error "Target branch with name '$2' does NOT exist."
-    __gs-info "Please choose valid target branch."
-    die
-  fi
-
-  base=$2
-  branch=${base:-master}
-
+  branch=${target_branch:-$GS_GIT_STORY_BRANCH}
+  gs-validate-branch-params "$new_branch" "$branch"
   git checkout $branch
-  __gs-pull-and-check-status $branch $branch "[WARNING] You're current branch is '$branch'!"
-  git create-branch $1
+  merge_err_msg="$(gs-print-dev-merge-conflict $new_branch $branch)"
+  __gs-pull-and-check-status $branch $branch "$merge_err_msg"
+  __gs-dir-clean-or-die
+  git create-branch $new_branch
 
-  __gs-success "Success:"
+  __gs-success "Success"
   __gs-print "Updated$PURPLE $branch$RESET, from repository."
-  __gs-print "Created branch: $PURPLE $1 $RESET"
+  __gs-print "Created branch: $PURPLE $new_branch $RESET"
   __gs-print "Based of branch:$PURPLE $branch $RESET"
+}
+
+gs-validate-branch-params() {
+  git fetch $GS_DEFAULT_REMOTE
+  __gs-global-unique-branch-or-die $1
+  __gs-branch-exists-or-die $2
+}
+
+gs-print-dev-merge-conflict() {
+  echo "You have a conflict in your target branch: $2.
+Beware of the changes you commit in this branch.
+
+You have three options:
+
+  1. Fix the merge conflict locally.
+    $ git addcom 'Fixed merge conflicts'
+    $ git dev $1 $2
+
+  2. Fix the merge conflict and push to remote (BEWARE)
+    $ git done 'Fixed merge conflicts'
+    $ git dev $1 $2
+
+  3. Abort the merge and choose antother target branch.
+    $ git abort-merge
+    $ git dev $1 <other_branch>
+
+Beware of the changes that you make to the target branch.
+Especially if its an integration branch e.g master."
 }
 
 main "$@"

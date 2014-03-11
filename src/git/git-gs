@@ -3,11 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git gs
-Lists all git-story extensions to git.
-"
+Lists all git-story extensions to git."
 }
 
 main() {

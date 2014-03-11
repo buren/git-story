@@ -3,11 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git install project
-Runs GS_INSTALL command, if specified.
-"
+Runs GS_INSTALL command, if specified."
 }
 
 main() {

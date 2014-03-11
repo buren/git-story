@@ -3,12 +3,10 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage(){
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git gs-update <target_branch>
 updates git-story.
-<target_branch> is optional and defaults to master.
-"
+<target_branch> is optional and defaults to master."
 }
 
 main() {

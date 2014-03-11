@@ -3,16 +3,14 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git extend-with
 Creates a new file with specified name in $GS_EXENSIONS_FOLDER
 
 example:
 \t git gs-extend awesome-extension
 will make it possible to run:
-\t git awesome-extension
-"
+\t git awesome-extension"
 }
 
 main() {

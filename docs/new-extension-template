@@ -3,11 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git NEWCOMMANDNAME
-Description goes here...
-"
+Description goes here..."
 }
 
 main() {

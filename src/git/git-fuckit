@@ -3,12 +3,10 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git fuckit <message>
 Commit all files with optional <message> and push current branch.
-Default message is 'Update'.
-"
+Default message is 'Update'."
 }
 
 main() {

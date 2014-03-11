@@ -5,62 +5,56 @@
 #####################
 
 __gs-check-usage-param() {
-  if [[ "$1" == "--usage" ]]; then
-    usage
-    die
-  fi
+  case "$1" in
+    "--usage" | "--help" | "-help" | "-h" )
+      usage
+      die
+      ;;
+  esac
 }
 
 # $1 : target branch
 # $2 : current branch
 # $3 : merge failed warning message
 __gs-pull-and-check-status() {
-  pull_tail=$(git pull $GS_DEFAULT_REMOTE $branch 2> /dev/null | tail -n1)
-  if [[ $pull_tail == *"Automatic merge failed"* ]]; then
+  pull_tail=$(git pull $GS_DEFAULT_REMOTE $1 2> /dev/null)
+  if [[ $pull_tail == *"fatal:"* ]]; then
+    echo $pull_tail
+    __gs-error "Something went wrong."
+    die
+  elif [[ $pull_tail == *"Automatic merge failed"* ]]; then
    __gs-automatic-merge-failed $1 $2
+   echo
+   __gs-info "Merge conflicts in:"
+   git conflicted
    if [[ ! -z $3 ]]; then
-     __gs-warning $3
+     echo
+     __gs-warning "Warning:"
+     echo "$3"
    fi
    die
   elif [[ $pull_tail == *"Already up-to-date"* ]]; then
-    __gs-success "'$1' already up-to-date."
+    __gs-print "'$1' already up-to-date."
   else
-    __gs-success "Automatic merge with '$1' successfull."
+    __gs-print "Automatic merge with '$1' successfull."
     if [[ $GS_TEST_ON_AUTO_MERGE == true ]]; then
       __gs-print "Running tests..."
       git test
-      if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
+      if [[ ! -z $GS_PRE_COMMIT_HOOK ]] && [[ -z $4 ]]; then
         __gs-continue-prompt "Check tests status. Would you like to continue?"
       fi
     fi
   fi
 }
 
-__gs-continue-prompt() {
-  while true; do
-    yn="$(__gs-prompt-for-result "$1 (y\n)")"
-    case $yn in
-      [Yy]* ) __gs-success "Resuming.."; break;;
-      [Nn]* ) __gs-warning "Aborted."; die; break;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
-}
-
-__gs-prompt-for-result() {
-  if [[ $SHELL == "/bin/zsh" ]]; then
-    p_res=""
-    vared -p "$1" p_res
-  else
-    read -p  "$1" p_res
-  fi
-  echo $p_res
+__gs-add-all() {
+  git add --all :/
 }
 
 # $1 : remote target
 # $2 : current
 __gs-sync-branch() {
-  __gs-info "Pull from: '$1'"
+  __gs-print "Pull from: '$1'"
   __gs-pull-and-check-status $1 $2
   git push $GS_DEFAULT_REMOTE $2
 }
@@ -85,5 +79,28 @@ __gs-is-clean-dir() {
     echo "clean"
   else
     echo "dirty"
+  fi
+}
+
+#
+__gs-remote-branches() {
+  echo "$(git branch --remote | grep -v "\->")" 2> /dev/null
+}
+
+# Check globally unique branch_name
+__gs-global-unique-branch-or-die() {
+    if [[ ! -z "$(__gs-remote-branches | grep -w "$GS_DEFAULT_REMOTE/$1")" ]]; then
+    __gs-error "A branch with name '$1' already exists."
+    __gs-info "Please choose another branch name."
+    die
+  fi
+}
+
+# Check that target_branch exists
+__gs-branch-exists-or-die() {
+  if [[ -z "$(__gs-remote-branches | grep -w "$GS_DEFAULT_REMOTE/$1")" ]]; then
+    __gs-error "Target branch with name '$1' does *not* exist."
+    __gs-info "Please choose valid target branch."
+    die
   fi
 }

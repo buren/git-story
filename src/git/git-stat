@@ -7,8 +7,7 @@ __git-story-init
 ###########
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git stat <type>
 \t          contributions <author> # shows statistics for all authors or specified author (alias: contrib)
 \t          commits                # shows number of commits for each author

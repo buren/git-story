@@ -3,13 +3,11 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git update <branch>
 Pull updates from specified branch from remote.
 If no branch is given it will default to the current branch.
-Assumes GS_DEFAULT_ORIGIN as remote.
-"
+Assumes GS_DEFAULT_ORIGIN as remote."
 }
 
 main() {

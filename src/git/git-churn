@@ -3,8 +3,7 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git churn
 Show churn for whole repo.
 
@@ -14,8 +13,7 @@ Show churn for specific directories:
 Show churn for a time range:
 \t git churn --since='1 month ago'
 
-Any standard arguments to 'git log' are OK.
-"
+Any standard arguments to 'git log' are OK."
 }
 
 main() {

@@ -3,11 +3,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git fetch-branches
-fetches all branches at remote.
-"
+fetches all branches at remote."
 }
 
 main() {

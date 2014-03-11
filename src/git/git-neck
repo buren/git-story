@@ -5,11 +5,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git neck [-r] [COMMIT]
-show commits until first branching point
-"
+show commits until first branching point"
 }
 
 main() {

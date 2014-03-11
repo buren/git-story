@@ -5,11 +5,9 @@ source $GS_INIT_PATH
 __git-story-init
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git divergence
-Displays changes between local and remote branch.
-"
+Displays changes between local and remote branch."
 }
 
 main() {

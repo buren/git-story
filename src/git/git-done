@@ -7,8 +7,7 @@ __git-story-init
 ##########
 
 usage() {
-  __gs-print "
-usage:
+  __gs-print "usage:
 \t git done
 only if all changes have been committed.
 otherwise run:
@@ -24,16 +23,21 @@ main() {
 }
 
 main-exec() {
+  commit_msg="$1"
+  target_branch="$2"
+  __gs-no-spaces-or-die "$target_branch"
+
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
-    if [[ -z "$1" ]]; then
-      __gs-error "You have uncommited changes you must provide a commit message."
-      __gs-print "example: "
-      __gs-print "\t git done 'Any commit message'"
-      die
+    if [[ -z "$commit_msg" ]]; then
+      __gs-warning "You have uncommited changes."
+      __gs-continue-prompt "Commit all files and continue?"
+      __gs-add-all
+      git commit && __gs-print "Commit added." || __gs-abort-and-die
+    else
+      git addcom "$commit_msg"
     fi
-    git addcom "$1"
-  elif [[ ! -z "$1" ]]; then
-    __gs-warning "Nothing to commit. Ignoring commit message."
+  elif [[ ! -z "$commit_msg" ]]; then
+    __gs-info "Nothing to commit. Ignoring commit message."
   fi
 
   git test
@@ -45,22 +49,18 @@ main-exec() {
     confirm_message="Are your sure?"
   fi
 
-  __gs-print ""
-
   if [[ $GS_PROMPT_ON_DONE  == true ]]; then
+    echo
     __gs-continue-prompt "$confirm_message"
   fi
-  gs-done-execute "$@"
+  gs-sync-local-with-branch "$target_branch"
 }
 
-gs-done-execute() {
+gs-sync-local-with-branch() {
   local current="$(__gs-current-branch)"
+  local target=${1:-$GS_GIT_STORY_BRANCH}
   __gs-sync-branch $current $current
-
-  local target=${2:-master}
   __gs-sync-branch $target $current
-
-  __gs-print ""
   __gs-success "Success."
 }
 
