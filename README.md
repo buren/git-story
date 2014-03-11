@@ -2,7 +2,9 @@
 
 #### Simplified git workflow.
 
-Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html).
+git-story tries to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
+
+It also includes various extensions to git, which are documented below.
 
 * [Installation](#install-git-story)
 * [Getting Started](#getting-started)
@@ -19,7 +21,7 @@ Branch strategy based on [GitHub Flow](http://scottchacon.com/2011/08/31/github-
 injects import of git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
 ## Getting started
-git-story tries to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
+
 
 The model:
 
@@ -28,7 +30,7 @@ The model:
 3. If any conflicts fix them and run `git done "Fixed merge conflicts in ..."`
 4. Create a pull request on GitHub (or any other host)
 
-The principle is that you develop each new feature in its on branch. Then when you're ready you push it and create a pull request.
+The principle is that you develop each new feature in its on branch. Then when you're done you push it and create a pull request.
 
 ## Example
 
@@ -42,7 +44,7 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
        dev               Start developing a new feature
        done              Commit changes and sync with remote
        update            Pull current branch's remote changes
-       addcom            Adds all files and commits them
+       addcom            Adds all files and commit them
        fuckit            Commit all files and push current branch
        push-branch       Push the current branch to remote
        create-branch     Create and checkout a new branch on remote and local
@@ -51,6 +53,7 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
        abort-merge       Aborts current merge
        history           List repository commits
        tag-release       Create a new tag
+       redo-commit       Redo last commit.
        stat              Print statistics of git repository
        fetch-branches    Fetches all branches from remote
        browse            Open current git repository on Github
@@ -84,32 +87,33 @@ No checks are made if --force is supplied as the second argument.
 comment and commit the changes you've made and merge changes made on <target_branch>.
 `<target_branch>` is optional and defaults to 'master'.
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done "Fixed merge conflicts for ..."`.
-* `git update` pull current branch's remote changes
-* `git addcom` adds all files and commits them
-* `git fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'
-* `git push-branch` push the current branch to remote
-* `git browse`  opens the repository on GitHub
-* `git package` Package the project. Runs `GS_PACKAGE`
-* `git release` Package the project. Runs `GS_RELEASE`
-* `git install-project` Install the project. Runs `GS_INSTALL`
-* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`
-* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed
-* `git history` view repository commit history
-* `git tag-release` Create a new tagged release
-* `git abort-merge` aborts current merge
-* `git extend-with <extension-name>` add new git-story extension to git
-* `git fetch-branches`
-* `git gs-update` gets the latest version of git-story
-* `git gs-extend` add new git-story extension to git
+* `git update` pull current branch's remote changes.
+* `git addcom <commit_message>` adds all files and commits them if a <commit_message> is supplied. Otherwise it enters interactive add mode and then prompts for commit message.
+* `git fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'.
+* `git push-branch` push the current branch to remote.
+* `git browse`  opens the repository on GitHub.
+* `git package` Package the project. Runs `GS_PACKAGE`.
+* `git release` Package the project. Runs `GS_RELEASE`.
+* `git install-project` Install the project. Runs `GS_INSTALL`.
+* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
+* `git goto <branch_name>` switches to branch <branch_name> if all changes are stashed or committed.
+* `git history` view repository commit history.
+* `git tag-release` Create a new tagged release.
+* `git redo-commit` Redo last commit.
+* `git abort-merge` aborts current merge.
+* `git extend-with <extension-name>` add new git-story extension to git.
+* `git fetch-branches`.
+* `git gs-update` gets the latest version of git-story.
+* `git gs-extend` add new git-story extension to git.
 * `git gs` list git-story extensions.
-* `git trail` shows the last common commit with current branch
-* `git neck` show commits until first branching point
-* `git branch-status` shows current branch status
-* `git churn` count number of changes for each file
-* `git conflicted` list files with merge-conflicts
-* `git create-branch` create and checkout a new branch on remote and local
-* `git delete-branch` delete branch from remote and local
-* `git divergence` show the difference between current branch and the same remote
+* `git trail` shows the last common commit with current branch.
+* `git neck` show commits until first branching point.
+* `git branch-status` shows current branch status.
+* `git churn` count number of changes for each file.
+* `git conflicted` list files with merge-conflicts.
+* `git create-branch` create and checkout a new branch on remote and local.
+* `git delete-branch` delete branch from remote and local.
+* `git divergence` show the difference between current branch and the same remote.
 * Show statistics for repository
 
         git stat <type>

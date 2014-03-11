@@ -9,9 +9,9 @@ usage:
 Creates a new file with specified name in $GS_EXENSIONS_FOLDER
 
 example:
-\t git gs-extend goto-root
+\t git gs-extend awesome-extension
 will make it possible to run:
-\t git goto-root
+\t git awesome-extension
 "
 }
 

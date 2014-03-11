@@ -1,8 +1,4 @@
 #!/bin/bash
-#
-# Written by Corey Haines
-# Scriptified by Gary Bernhardt
-
 source $GS_INIT_PATH
 __git-story-init
 
@@ -10,9 +6,7 @@ usage() {
   __gs-print "
 usage:
 \t git churn
-
-Show churn for whole repo:
-\t git churn
+Show churn for whole repo.
 
 Show churn for specific directories:
 \t git churn app lib
@@ -20,7 +14,7 @@ Show churn for specific directories:
 Show churn for a time range:
 \t git churn --since='1 month ago'
 
-(These are all standard arguments to 'git log'.)
+Any standard arguments to 'git log' are OK.
 "
 }
 
@@ -30,6 +24,8 @@ main() {
 }
 
 main-exec() {
+  # Written by Corey Haines
+  # Scriptified by Gary Bernhardt
   git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 ", " $2}'
 }
 

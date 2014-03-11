@@ -5,8 +5,8 @@ __git-story-init
 usage() {
   __gs-print "
 usage:
-\t git undo-commit
-Undo last commit and keep all added files in index.
+\t git redo-commit
+Redo last commit.
 "
 }
 
