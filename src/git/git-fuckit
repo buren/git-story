@@ -16,7 +16,7 @@ main() {
 
 main-exec() {
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
-    git addcom ${1:-Update}
+    git addcom "${1:-Update}"
   fi
   git push $GS_DEFAULT_REMOTE $(__gs-current-branch)
 }

@@ -42,14 +42,9 @@ main-exec() {
 
   git test
 
-  if [[ $GS_PRINT_CHECKLIST == true ]]; then
+  if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     __gs-done-checklist-print
     confirm_message="Have you answered yes to all of the above?"
-  else
-    confirm_message="Are your sure?"
-  fi
-
-  if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     echo
     __gs-continue-prompt "$confirm_message"
   fi
