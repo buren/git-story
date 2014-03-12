@@ -34,7 +34,9 @@
 <h4>
 <a name="simplified-git-workflow" class="anchor" href="#simplified-git-workflow"><span class="octicon octicon-link"></span></a>Simplified git workflow.</h4>
 
-<p>Branch strategy based on <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a>.</p>
+<p>git-story tries to simplify the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice can use it within 5 minutes.</p>
+
+<p>It also includes various extensions to git, documented below.</p>
 
 <ul>
 <li><a href="#install-git-story">Installation</a></li>
@@ -56,8 +58,6 @@
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p>git-story tries to simplify the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice can use it within 5 minutes.</p>
-
 <p>The model:</p>
 
 <ol>
@@ -68,7 +68,7 @@
 <li>If any conflicts fix them and run <code>git done "Fixed merge conflicts in ..."</code>
 </li>
 <li>Create a pull request on GitHub (or any other host)</li>
-</ol><p>The principle is that you develop each new feature in its on branch. Then when you're ready you push it and create a pull request.</p>
+</ol><p>The principle is that you develop each new feature in its own branch. Then when you're done you push it and create a pull request.</p>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
@@ -77,7 +77,7 @@
 git done "Commit message"  # Commit changes, updates current and local branch.
 </code></pre>
 
-<p>Output <a href="http://showterm.io/238c04d003bfb22f1d91d">example</a> (video).</p>
+<p>Output <a href="http://showterm.io/f25fff6593f82dcdab7d1">example</a> (video).</p>
 
 <h2>
 <a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
@@ -86,7 +86,7 @@ git done "Commit message"  # Commit changes, updates current and local branch.
    dev               Start developing a new feature
    done              Commit changes and sync with remote
    update            Pull current branch's remote changes
-   addcom            Adds all files and commits them
+   addcom            Adds all files and commit them
    fuckit            Commit all files and push current branch
    push-branch       Push the current branch to remote
    create-branch     Create and checkout a new branch on remote and local
@@ -95,6 +95,7 @@ git done "Commit message"  # Commit changes, updates current and local branch.
    abort-merge       Aborts current merge
    history           List repository commits
    tag-release       Create a new tag
+   redo-commit       Redo last commit.
    stat              Print statistics of git repository
    fetch-branches    Fetches all branches from remote
    browse            Open current git repository on Github
@@ -124,9 +125,7 @@ git done "Commit message"  # Commit changes, updates current and local branch.
 git dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
-<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the newly created branch to remote.
-If --force is supplied as the second argument no checks are made.
-No checks are made if --force is supplied as the second argument.</p>
+<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.</p>
 </li>
 <li>
 <p>Commit and sync with repository</p>
@@ -139,60 +138,59 @@ No checks are made if --force is supplied as the second argument.</p>
 If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run <code>git done "Fixed merge conflicts for ..."</code>.</p>
 </li>
 <li>
-<code>git update</code> pull current branch's remote changes</li>
+<code>git update</code> pull current branch's remote changes.</li>
 <li>
-<code>git addcom</code> adds all files and commits them</li>
+<code>git addcom &lt;commit_message&gt;</code> add all files and commit.</li>
 <li>
-<code>git fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'</li>
+<code>git fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'.</li>
 <li>
-<code>git push-branch</code> push the current branch to remote</li>
+<code>git push-branch</code> push the current branch to remote.</li>
 <li>
-<code>git browse</code>  opens the repository on GitHub</li>
+<code>git browse</code>  opens the repository on GitHub.</li>
 <li>
-<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>
-</li>
+<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>.</li>
 <li>
-<code>git release</code> Package the project. Runs <code>GS_RELEASE</code>
-</li>
+<code>git release</code> Package the project. Runs <code>GS_RELEASE</code>.</li>
 <li>
-<code>git install-project</code> Install the project. Runs <code>GS_INSTALL</code>
-</li>
+<code>git install-project</code> Install the project. Runs <code>GS_INSTALL</code>.</li>
 <li>
-<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>
-</li>
+<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
 <li>
-<code>git goto &lt;branch_name&gt;</code> switches to branch  if all changes are stashed or committed</li>
+<code>git goto &lt;branch_name&gt;</code> switches to branch  if the working directory is clean.</li>
 <li>
-<code>git history</code> view repository commit history</li>
+<code>git history</code> view repository commit history.</li>
 <li>
-<code>git tag-release</code> Create a new tagged release</li>
+<code>git tag-release</code> Create a new tagged release.</li>
 <li>
-<code>git abort-merge</code> aborts current merge</li>
+<code>git redo-commit</code> Redo last commit.</li>
 <li>
-<code>git extend-with &lt;extension-name&gt;</code> add new git-story extension to git</li>
-<li><code>git fetch-branches</code></li>
+<code>git abort-merge</code> aborts current merge.</li>
 <li>
-<code>git gs-update</code> gets the latest version of git-story</li>
+<code>git extend-with &lt;extension-name&gt;</code> add new git-story extension to git.</li>
 <li>
-<code>git gs-extend</code> add new git-story extension to git</li>
+<code>git fetch-branches</code>.</li>
+<li>
+<code>git gs-update</code> gets the latest version of git-story.</li>
+<li>
+<code>git gs-extend</code> add new git-story extension to git.</li>
 <li>
 <code>git gs</code> list git-story extensions.</li>
 <li>
-<code>git trail</code> shows the last common commit with current branch</li>
+<code>git trail</code> shows the last common commit with current branch.</li>
 <li>
-<code>git neck</code> show commits until first branching point</li>
+<code>git neck</code> show commits until first branching point.</li>
 <li>
-<code>git branch-status</code> shows current branch status</li>
+<code>git branch-status</code> shows current branch status.</li>
 <li>
-<code>git churn</code> count number of changes for each file</li>
+<code>git churn</code> count number of changes for each file.</li>
 <li>
-<code>git conflicted</code> list files with merge-conflicts</li>
+<code>git conflicted</code> list files with merge-conflicts.</li>
 <li>
-<code>git create-branch</code> create and checkout a new branch on remote and local</li>
+<code>git create-branch</code> create and checkout a new branch on remote and local.</li>
 <li>
-<code>git delete-branch</code> delete branch from remote and local</li>
+<code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
-<code>git divergence</code> show the difference between current branch and the same remote</li>
+<code>git divergence</code> show the difference between current branch and the same remote.</li>
 <li>
 <p>Show statistics for repository</p>
 
@@ -213,24 +211,26 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.
-Available options:</p>
+See example with comments in docs/gitstoryrc-example
+Available options and there default value:</p>
 
-<pre><code>GS_DEFAULT_REMOTE         # Default remote for git story        Default: 'origin'
-GS_GIT_STORY_BRANCH       # Target branch for 'git done'        Default: 'master'
-GS_PRE_COMMIT_HOOK        # A command that runs all tests       Default: ''
-GS_PACKAGE                # Shell command for 'package'         Default: ''
-GS_RELEASE                # Shell command for 'release'         Default: ''
-GS_PROMPT_ON_DONE         # Prompt user before executing done   Default: false
-GS_PRINT_CHECKLIST        # Print checklist before 'done'       Default: false
-GS_HAS_GITHUB             # Project has GitHub.                 Default: true
-GS_PROJECT_URL            # Project URL                         Default: ''
-GS_PROMPT_BROWSE_URL      # Prompt to open project URL on done  Default: true
-GS_CHECKLIST_MESSAGE      # Checklist string for 'done'         Default: '1. Have you...'
-GS_NEW_TAG_PROMPT         # Prompt text for tag-release         Default: 'What tag...'
-GS_TEST_ON_AUTO_MERGE     # Run tests command on auto merge     Default: true
-GS_PRODUCTION_BRANCH      # Integration branch for production   Default: 'heads/master'
-GS_NEXT_VERSION_BRANCH    # Integration branch for next version Default: ''
-GS_EDGE_BRANCH            # Integration branch for edge branch  Default: ''
+<pre><code>GS_DEFAULT_REMOTE='origin'          # Default remote for git story
+GS_GIT_STORY_BRANCH='master'        # Target branch for 'done'
+GS_LOCAL_MERGE=false                # Perform local merge on 'done'
+GS_PRINT_CHECKLIST=false            # Print checklist before 'done'
+GS_PROMPT_ON_DONE=false             # Prompt user before 'done'
+GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'done'
+GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
+GS_PACKAGE=''                       # Shell command for 'package'
+GS_RELEASE=''                       # Shell command for 'release
+GS_INTSALL=''                       # Shell command for 'install'
+GS_HAS_GITHUB=true                  # Project has GitHub.
+GS_PROJECT_URL=''                   # Project URL
+GS_TEST_ON_AUTO_MERGE=true          # Run tests command on auto merge
+GS_PRODUCTION_BRANCH='heads/master' # Integration branch for production
+GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
+GS_EDGE_BRANCH=''                   # Integration branch for edge
+GS_GIT_STORY_EXT_BRANCH='master'
 </code></pre>
 
 <p>See <a href="https://github.com/buren/git-story/blob/master/config">config</a> for details.</p>
