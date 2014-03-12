@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ###################################
 # example of complete .gitstoryrc #
 ###################################
@@ -54,6 +56,8 @@ GS_PRINT_CHECKLIST=true
 GS_PROMPT_ON_DONE=true
 # merge feature branch with target branch locally and push it after done command
 GS_LOCAL_MERGE=false
+# Run tests before done command
+GS_TEST_ON_DONE=true
 
 # Project Website
 GS_HAS_GITHUB=false

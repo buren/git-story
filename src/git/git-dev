@@ -11,7 +11,7 @@ usage() {
 \t git dev <branch_name> <base_branch>
 <base_branch> is optional and will default to master
 
-Guarantees clean workspace from remote master (or specified branch)."
+Guarantees clean workspace from remote $GS_GIT_STORY_BRANCH (or specified branch)."
 }
 
 main() {
@@ -24,8 +24,7 @@ main-exec() {
   local target_branch_arg="$2"
   if [[ -z "$new_branch" ]]; then
     usage
-    __gs-error "You must provide a branch name"
-    __gs-error "Missing argument <branch_name>"
+    __gs-error "Missing required argument <branch_name>"
     die
   fi
 
@@ -68,7 +67,7 @@ You have three options:
     $ git dev $new_branch $target_branch
 
   2. Fix the merge conflict and push to remote (BEWARE)
-    $ git done 'Fixed merge conflicts'
+    $ git done
     $ git dev $new_branch $target_branch
 
   3. Abort the merge and choose antother target branch.

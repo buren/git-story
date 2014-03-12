@@ -8,13 +8,12 @@ __git-story-init
 
 usage() {
   __gs-print "usage:
-\t git done
-only if all changes have been committed.
-otherwise run:
-\t git done 'Commit message' <target_branch>
-will fetch and merge <target_branch>. <target_branch> is optional and defaults to $GS_GIT_STORY_BRANCH.
+\t git done <target_branch>
+will fetch and merge <target_branch>.
+<target_branch> is optional and defaults to $GS_GIT_STORY_BRANCH.
+
 note:"
-  __gs-warning "\t Can cause merge conflicts"
+  __gs-print "\t Can cause merge conflicts"
 }
 
 main() {
@@ -23,24 +22,20 @@ main() {
 }
 
 main-exec() {
-  local commit_msg="$1"
-  local target_branch="${2:-$GS_GIT_STORY_BRANCH}"
+  local target_branch="${1:-$GS_GIT_STORY_BRANCH}"
   __gs-no-spaces-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
-    if [[ -z "$commit_msg" ]]; then
-      __gs-warning "You have uncommited changes."
-      __gs-continue-prompt "Commit all files and continue?"
-      __gs-add-all
-      git commit && __gs-print "Commit added." || __gs-abort-and-die
-    else
-      git addcom "$commit_msg"
-    fi
-  elif [[ ! -z "$commit_msg" ]]; then
-    __gs-info "Nothing to commit. Ignoring commit message."
+    __gs-warning "You have uncommited changes."
+    __gs-continue-prompt "Commit all files and continue?"
+    __gs-add-all
+    git commit && __gs-print "Commit added." || __gs-abort-and-die
   fi
 
-  git test
+  if [[ $GS_TEST_ON_DONE == true ]]; then
+    git test
+  fi
+
 
   if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     __gs-done-checklist-print
