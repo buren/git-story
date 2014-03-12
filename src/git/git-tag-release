@@ -22,7 +22,7 @@ main-exec() {
 
   __gs-print "Parent tag and current commit:"
   __gs-info "$(git describe)"
-  local prompt_text="What tag would you like to give this version?"
+  local prompt_text="What tag would you like to give this version? "
   local version_no="$(__gs-prompt-for-result "$prompt_text")"
   if [[ "$version_no" == *" "* ]]; then
     __gs-error "ERROR:"

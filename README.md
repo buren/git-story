@@ -2,7 +2,7 @@
 
 #### Simplified git workflow.
 
-_git-story_ tries to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
+_git-story_ aims to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
 
 It also includes various extensions to git, documented below.
 
@@ -142,7 +142,7 @@ show statistics for repository.
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 
-See example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
+See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
 
 Available options and their default value:
 
@@ -164,7 +164,7 @@ Available options and their default value:
     GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
     GS_EDGE_BRANCH=''                   # Integration branch for edge
     GS_GIT_STORY_EXT_BRANCH='master'    # Target branch git-story tool
-See [config](https://github.com/buren/git-story/blob/master/config) for details.
+Default [config](https://github.com/buren/git-story/blob/master/config).
 
 ## Notes
 * Tested on Linux/OSX using both zsh and bash
