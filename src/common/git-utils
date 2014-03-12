@@ -23,14 +23,15 @@ __gs-pull-and-check-status() {
   local merge_wrn_msg="$3"
   local no_auto_prompt="$4"
   __gs-print "Pull from $pull_target"
-  git fetch $GS_DEFAULT_REMOTE $pull_target
-  local pull_tail="$(git merge $GS_DEFAULT_REMOTE/$pull_target)"
+  git checkout $pull_target && \
+  git pull $GS_DEFAULT_REMOTE $pull_target && \
+  git checkout $current_br || gs-error-and-die
+  local pull_tail="$(git merge $pull_target)"
   if [[ "$pull_tail" == *"Already up-to-date"* ]]; then
     echo
   elif [[ "$pull_tail" == *"Automatic merge failed"* ]]; then
    __gs-automatic-merge-failed $pull_target $current_br
    echo
-   __gs-info "Merge conflicts in:"
    git conflicted
    if [[ ! -z $merge_wrn_msg ]]; then
      echo
@@ -38,7 +39,7 @@ __gs-pull-and-check-status() {
      echo "$merge_wrn_msg"
    fi
    die
- elif [[ "$pull_tail" == *"Fast-forward"* ]]; then
+ elif [[ "$pull_tail" == *"Fast-forward"* ]] || [[ "$pull_tail" == *"Merge made"* ]]; then
     __gs-print "Content has changed."
     if [[ $GS_TEST_ON_AUTO_MERGE == true ]]; then
       __gs-print "Running tests..."

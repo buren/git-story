@@ -19,6 +19,7 @@ main-exec() {
   if [[ $number_of_files -eq 0 ]]; then
     __gs-success "No conflicting files."
   else
+    __gs-info "Merge conflicts in:"
     __gs-print "$filenames"
     __gs-warning "Conflicting files: $number_of_files"
   fi
