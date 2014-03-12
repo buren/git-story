@@ -32,7 +32,7 @@ main() {
 main-exec() {
   if [[ -z "$1" ]] || [[ "$1" == "contributions" ]] || [[ "$1" == "contrib" ]]; then
     if [[ -z $2 ]] || [[ "$2" == "each" ]]; then
-      commit_summary="$(git shortlog --summary --numbered --no-merges)"
+      local commit_summary="$(git shortlog --summary --numbered --no-merges)"
       __gs-list-authors | while read line; do
         __gs-stat-author-contrib "${line}" "$commit_summary"
       done
@@ -74,7 +74,7 @@ main-exec() {
 }
 
 __gs-safe-path-operation() {
-  dir=$(pwd)
+  local dir=$(pwd)
   if [[ -z $2 ]]; then
     cd "$(git rev-parse --show-toplevel)"
   else

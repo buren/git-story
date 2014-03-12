@@ -16,7 +16,7 @@ main() {
 }
 
 main-exec() {
-  current_branch=$(__gs-current-branch)
+  local current_branch=$(__gs-current-branch)
   __gs-print "Pulling updates from: $current_branch"
   git pull $GS_DEFAULT_REMOTE $current_branch
 }

@@ -24,7 +24,7 @@ main() {
 
 main-exec() {
   local commit_msg="$1"
-  target_branch="${2:-$GS_GIT_STORY_BRANCH}"
+  local target_branch="${2:-$GS_GIT_STORY_BRANCH}"
   __gs-no-spaces-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then

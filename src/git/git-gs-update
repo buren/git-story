@@ -15,12 +15,12 @@ main() {
 }
 
 main-exec() {
-  target=${1-$GS_GIT_STORY_BRANCH}
+  local target=${1-$GS_GIT_STORY_BRANCH}
   __gs-print "Downloading latest changes made to 'git-story' from branch: '$target'"
-  current_dir=$(pwd)
-  cd $HOME/.git-story && git pull origin $target
-  cd $current_dir
-  __gs-success "Successfully updated git-story."
+  cd $HOME/.git-story && \
+  git pull origin $target && \
+  __gs-success "Successfully updated git-story." || \
+  __gs-error "Something went wrong."
 }
 
 main "$@"

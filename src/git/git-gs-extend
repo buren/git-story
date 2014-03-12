@@ -19,9 +19,12 @@ main() {
 }
 
 main-exec() {
-  full_script_path="$GS_EXENSIONS_FOLDER/git-$1"
+  local new_cmd_name="$1"
+  __gs-no-spaces-or-die "$new_cmd_name" "Command name"
+
+  full_script_path="$GS_EXENSIONS_FOLDER/git-$new_cmd_name"
   command_template=$(cat $GS_FOLDER/docs/new-extension-template)
-  replace_cmd_name="s/NEWCOMMANDNAME/$1/g"
+  replace_cmd_name="s/NEWCOMMANDNAME/$new_cmd_name/g"
   echo "$command_template" | sed $replace_cmd_name > $full_script_path
   __gs-print "Copied new extension template to $full_script_path"
   __gs-print "Sudo permissions to make script executable."
@@ -29,13 +32,12 @@ main-exec() {
   __gs-success "Added command." || __gs-warn-make-executable
   __gs-info "Edit extension at: $full_script_path"
   __gs-print "You can test your command by running:"
-  __gs-print " $ git $1"
+  __gs-print " $ git $new_cmd_name"
 }
 
 __gs-warn-make-executable() {
   __gs-warning "Could not make file executable." && \
   __gs-print "Please run \n $ sudo chmod +x $full_script_path"
-  echo
 }
 
 main "$@"

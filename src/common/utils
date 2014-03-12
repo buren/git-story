@@ -52,7 +52,8 @@ __gs-no-spaces-or-die() {
   if [[ "$1" == *" "* ]]; then
     __gs-error "ERROR:"
     __gs-print "Supplied argument: '$1'"
-    __gs-print "Branch name can *not* contain spaces!"
+    local default_type="Branch name"
+    __gs-print "${2:-$default_type} can *not* contain spaces!"
     die
   fi
 }
