@@ -23,8 +23,8 @@ main() {
 }
 
 main-exec() {
-  commit_msg="$1"
-  target_branch="$2"
+  local commit_msg="$1"
+  target_branch="${2:-$GS_GIT_STORY_BRANCH}"
   __gs-no-spaces-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
@@ -44,19 +44,27 @@ main-exec() {
 
   if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     __gs-done-checklist-print
-    confirm_message="Have you answered yes to all of the above?"
     echo
-    __gs-continue-prompt "$confirm_message"
+    __gs-continue-prompt "Have you answered yes to all of the above?"
   fi
+
   gs-sync-local-with-branch "$target_branch"
+
+  if [[ $GS_LOCAL_MERGE == true ]]; then
+    feature_branch="$(__gs-current-branch)"
+    __gs-print "Performing local merge to '$target_branch' from '$feature_branch'"
+    git checkout $target_branch
+    git merge $feature_branch
+    git push $GS_DEFAULT_REMOTE $target_branch
+  fi
 }
 
 gs-sync-local-with-branch() {
   local current="$(__gs-current-branch)"
-  local target=${1:-$GS_GIT_STORY_BRANCH}
+  local target=$1
   __gs-sync-branch $current $current
   __gs-sync-branch $target $current
-  __gs-success "Success."
+  __gs-print "Pushed $current to repository"
 }
 
 main "$@"

@@ -44,7 +44,7 @@ main-exec() {
   __gs-success "Success"
   __gs-print "Updated$PURPLE $branch$RESET, from repository."
   __gs-print "Created branch: $PURPLE $new_branch $RESET"
-  __gs-print "Based of branch:$PURPLE $branch $RESET"
+  __gs-print "Based on branch:$PURPLE $branch $RESET"
 }
 
 gs-validate-branch-params() {

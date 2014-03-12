@@ -16,36 +16,41 @@ __gs-check-usage-param() {
 # $1 : target branch
 # $2 : current branch
 # $3 : merge failed warning message
+# $4 : prompt on automatic merge
 __gs-pull-and-check-status() {
-  pull_tail=$(git pull $GS_DEFAULT_REMOTE $1 2> /dev/null)
+  local pull_target="$1"
+  local current_br="$2"
+  local merge_wrn_msg="$3"
+  local auto_prompt="$4"
+  __gs-print "Pull from $pull_target"
+  local pull_tail=$(git pull $GS_DEFAULT_REMOTE $pull_target)
   if [[ $pull_tail == *"fatal:"* ]]; then
     echo $pull_tail
     __gs-error "Something went wrong."
     die
   elif [[ $pull_tail == *"Automatic merge failed"* ]]; then
-   __gs-automatic-merge-failed $1 $2
+   __gs-automatic-merge-failed $pull_target $current_br
    echo
    __gs-info "Merge conflicts in:"
    git conflicted
-   if [[ ! -z $3 ]]; then
+   if [[ ! -z $merge_wrn_msg ]]; then
      echo
      __gs-warning "Warning:"
-     echo "$3"
+     echo "$merge_wrn_msg"
    fi
    die
-  elif [[ $pull_tail == *"Already up-to-date"* ]]; then
-    __gs-print "'$1' already up-to-date."
-  else
-    __gs-print "Automatic merge with '$1' successfull."
+ elif [[ $pull_tail == *"Fast-forward"* ]]; then
+    __gs-print "Content has changed."
     if [[ $GS_TEST_ON_AUTO_MERGE == true ]]; then
       __gs-print "Running tests..."
       git test
-      if [[ ! -z $GS_PRE_COMMIT_HOOK ]] && [[ -z $4 ]]; then
+      if [[ ! -z $GS_PRE_COMMIT_HOOK ]] && [[ -z $auto_prompt ]]; then
         __gs-continue-prompt "Check tests status. Would you like to continue?"
       fi
     fi
   fi
 }
+
 
 __gs-add-all() {
   git add --all :/
@@ -54,7 +59,6 @@ __gs-add-all() {
 # $1 : remote target
 # $2 : current
 __gs-sync-branch() {
-  __gs-print "Pull from: '$1'"
   __gs-pull-and-check-status $1 $2
   git push $GS_DEFAULT_REMOTE $2
 }

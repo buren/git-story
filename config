@@ -21,6 +21,7 @@ export GS_EDGE_BRANCH
 # Done
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
+export GS_LOCAL_MERGE=false
 
 # Project Website
 export GS_HAS_GITHUB=true
