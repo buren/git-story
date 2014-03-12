@@ -1,14 +1,12 @@
 #!/bin/bash
 
-# Default options
+# General
 export GS_DEFAULT_REMOTE='origin'
-export GS_GIT_STORY_BRANCH='master'
+export GS_GIT_STORY_BRANCH='master' # Default target for 'dev' & 'done' commands
+export GS_TEST_ON_AUTO_MERGE=true
 
 # Tests
 export GS_PRE_COMMIT_HOOK
-
-# General
-export GS_TEST_ON_AUTO_MERGE=true
 
 # Project integration
 export GS_PACKAGE
@@ -18,6 +16,8 @@ export GS_PRODUCTION_BRANCH='heads/master'
 export GS_NEXT_VERSION_BRANCH
 export GS_EDGE_BRANCH
 
+
+
 # Done
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
@@ -26,7 +26,7 @@ export GS_LOCAL_MERGE=false
 # Project Website
 export GS_HAS_GITHUB=true
 export GS_PROJECT_URL # No need to setup if project hosted on Github. If set it overrides GitHub path.
-export GS_PROMPT_BROWSE_URL=true
+
 
 # Prompts
 export GS_CHECKLIST_MESSAGE="
@@ -37,3 +37,7 @@ Checklist:
 \t 4. Are you ready for possible merge conflicts?"
 
 export GS_NEW_TAG_PROMPT="What tag would you like to give this version?"
+
+
+# git-story
+export GS_GIT_STORY_EXT_BRANCH='master' # Target branch for updating the git-story tool

@@ -127,25 +127,26 @@ show statistics for repository.
 
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
-Available options:
+See example with comments in docs/gitstoryrc-example
+Available options and there default value:
 
-    GS_DEFAULT_REMOTE         # Default remote for git story        Default: 'origin'
-    GS_GIT_STORY_BRANCH       # Target branch for 'git done'        Default: 'master'
-    GS_PRE_COMMIT_HOOK        # A command that runs all tests       Default: ''
-    GS_PACKAGE                # Shell command for 'package'         Default: ''
-    GS_RELEASE                # Shell command for 'release'         Default: ''
-    GS_PROMPT_ON_DONE         # Prompt user before executing done   Default: false
-    GS_PRINT_CHECKLIST        # Print checklist before 'done'       Default: false
-    GS_HAS_GITHUB             # Project has GitHub.                 Default: true
-    GS_PROJECT_URL            # Project URL                         Default: ''
-    GS_PROMPT_BROWSE_URL      # Prompt to open project URL on done  Default: true
-    GS_CHECKLIST_MESSAGE      # Checklist string for 'done'         Default: '1. Have you...'
-    GS_NEW_TAG_PROMPT         # Prompt text for tag-release         Default: 'What tag...'
-    GS_TEST_ON_AUTO_MERGE     # Run tests command on auto merge     Default: true
-    GS_PRODUCTION_BRANCH      # Integration branch for production   Default: 'heads/master'
-    GS_NEXT_VERSION_BRANCH    # Integration branch for next version Default: ''
-    GS_EDGE_BRANCH            # Integration branch for edge branch  Default: ''
-
+    GS_DEFAULT_REMOTE='origin'          # Default remote for git story
+    GS_GIT_STORY_BRANCH='master'        # Target branch for 'done'
+    GS_LOCAL_MERGE=false                # Perform local merge on 'done'
+    GS_PRINT_CHECKLIST=false            # Print checklist before 'done'
+    GS_PROMPT_ON_DONE=false             # Prompt user before 'done'
+    GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'done'
+    GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
+    GS_PACKAGE=''                       # Shell command for 'package'
+    GS_RELEASE=''                       # Shell command for 'release
+    GS_INTSALL=''                       # Shell command for 'install'
+    GS_HAS_GITHUB=true                  # Project has GitHub.
+    GS_PROJECT_URL=''                   # Project URL
+    GS_TEST_ON_AUTO_MERGE=true          # Run tests command on auto merge
+    GS_PRODUCTION_BRANCH='heads/master' # Integration branch for production
+    GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
+    GS_EDGE_BRANCH=''                   # Integration branch for edge
+    GS_GIT_STORY_EXT_BRANCH='master'
 See [config](https://github.com/buren/git-story/blob/master/config) for details.
 
 ## Notes
