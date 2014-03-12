@@ -127,8 +127,10 @@ show statistics for repository.
 
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
-See example with comments in docs/gitstoryrc-example
-Available options and there default value:
+
+See example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
+
+Available options and their default value:
 
     GS_DEFAULT_REMOTE='origin'          # Default remote for git story
     GS_GIT_STORY_BRANCH='master'        # Target branch for 'done'
