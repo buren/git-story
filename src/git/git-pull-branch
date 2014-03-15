@@ -1,0 +1,30 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "usage:
+\t git pull-branch <branch>
+Pull updates from specified branch from remote.
+If no branch is given it will default to the current branch.
+Assumes GS_DEFAULT_ORIGIN as remote."
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  if [[ -z $1 ]];then
+    local current_branch=$(__gs-current-branch)
+    __gs-print "Pulling updates from: $current_branch"
+    git pull $GS_DEFAULT_REMOTE $current_branch
+  else
+    __gs-no-spaces-or-die "$1"
+    __gs-print "Pulling updates from: $1"
+    git pull $GS_DEFAULT_REMOTE $1
+  fi
+}
+
+main "$@"

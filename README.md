@@ -45,9 +45,9 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
     git
        dev               Start developing a new feature
        done              Commit changes and sync with remote
-       update            Pull current branch's remote changes
        addcom            Adds all files and commit them
        fuckit            Commit all files and push current branch
+       pull-branch       Pull current branch's remote changes
        push-branch       Push the current branch to remote
        create-branch     Create and checkout a new branch on remote and local
        delete-branch     Delete branch from remote and local
@@ -87,11 +87,9 @@ this will create a new branch <branch_name> based of master or specified <base_b
 
         git done <target_branch>
 commit the changes you've made and merge changes with <target_branch>.
-`<target_branch>` is optional and defaults to 'master'.
-If no merge conflicts, create a pull request. Otherwise fix all merge conflicts and run `git done`.
+`<target_branch>` is optional and the default is `master`.
 
 ### git convenience extensions
-* `git update` pull current branch's remote changes.
 * `git addcom <commit_message>` add all files and commit.
 * `git fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'.
 * `git redo-commit` Redo last commit.
@@ -103,6 +101,7 @@ If no merge conflicts, create a pull request. Otherwise fix all merge conflicts 
 
 ### git branching extensions
 * `git branch-status` shows current branch status.
+* `git pull-branch` pull current, or specified, branch's remote changes.
 * `git create-branch` create and checkout a new branch and push to remote.
 * `git delete-branch` delete branch from remote and local.
 * `git push-branch` push the current branch to remote.

@@ -1,9 +1,9 @@
 git
    dev               Start developing a new feature
    done              Commit changes and sync with remote
-   update            Pull current branch's remote changes
    addcom            Adds all files and commit them
    fuckit            Commit all files and push current branch
+   pull-branch       Pull current branch's remote changes
    push-branch       Push the current branch to remote
    create-branch     Create and checkout a new branch on remote and local
    delete-branch     Delete branch from remote and local
