@@ -21,7 +21,7 @@
 enduro_package="bash $HOME/apps/maven/apache-maven-3.0-SNAPSHOT/bin/mvn clean package"
 
 # Define what branch to update git-story from
-GS_GIT_STORY_BRANCH='custom-git-story-branch'
+GS_GIT_STORY_EXT_BRANCH='custom-git-story-branch'
 
 # Default remote for git-story extensions
 GS_DEFAULT_REMOTE='origin'

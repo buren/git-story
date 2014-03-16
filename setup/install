@@ -1,10 +1,11 @@
 #!/bin/bash
+GIT_STORY_URL="https://github.com/buren/git-story.git"
 
 install-git-story() {
   if [[ ! -d $HOME/.git-story/ ]]; then
     current_folder=$(pwd)
     cd $HOME && \
-    git clone --depth=1 https://github.com/buren/git-story.git && \
+    git clone --depth=1 $GIT_STORY_URL && \
     mv git-story .git-story || echo "Something went wrong."
     cd $current_folder
     echo "sudo permissions needed to make ~/.git-story/src/git executable"
