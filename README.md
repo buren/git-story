@@ -166,7 +166,7 @@ Available options and their default value:
 Default [config](https://github.com/buren/git-story/blob/master/config).
 
 ## Notes
-* The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE)
+* The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE))
 * `git branch-status` requires Ruby 1.8.7 or greater
 * Tested on Linux/OSX using both zsh, bash and cygwin*, doesn't work with sh.
 * Almost everything works with cygwin except:
