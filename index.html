@@ -81,41 +81,6 @@ git done              # Commit changes, updates current and local branch.
 <p>Output <a href="http://showterm.io/f25fff6593f82dcdab7d1">example</a> (video).</p>
 
 <h2>
-<a name="command-list" class="anchor" href="#command-list"><span class="octicon octicon-link"></span></a>Command list</h2>
-
-<pre><code>git
-   dev               Start developing a new feature
-   done              Commit changes and sync with remote
-   addcom            Adds all files and commit them
-   fuckit            Commit all files and push current branch
-   pull-branch       Pull current branch's remote changes
-   push-branch       Push the current branch to remote
-   create-branch     Create and checkout a new branch on remote and local
-   delete-branch     Delete branch from remote and local
-   goto              Switch from current branch to specified branch
-   abort-merge       Aborts current merge
-   todos             List all TODOS and FIXMES
-   history           List repository commits
-   tag-release       Create a new tag
-   redo-commit       Redo last commit
-   stat              Print statistics of git repository
-   browse            Open current git repository on Github
-   test              Runs test command defined in .gitstoryrc
-   package           Runs package command defined in .gitstoryrc
-   release           Runs release command defined in .gitstoryrc
-   install-project   Runs install command defined in .gitstoryrc
-   trail             Show the last common commit with current branch
-   neck              Show commits until first branching point
-   branch-status     Show current branch status
-   churn             Count number of changes for each file
-   conflicted        List files with merge-conflicts
-   divergence        Show difference between current branch and remote branch
-   gs                List git-story extensions
-   gs-extend         Add new git-story extension to git
-   gs-update         Update git-story to its latest version
-</code></pre>
-
-<h2>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
 <h3>
@@ -125,8 +90,7 @@ git done              # Commit changes, updates current and local branch.
 <li>
 <p>Start developing a feature</p>
 
-<pre><code>git dev &lt;branch_name&gt;
-git dev &lt;branch_name&gt; &lt;base_branch&gt;
+<pre><code>git dev &lt;branch_name&gt; &lt;base_branch&gt;
 </code></pre>
 
 <p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.</p>
@@ -203,18 +167,16 @@ git dev &lt;branch_name&gt; &lt;base_branch&gt;
 <li>
 <p>Show statistics for repository</p>
 
-<pre><code>git stat &lt;type&gt;
-        contributions   # shows statistics for all authors or specified author (alias: contrib)
-        commits         # shows number of commits for each author
-        weekdays        # prints statistics for number of commits per weekday
-        hour            # prints statistics for number of commits per hour
-        files           # prints number of files and lines
-        diff            # print stat of uncommitted changes
-        log             # print log with stat
-        modified        # print stat of most modified files
-</code></pre>
-
-<p>show statistics for repository.</p>
+<p>git stat 
+           contributions # shows statistics for all authors or specified author (alias: contrib)
+           commits       # shows number of commits for each author
+           weekdays      # prints statistics for number of commits per weekday
+           hour          # prints statistics for number of commits per hour
+           files         # prints number of files and lines
+           diff          # print stat of uncommitted changes
+           log           # print log with stat
+           modifie       # print stat of most modified files
+show statistics for repository.</p>
 </li>
 <li>
 <code>git churn</code> count number of changes for each file.</li>
@@ -254,7 +216,7 @@ GS_TEST_ON_AUTO_MERGE=true          # Run tests command on auto merge
 GS_PRODUCTION_BRANCH='heads/master' # Integration branch for production
 GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
 GS_EDGE_BRANCH=''                   # Integration branch for edge
-GS_GIT_STORY_EXT_BRANCH='master'    # Target branch git-story tool
+GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 </code></pre>
 
 <p>Default <a href="https://github.com/buren/git-story/blob/master/config">config</a>.</p>
@@ -278,7 +240,8 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch git-story tool
 <code>git browse</code> does nothing (<code>xdg-open</code>/<code>open</code> not available)</li>
 </ul>
 </li>
-<li>Fork the repository and update the URL defined in <a href="https://github.com/buren/git-story/blob/master/setup/install#L2">setup/install</a> to install and use your own version of <em>git-story</em> </li>
+<li>Fork the repository and update the URL defined in <a href="https://github.com/buren/git-story/blob/master/setup/install#L2">setup/install</a> to install and use your own version of <em>git-story</em>
+</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
