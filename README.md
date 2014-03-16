@@ -46,12 +46,11 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
 * Start developing a feature
 
-      git dev <branch_name>
-      git dev <branch_name> <base_branch>
+        git dev <branch_name> <base_branch>
 this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 * Commit and sync with repository
 
-      git done <target_branch>
+        git done <target_branch>
 commit the changes you've made and merge changes with <target_branch>.
 `<target_branch>` is optional and the default is `master`.
 
