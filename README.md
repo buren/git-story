@@ -166,10 +166,13 @@ Available options and their default value:
 Default [config](https://github.com/buren/git-story/blob/master/config).
 
 ## Notes
-* Tested on Linux/OSX using both zsh and bash
-* Wont work with sh
 * The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE)
 * `git branch-status` requires Ruby 1.8.7 or greater
+* Tested on Linux/OSX using both zsh, bash and cygwin*, doesn't work with sh.
+* Almost everything works with cygwin except:
+  * git trail
+  * git neck   # both neck and trail fails on `git -p column`
+  * git browse # does nothing (`xdg-open`/`open` not available)
 
 ## License
 _git-story_ is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
