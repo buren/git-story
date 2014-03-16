@@ -5,23 +5,43 @@
 ###########
 
 __gs-error() {
-  echo -e "${BOLD}${MAGENTA}$1$RESET"
+  if [ -t 1 ];then
+    echo -e "${BOLD}${MAGENTA}$1$RESET"
+  else
+    echo -e "$1"
+  fi
 }
 
 __gs-success() {
-  echo -e "${BOLD}${GREEN}$1$RESET"
+  if [ -t 1 ];then
+    echo -e "${BOLD}${GREEN}$1$RESET"
+  else
+    echo -e "$1"
+  fi
 }
 
 __gs-warning() {
-  echo -e "${BOLD}${ORANGE}$1$RESET"
+  if [ -t 1 ];then
+    echo -e "${BOLD}${ORANGE}$1$RESET"
+  else
+    echo -e "$1"
+  fi
 }
 
 __gs-info() {
-  echo -e "${BOLD}${PURPLE}$1$RESET"
+  if [ -t 1 ];then
+    echo -e "${BOLD}${PURPLE}$1$RESET"
+  else
+    echo -e "$1"
+  fi
 }
 
 __gs-print() {
-  echo -e "${RESET}$1$RESET"
+  if [ -t 1 ];then
+    echo -e "${RESET}$1$RESET"
+  else
+    echo -e "$1"
+  fi
 }
 
 __gs-ignore-args() {
