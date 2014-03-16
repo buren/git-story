@@ -30,6 +30,8 @@ main-exec() {
     xdg-open "$url" &
   elif [ "$(uname)" == "Darwin" ]; then
     open "$url" &
+  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    cygstart "$url" &
   fi
 }
 
