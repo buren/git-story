@@ -57,7 +57,6 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
        tag-release       Create a new tag
        redo-commit       Redo last commit
        stat              Print statistics of git repository
-       fetch-branches    Fetches all branches from remote
        browse            Open current git repository on Github
        test              Runs test command defined in .gitstoryrc
        package           Runs package command defined in .gitstoryrc
@@ -91,7 +90,7 @@ commit the changes you've made and merge changes with <target_branch>.
 
 ### git convenience extensions
 * `git addcom <commit_message>` add all files and commit.
-* `git fuckit` commit all files with optional <message> and push current branch. Default message is 'Update'.
+* `git fuckit` commit all files with optional <message> and push current branch. Default is to prompt for commit message.
 * `git redo-commit` Redo last commit.
 * `git tag-release` Create a new tagged release.
 * `git goto <branch_name>` switches to branch <branch_name> if the working directory is clean.
@@ -105,7 +104,6 @@ commit the changes you've made and merge changes with <target_branch>.
 * `git create-branch` create and checkout a new branch and push to remote.
 * `git delete-branch` delete branch from remote and local.
 * `git push-branch` push the current branch to remote.
-* `git fetch-branches` fetch all remote branches.
 * `git trail` shows the last common commit with current branch.
 * `git neck` show commits until first branching point.
 * `git divergence` show the difference between current branch and the same branch at remote.

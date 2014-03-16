@@ -13,7 +13,6 @@ git
    tag-release       Create a new tag
    redo-commit       Redo last commit
    stat              Print statistics of git repository
-   fetch-branches    Fetches all branches from remote
    browse            Open current git repository on Github
    test              Runs test command defined in .gitstoryrc
    package           Runs package command defined in .gitstoryrc
