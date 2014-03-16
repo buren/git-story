@@ -17,10 +17,14 @@ main-exec() {
  local default_path='*'
  local search_path="${1:-$default_path}"
  __gs-info "TODOS:"
- grep -rn 'TODO\|todo.*' $search_path
+ full-text-search-project 'TODO\|todo.*' $search_path
  __gs-print
  __gs-info "FIXMES:"
- grep -rn 'FIXME\|fixme.*' $search_path
+ full-text-search-project 'FIXME\|fixme.*' $search_path
+}
+
+full-text-search-project() {
+  grep --line-number --recursive --binary-file=without-match "$@"
 }
 
 main "$@"

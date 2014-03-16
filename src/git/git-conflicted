@@ -14,7 +14,7 @@ main() {
 }
 
 main-exec() {
-  filenames="$(grep -rl "<<<<<<< HEAD" *)"
+  filenames="$(grep --recursive --files-with-matches "<<<<<<< HEAD" *)"
   local number_of_files=$(echo $filenames | wc -w 2> /dev/null)
   if [[ $number_of_files -eq 0 ]]; then
     __gs-success "No conflicting files."
