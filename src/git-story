@@ -13,6 +13,7 @@ export GS_EXENSIONS_FOLDER=$GS_FOLDER/src/git
 ####################
 
 __git-story-init() {
+  set -e
   __gs-read-default-config
   for file in $GS_FOLDER/src/common/*; do
     source $file

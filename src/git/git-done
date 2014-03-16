@@ -36,7 +36,6 @@ main-exec() {
     git test
   fi
 
-
   if [[ $GS_PROMPT_ON_DONE  == true ]]; then
     __gs-done-checklist-print
     echo
@@ -47,10 +46,12 @@ main-exec() {
 
   if [[ $GS_LOCAL_MERGE == true ]]; then
     feature_branch="$(__gs-current-branch)"
-    __gs-print "Performing local merge to '$target_branch' from '$feature_branch'"
+    __gs-info "Performing local merge."
+    __gs-print "Merging target branch '$target_branch' with feature branch '$feature_branch'."
     git checkout $target_branch
     git merge $feature_branch
     git push $GS_DEFAULT_REMOTE $target_branch
+    git checkout $feature_branch
   fi
 }
 
