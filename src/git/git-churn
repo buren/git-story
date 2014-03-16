@@ -24,7 +24,9 @@ main() {
 main-exec() {
   # Written by Corey Haines
   # Scriptified by Gary Bernhardt
-  git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 ", " $2}'
+  git log --all -M -C --name-only --format='format:' "$@" | \
+    sort | grep -v '^$' | uniq -c | sort | \
+    awk 'BEGIN {print "count,file"} {print $1 ", " $2}'
 }
 
 main "$@"

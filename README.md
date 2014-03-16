@@ -53,6 +53,7 @@ Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
        delete-branch     Delete branch from remote and local
        goto              Switch from current branch to specified branch
        abort-merge       Aborts current merge
+       todos             List all TODOS and FIXMES
        history           List repository commits
        tag-release       Create a new tag
        redo-commit       Redo last commit
@@ -97,6 +98,7 @@ commit the changes you've made and merge changes with <target_branch>.
 * `git history` view repository commit history.
 * `git abort-merge` aborts current merge.
 * `git conflicted` list files with merge-conflicts.
+* `git todos` list all TODOS and FIXMES.
 
 ### git branching extensions
 * `git branch-status` shows current branch status.

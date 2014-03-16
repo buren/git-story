@@ -6,7 +6,7 @@ usage() {
   __gs-print "usage:
 \t git fuckit <message>
 Commit all files with optional <message> and push current branch.
-Default is to prompt for commit message"
+Default is to prompt for commit message."
 }
 
 main() {

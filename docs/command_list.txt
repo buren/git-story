@@ -9,6 +9,7 @@ git
    delete-branch     Delete branch from remote and local
    goto              Switch from current branch to specified branch
    abort-merge       Aborts current merge
+   todos             List all TODOS and FIXMES
    history           List repository commits
    tag-release       Create a new tag
    redo-commit       Redo last commit

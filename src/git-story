@@ -23,7 +23,7 @@ __git-story-init() {
 }
 
 __gs-print-command-list() {
-  __gs-print "$(cat $HOME/.git-story/docs/command_list.txt)"
+  echo "$(cat $HOME/.git-story/docs/command_list.txt)"
 }
 
 __gs-read-default-config() {
@@ -45,7 +45,8 @@ gs-help() {
 ###################
 
 git-story() {
-  if [[ -z $1 ]] || [[ "$1" == "--usage" || "$1" == "--list" ]]; then
+  if [[ -z $1 ]] || [[ "$1" == "--usage" ]] || [[ "$1" == "--list" ]] || \
+    [[ "$1" == "-h" ]] || [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
     gs-help
   elif [[ "$1" == "update" ]]; then
     git update-git-story "$2"

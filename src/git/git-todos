@@ -1,0 +1,26 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+usage() {
+  __gs-print "usage:
+\t git todos
+Lists all TODOS and FIXMES."
+}
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  local default_path='*'
+  local search_path="${1:-$default_path}"
+ __gs-info "TODOS:"
+ grep -rn 'TODO\|todo.*' $search_path
+ echo
+ __gs-info "FIXMES:"
+ grep -rn 'FIXME\|fixme.*' $search_path
+}
+
+main "$@"
