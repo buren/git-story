@@ -94,6 +94,7 @@ git done              # Commit changes, updates current and local branch.
    delete-branch     Delete branch from remote and local
    goto              Switch from current branch to specified branch
    abort-merge       Aborts current merge
+   todos             List all TODOS and FIXMES
    history           List repository commits
    tag-release       Create a new tag
    redo-commit       Redo last commit
@@ -159,6 +160,8 @@ git dev &lt;branch_name&gt; &lt;base_branch&gt;
 <code>git abort-merge</code> aborts current merge.</li>
 <li>
 <code>git conflicted</code> list files with merge-conflicts.</li>
+<li>
+<code>git todos</code> list all TODOS and FIXMES.</li>
 </ul><h3>
 <a name="git-branching-extensions" class="anchor" href="#git-branching-extensions"><span class="octicon octicon-link"></span></a>git branching extensions</h3>
 
@@ -260,12 +263,21 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch git-story tool
 <a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <ul>
-<li>Tested on Linux/OSX using both zsh and bash</li>
-<li>Wont work with sh</li>
-<li>The software is supplied “as is” and all use is at your own risk (see <a href="https://github.com/buren/git-story/blob/master/LICENSE">license</a>
-</li>
+<li>The software is supplied “as is” and all use is at your own risk (see <a href="https://github.com/buren/git-story/blob/master/LICENSE">license</a>)</li>
 <li>
 <code>git branch-status</code> requires Ruby 1.8.7 or greater</li>
+<li>Tested on Linux/OSX using both zsh, bash and cygwin*, doesn't work with sh.</li>
+<li>Almost everything works with cygwin except:
+
+<ul>
+<li><code>git trail</code></li>
+<li>
+<code>git neck</code> both neck and trail fails on <code>git -p column</code>
+</li>
+<li>
+<code>git browse</code> does nothing (<code>xdg-open</code>/<code>open</code> not available)</li>
+</ul>
+</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
