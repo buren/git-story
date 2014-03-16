@@ -98,7 +98,6 @@ git done              # Commit changes, updates current and local branch.
    tag-release       Create a new tag
    redo-commit       Redo last commit
    stat              Print statistics of git repository
-   fetch-branches    Fetches all branches from remote
    browse            Open current git repository on Github
    test              Runs test command defined in .gitstoryrc
    package           Runs package command defined in .gitstoryrc
@@ -147,7 +146,7 @@ git dev &lt;branch_name&gt; &lt;base_branch&gt;
 <li>
 <code>git addcom &lt;commit_message&gt;</code> add all files and commit.</li>
 <li>
-<code>git fuckit</code> commit all files with optional  and push current branch. Default message is 'Update'.</li>
+<code>git fuckit</code> commit all files with optional  and push current branch. Default is to prompt for commit message.</li>
 <li>
 <code>git redo-commit</code> Redo last commit.</li>
 <li>
@@ -174,8 +173,6 @@ git dev &lt;branch_name&gt; &lt;base_branch&gt;
 <code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
 <code>git push-branch</code> push the current branch to remote.</li>
-<li>
-<code>git fetch-branches</code> fetch all remote branches.</li>
 <li>
 <code>git trail</code> shows the last common commit with current branch.</li>
 <li>
