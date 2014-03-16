@@ -6,7 +6,7 @@ usage() {
   __gs-print "usage:
 \t git fuckit <message>
 Commit all files with optional <message> and push current branch.
-Default message is 'Update'."
+Default is to prompt for commit message"
 }
 
 main() {
@@ -16,7 +16,7 @@ main() {
 
 main-exec() {
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
-    git addcom "${1:-Update}"
+    git addcom "$1"
   fi
   git push $GS_DEFAULT_REMOTE $(__gs-current-branch)
 }
