@@ -40,52 +40,18 @@ you're done you push it and create a pull request.
     git done              # Commit changes, updates current and local branch.
 Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
-## Command list
-
-    git
-       dev               Start developing a new feature
-       done              Commit changes and sync with remote
-       addcom            Adds all files and commit them
-       fuckit            Commit all files and push current branch
-       pull-branch       Pull current branch's remote changes
-       push-branch       Push the current branch to remote
-       create-branch     Create and checkout a new branch on remote and local
-       delete-branch     Delete branch from remote and local
-       goto              Switch from current branch to specified branch
-       abort-merge       Aborts current merge
-       todos             List all TODOS and FIXMES
-       history           List repository commits
-       tag-release       Create a new tag
-       redo-commit       Redo last commit
-       stat              Print statistics of git repository
-       browse            Open current git repository on Github
-       test              Runs test command defined in .gitstoryrc
-       package           Runs package command defined in .gitstoryrc
-       release           Runs release command defined in .gitstoryrc
-       install-project   Runs install command defined in .gitstoryrc
-       trail             Show the last common commit with current branch
-       neck              Show commits until first branching point
-       branch-status     Show current branch status
-       churn             Count number of changes for each file
-       conflicted        List files with merge-conflicts
-       divergence        Show difference between current branch and remote branch
-       gs                List git-story extensions
-       gs-extend         Add new git-story extension to git
-       gs-update         Update git-story to its latest version
-
-
 ## Documentation
 
 ### GitHub Flow extensions
 
 * Start developing a feature
 
-        git dev <branch_name>
-        git dev <branch_name> <base_branch>
+      git dev <branch_name>
+      git dev <branch_name> <base_branch>
 this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 * Commit and sync with repository
 
-        git done <target_branch>
+      git done <target_branch>
 commit the changes you've made and merge changes with <target_branch>.
 `<target_branch>` is optional and the default is `master`.
 
@@ -120,15 +86,15 @@ commit the changes you've made and merge changes with <target_branch>.
 ### Git statistics
 * Show statistics for repository
 
-        git stat <type>
-                contributions   # shows statistics for all authors or specified author (alias: contrib)
-                commits         # shows number of commits for each author
-                weekdays        # prints statistics for number of commits per weekday
-                hour            # prints statistics for number of commits per hour
-                files           # prints number of files and lines
-                diff            # print stat of uncommitted changes
-                log             # print log with stat
-                modified        # print stat of most modified files
+      git stat <type>
+               contributions # shows statistics for all authors or specified author (alias: contrib)
+               commits       # shows number of commits for each author
+               weekdays      # prints statistics for number of commits per weekday
+               hour          # prints statistics for number of commits per hour
+               files         # prints number of files and lines
+               diff          # print stat of uncommitted changes
+               log           # print log with stat
+               modifie       # print stat of most modified files
 show statistics for repository.
 * `git churn` count number of changes for each file.
 
@@ -162,7 +128,7 @@ Available options and their default value:
     GS_PRODUCTION_BRANCH='heads/master' # Integration branch for production
     GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
     GS_EDGE_BRANCH=''                   # Integration branch for edge
-    GS_GIT_STORY_EXT_BRANCH='master'    # Target branch git-story tool
+    GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 Default [config](https://github.com/buren/git-story/blob/master/config).
 
 ## Notes
@@ -173,7 +139,7 @@ Default [config](https://github.com/buren/git-story/blob/master/config).
   * `git trail`
   * `git neck` both neck and trail fails on `git -p column`
   * `git browse` does nothing (`xdg-open`/`open` not available)
-* Fork the repository and update the URL defined in [setup/install](https://github.com/buren/git-story/blob/master/setup/install#L2) to install and use your own version of _git-story_ 
+* Fork the repository and update the URL defined in [setup/install](https://github.com/buren/git-story/blob/master/setup/install#L2) to install and use your own version of _git-story_
 
 ## License
 _git-story_ is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
