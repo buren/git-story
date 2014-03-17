@@ -2,12 +2,9 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git release
-Runs GS_RELEASE command, if specified.
-"
-}
+USAGE="
+
+Runs GS_RELEASE command, if specified."
 
 main() {
   __gs-check-usage-param $1

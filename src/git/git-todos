@@ -2,11 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git todos
+USAGE="<path>
+
+optional:
+  path, default: *
+
 Lists all TODOS and FIXMES."
-}
 
 main() {
   __gs-check-usage-param $1

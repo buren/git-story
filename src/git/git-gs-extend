@@ -2,16 +2,17 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git extend-with
-Creates a new file with specified name in $GS_EXENSIONS_FOLDER
+USAGE="<extension-name>
+
+required:
+  extension-name
 
 example:
-\t git gs-extend awesome-extension
+  git gs-extend awesome-extension
 will make it possible to run:
-\t git awesome-extension"
-}
+  git awesome-extension
+
+Creates a new file with specified name in $GS_EXENSIONS_FOLDER."
 
 main() {
   __gs-check-usage-param $1
@@ -24,8 +25,7 @@ main-exec() {
 
   full_script_path="$GS_EXENSIONS_FOLDER/git-$new_cmd_name"
   command_template=$(cat $GS_FOLDER/docs/new-extension-template)
-  replace_cmd_name="s/NEWCOMMANDNAME/$new_cmd_name/g"
-  echo "$command_template" | sed $replace_cmd_name > $full_script_path
+  echo "$command_template" > $full_script_path
   __gs-print "Copied new extension template to $full_script_path"
   __gs-print "Sudo permissions to make script executable."
   sudo chmod +x $full_script_path && \

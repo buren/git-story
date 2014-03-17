@@ -2,11 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git delete-branch <branch_name>
-Deletes branch <branch_name> from local and remote."
-}
+USAGE="<branch-name>
+
+required:
+  branch-name
+
+Deletes branch branch-name from local and remote."
 
 main() {
   __gs-check-usage-param $1

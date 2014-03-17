@@ -6,23 +6,22 @@ __git-story-init
 #  stats  #
 ###########
 
-usage() {
-  __gs-print "usage:
-\t git stat <type>
-\t          contributions <author> # shows statistics for all authors or specified author (alias: contrib)
-\t          commits                # shows number of commits for each author
-\t          weekdays               # prints statistics for number of commits per weekday
-\t          hour                   # prints statistics for number of commits per hour
-\t          files                  # prints number of files and lines
-\t          diff                   # Print stat of uncomitted changes
-\t          log                    # Print log with stat
-\t          modified               # Print stat of most modified files
-prints statistics of given type.
+USAGE="<type>
 
-example:
-\t git stat contributions
-Default: contributions"
-}
+types:
+  contrib <name> # shows statistics for all or specified author (alias: contributions)
+  commits        # shows number of commits for each author
+  weekdays       # prints statistics for number of commits per weekday
+  hour           # prints statistics for number of commits per hour
+  files          # prints number of files and lines
+  diff           # Print stat of uncomitted changes
+  log            # Print log with stat
+  modified       # Print stat of most modified files
+
+default:
+  git stat contrib
+
+prints statistics of given type."
 
 main() {
   __gs-check-usage-param $1
