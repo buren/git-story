@@ -4,14 +4,13 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git trail
-Show last common commit with current branch.
-Args:
-\t -r flag for remotes.
-\t -t flag for tags."
-}
+USAGE="[-r|-t]
+
+optional:
+  -r, for remotes
+  -t, for tags (default)
+
+Show last common commit with current branch."
 
 main() {
   __gs-check-usage-param $1

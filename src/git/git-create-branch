@@ -2,12 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git create-branch <branch_name>
-Create a new branch  <branch_name> and push it to remote.
-Command will exit if <branch_name> already exists at remote."
-}
+USAGE="<branch-name>
+
+required:
+  branch-name
+
+Create a new branch and push it to remote."
 
 main() {
   __gs-check-usage-param $1

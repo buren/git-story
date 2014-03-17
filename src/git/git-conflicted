@@ -2,11 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git conflicted
-Lists all filenames that has merge conflicts."
-}
+USAGE="<path>
+
+optional:
+  path, default: *
+
+Lists all filenames in path that has merge conflicts."
 
 main() {
   __gs-check-usage-param $1

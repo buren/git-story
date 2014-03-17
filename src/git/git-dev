@@ -6,13 +6,15 @@ __git-story-init
 #  dev  #
 #########
 
-usage() {
-  __gs-print "usage:
-\t git dev <branch_name> <base_branch>
-<base_branch> is optional and will default to master
+USAGE="<branch-name> <base-branch>
 
-Guarantees clean workspace from remote $GS_GIT_STORY_BRANCH (or specified branch)."
-}
+required:
+  branch-name
+
+optional:
+  base-branch, default: $GS_GIT_STORY_BRANCH
+
+Creates a new branch branch-name from newest version of base-branch."
 
 main() {
   __gs-check-usage-param $1

@@ -6,7 +6,7 @@
 
 __gs-check-usage-param() {
   case "$1" in
-    "--usage" | "--help" | "-help" | "-h" )
+    "--usage" | "-usage" | "--help" | "-help" | "-h" )
       usage
       die
       ;;

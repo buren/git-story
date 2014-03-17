@@ -2,19 +2,21 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git churn
-Show churn for whole repo.
+USAGE="[options] [<path>]
+
+optional:
+  [options], all standard arguments to 'git log' are OK.
+
+Show churn for whole repo:
+  git churn
 
 Show churn for specific directories:
-\t git churn app lib
+  git churn app lib
 
 Show churn for a time range:
-\t git churn --since='1 month ago'
+  git churn --since='1 month ago'
 
-Any standard arguments to 'git log' are OK."
-}
+List all files and how many times they've been modified, sorted by number of modifications."
 
 main() {
   __gs-check-usage-param $1

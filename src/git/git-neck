@@ -4,11 +4,13 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git neck [-r] [COMMIT]
-show commits until first branching point"
-}
+USAGE="[-r] [commit-sha]
+
+optional:
+  -r, for remote
+  commit-sha
+
+show commits until first branching point."
 
 main() {
   __gs-check-usage-param $1

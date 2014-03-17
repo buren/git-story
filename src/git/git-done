@@ -6,15 +6,12 @@ __git-story-init
 #  done  #
 ##########
 
-usage() {
-  __gs-print "usage:
-\t git done <target_branch>
-will fetch and merge <target_branch>.
-<target_branch> is optional and defaults to $GS_GIT_STORY_BRANCH.
+USAGE="<target-branch>
 
-note:"
-  __gs-print "\t Can cause merge conflicts"
-}
+optional:
+  target-branch, default: $GS_GIT_STORY_BRANCH
+
+commit the changes you've made and merge changes with target-branch."
 
 main() {
   __gs-check-usage-param $1
@@ -45,13 +42,7 @@ main-exec() {
   gs-sync-local-with-branch "$target_branch"
 
   if [[ $GS_LOCAL_MERGE == true ]]; then
-    feature_branch="$(__gs-current-branch)"
-    __gs-info "Performing local merge."
-    __gs-print "Merging target branch '$target_branch' with feature branch '$feature_branch'."
-    git checkout $target_branch
-    git merge $feature_branch
-    git push $GS_DEFAULT_REMOTE $target_branch
-    git checkout $feature_branch
+    ga-perform-local-merge $target_branch
   fi
 }
 
@@ -61,6 +52,16 @@ gs-sync-local-with-branch() {
   __gs-sync-branch $current $current
   __gs-sync-branch $target $current
   __gs-print "Pushed $current to repository"
+}
+
+ga-perform-local-merge()  {
+  local feature_branch="$(__gs-current-branch)"
+  __gs-info "Performing local merge."
+  __gs-print "Merging target branch '$target_branch' with feature branch '$feature_branch'."
+  git checkout $target_branch
+  git merge $feature_branch
+  git push $GS_DEFAULT_REMOTE $target_branch
+  git checkout $feature_branch
 }
 
 main "$@"

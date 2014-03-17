@@ -2,12 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git fuckit <message>
-Commit all files with optional <message> and push current branch.
-Default is to prompt for commit message."
-}
+USAGE="<commit-msg>
+
+optional:
+  commit-msg, default: open default git editor
+
+Commit all files and push current branch."
 
 main() {
   __gs-check-usage-param $1

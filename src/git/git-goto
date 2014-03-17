@@ -2,11 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git goto <branch_name>
-change the current workspace to <branch_name>"
-}
+USAGE="<branch-name>
+
+required:
+  branch-name
+
+change the current workspace to branch-name."
 
 main() {
   __gs-check-usage-param $1

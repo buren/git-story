@@ -2,11 +2,9 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git NEWCOMMANDNAME
+USAGE="<args>
+
 Description goes here..."
-}
 
 main() {
   __gs-check-usage-param $1

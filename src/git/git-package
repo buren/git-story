@@ -2,11 +2,9 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t gs package
+USAGE="
+
 Runs GS_PACKAGE command, if specified."
-}
 
 main() {
   __gs-check-usage-param $1

@@ -2,12 +2,13 @@
 source $GS_INIT_PATH
 __git-story-init
 
-usage() {
-  __gs-print "usage:
-\t git addcom <commit_msg>
+USAGE="<commit-msg>
+
+optional:
+  commit-msg, default: open default git editor
+
 Adds all in project files and commits them.
-<commit_msg> is optional."
-}
+Will open default git-editor if commit-msg is not provided."
 
 main() {
   __gs-check-usage-param $1
