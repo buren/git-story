@@ -1,10 +1,7 @@
 # git-story (beta)
 
-#### Simplified git workflow.
+Various extensions to git, documented below.
 
-_git-story_ aims to simplify the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) branching model, so that any VCS novice can use it within 5 minutes.
-
-It also includes various extensions to git, documented below.
 
 * [Installation](#install-git-story)
 * [Getting Started](#getting-started)
@@ -18,9 +15,9 @@ It also includes various extensions to git, documented below.
 ## Install git-story
 
     curl https://raw2.github.com/buren/git-story/master/setup/install | bash
-The above command will install and inject an import of the _git-story_ script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
+The above command will install and inject an import of the git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
 
-Reload your shell to initialize _git-story_ extensions.
+Reload your shell to initialize git-story extensions.
 
 ## Getting started
 
@@ -41,6 +38,10 @@ you're done you push it and create a pull request.
 Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
 ## Documentation
+
+Print command usage:
+
+    git <git-story-extension> --usage
 
 ### GitHub Flow extensions
 
@@ -86,21 +87,24 @@ commit the changes you've made and merge changes with <target_branch>.
 * Show statistics for repository
 
       git stat <type>
-               contributions # shows statistics for all authors or specified author (alias: contrib)
-               commits       # shows number of commits for each author
-               weekdays      # prints statistics for number of commits per weekday
-               hour          # prints statistics for number of commits per hour
-               files         # prints number of files and lines
-               diff          # print stat of uncommitted changes
-               log           # print log with stat
-               modifie       # print stat of most modified files
-show statistics for repository.
+
+      types:
+        contrib <name> # shows statistics for all or specified author (alias: contributions)
+        commits        # shows number of commits for each author
+        weekdays       # prints statistics for number of commits per weekday
+        hour           # prints statistics for number of commits per hour
+        files          # prints number of files and lines
+        diff           # Print stat of uncomitted changes
+        log            # Print log with stat
+        modified       # Print stat of most modified files
+
+  prints statistics of given type.
 * `git churn` count number of changes for each file.
 
 ### git-story interactions
-* `git gs-update` gets the latest version of _git-story_.
-* `git gs-extend <extension-name>` add new _git-story_ extension to git.
-* `git gs` list _git-story_ extensions.
+* `git gs-update` gets the latest version of git-story.
+* `git gs-extend <extension-name>` add new git-story extension to git.
+* `git gs` list git-story extensions.
 
 
 ## Configuration
@@ -137,8 +141,8 @@ Default [config](https://github.com/buren/git-story/blob/master/config).
 * Almost everything works with cygwin except:
   * `git trail`
   * `git neck` both neck and trail fails on `git -p column`
-  * `git browse` does nothing (`xdg-open`/`open` not available)
-* Fork the repository and update the URL defined in [setup/install](https://github.com/buren/git-story/blob/master/setup/install#L2) to install and use your own version of _git-story_
+* Fork the repository and update the URL defined in [setup/install](https://github.com/buren/git-story/blob/master/setup/install#L2) to install and use your own version of git-story
+* Uninstall git-story: `rm -rf ~/.git-story`
 
 ## License
-_git-story_ is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
+git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).
