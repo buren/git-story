@@ -31,12 +31,7 @@
           <h1>
 <a name="git-story-beta" class="anchor" href="#git-story-beta"><span class="octicon octicon-link"></span></a>git-story (beta)</h1>
 
-<h4>
-<a name="simplified-git-workflow" class="anchor" href="#simplified-git-workflow"><span class="octicon octicon-link"></span></a>Simplified git workflow.</h4>
-
-<p><em>git-story</em> aims to simplify the <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub Flow</a> branching model, so that any VCS novice can use it within 5 minutes.</p>
-
-<p>It also includes various extensions to git, documented below.</p>
+<p>Various extensions to git, documented below.</p>
 
 <ul>
 <li><a href="#install-git-story">Installation</a></li>
@@ -53,14 +48,14 @@
 <pre><code>curl https://raw2.github.com/buren/git-story/master/setup/install | bash
 </code></pre>
 
-<p>The above command will install and inject an import of the <em>git-story</em> script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).</p>
+<p>The above command will install and inject an import of the git-story script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).</p>
 
-<p>Reload your shell to initialize <em>git-story</em> extensions.</p>
+<p>Reload your shell to initialize git-story extensions.</p>
 
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-<p>The model:</p>
+<p>Branch model:</p>
 
 <ol>
 <li>Start developing a feature, and name it <code>git dev &lt;name&gt;</code>
@@ -69,12 +64,13 @@
 </li>
 <li>Create a pull request</li>
 </ol><p>The principle is that you develop each new feature in its own branch and when
-you're done you push it and create a pull request.</p>
+you're done you push it and create a pull request. See <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> branch model.<br>
+Note that <code>git dev</code> and <code>git done</code> are flexible. They both take an optional argument <em>target-branch</em>, which the current/new branch will sync with.</p>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<pre><code>git dev branch_name   # Sets up clean workspace based on remote master.
+<pre><code>git dev branch-name   # Sets up clean workspace based on remote master.
 git done              # Commit changes, updates current and local branch.
 </code></pre>
 
@@ -83,53 +79,55 @@ git done              # Commit changes, updates current and local branch.
 <h2>
 <a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
+<p>Print command usage:</p>
+
+<pre><code>git &lt;git-story-extension&gt; --usage
+</code></pre>
+
 <h3>
-<a name="github-flow-extensions" class="anchor" href="#github-flow-extensions"><span class="octicon octicon-link"></span></a>GitHub Flow extensions</h3>
+<a name="branching-extensions" class="anchor" href="#branching-extensions"><span class="octicon octicon-link"></span></a>Branching extensions</h3>
 
 <ul>
 <li>
 <p>Start developing a feature</p>
 
-<pre><code>git dev &lt;branch_name&gt; &lt;base_branch&gt;
+<pre><code>git dev &lt;branch-name&gt; &lt;target-branch&gt;
 </code></pre>
 
-<p>this will create a new branch  based of master or specified . If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.</p>
+<p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.<br>
+Executes:</p>
+
+<ol>
+<li>Checkout <em>target-branch</em>
+</li>
+<li>Pull <em>target-branch</em>
+</li>
+<li>Create new branch <em>branch-name</em>
+</li>
+<li>Push <em>branch-name</em>
+</li>
+</ol>
 </li>
 <li>
 <p>Commit and sync with repository</p>
 
-<pre><code>git done &lt;target_branch&gt;
+<pre><code>git done &lt;target-branch&gt;
 </code></pre>
 
-<p>commit the changes you've made and merge changes with .
-<code>&lt;target_branch&gt;</code> is optional and the default is <code>master</code>.</p>
+<p>commit the changes you've made and merge changes with <em>target-branch</em>.
+<em>target-branch</em> is optional and the default is <em>target-branch</em>.<br>
+Executes:</p>
+
+<ol>
+<li>Prompt commit message if any uncommitted changes</li>
+<li>Pull current branch</li>
+<li>Pull <em>target-branch</em>
 </li>
-</ul><h3>
-<a name="git-convenience-extensions" class="anchor" href="#git-convenience-extensions"><span class="octicon octicon-link"></span></a>git convenience extensions</h3>
-
-<ul>
-<li>
-<code>git addcom &lt;commit_message&gt;</code> add all files and commit.</li>
-<li>
-<code>git fuckit</code> commit all files with optional  and push current branch. Default is to prompt for commit message.</li>
-<li>
-<code>git redo-commit</code> Redo last commit.</li>
-<li>
-<code>git tag-release</code> Create a new tagged release.</li>
-<li>
-<code>git goto &lt;branch_name&gt;</code> switches to branch  if the working directory is clean.</li>
-<li>
-<code>git history</code> view repository commit history.</li>
-<li>
-<code>git abort-merge</code> aborts current merge.</li>
-<li>
-<code>git conflicted</code> list files with merge-conflicts.</li>
-<li>
-<code>git todos</code> list all TODOS and FIXMES.</li>
-</ul><h3>
-<a name="git-branching-extensions" class="anchor" href="#git-branching-extensions"><span class="octicon octicon-link"></span></a>git branching extensions</h3>
-
-<ul>
+<li>Push current branch</li>
+<li>Perform local merge with <em>target-branch</em> if configured
+will exit and print conflicted files if any merge conflicts are found.</li>
+</ol>
+</li>
 <li>
 <code>git branch-status</code> shows current branch status.</li>
 <li>
@@ -137,59 +135,113 @@ git done              # Commit changes, updates current and local branch.
 <li>
 <code>git create-branch</code> create and checkout a new branch and push to remote.</li>
 <li>
+<code>git push-branch</code> push the current branch to remote.</li>
+<li>
 <code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
-<code>git push-branch</code> push the current branch to remote.</li>
+<code>git delete-merged</code> delete all merged branches locally and at remote.</li>
+</ul><h3>
+<a name="convenience-extensions" class="anchor" href="#convenience-extensions"><span class="octicon octicon-link"></span></a>Convenience extensions</h3>
+
+<ul>
+<li>
+<code>git addcom</code> add all files and commit.</li>
+<li>
+<code>git fuckit</code> commit all files and push current branch. Default is to prompt for commit message.</li>
+<li>
+<code>git redo-commit</code> redo last commit.</li>
+<li>
+<code>git goto &lt;branch-name&gt;</code> switches to branch <em>branch-name</em> if the working directory is clean.</li>
+<li>
+<code>git abort-merge</code> aborts current merge.</li>
+<li>
+<code>git obliterate</code> remove file from local repository and its entire history.</li>
+<li>
+<code>git zip-project</code> create zip-file of project.</li>
+<li>
+<code>git ignore</code> add and list patterns to local and global gitignore.</li>
+<li>
+<code>git conflicted</code> list files with merge-conflicts.</li>
+<li>
+<code>git todos</code> list all TODOS and FIXMES.</li>
+<li>
+<code>git tag-release</code> create a new tagged release.</li>
+<li>
+<code>git rename-tag</code> rename an existing release.</li>
+</ul><h3>
+<a name="log-extensions" class="anchor" href="#log-extensions"><span class="octicon octicon-link"></span></a>Log extensions</h3>
+
+<ul>
+<li>
+<code>git history</code> view repository commit history.</li>
 <li>
 <code>git trail</code> shows the last common commit with current branch.</li>
 <li>
 <code>git neck</code> show commits until first branching point.</li>
 <li>
 <code>git divergence</code> show the difference between current branch and the same branch at remote.</li>
+<li>
+<code>git local-commits</code> show local commits that haven't been pushed to remote.</li>
+<li>
+<code>git commits-since</code> show commits since given time.</li>
 </ul><h3>
-<a name="project-integration" class="anchor" href="#project-integration"><span class="octicon octicon-link"></span></a>Project integration</h3>
+<a name="project-integration-extensions" class="anchor" href="#project-integration-extensions"><span class="octicon octicon-link"></span></a>Project integration extensions</h3>
 
 <ul>
 <li>
 <code>git browse</code>  opens the repository on GitHub.</li>
 <li>
-<code>git package</code> Package the project. Runs <code>GS_PACKAGE</code>.</li>
+<code>git package</code> package project, runs <code>GS_PACKAGE</code>.</li>
 <li>
-<code>git release</code> Package the project. Runs <code>GS_RELEASE</code>.</li>
+<code>git release</code> package project, runs <code>GS_RELEASE</code>.</li>
 <li>
-<code>git install-project</code> Install the project. Runs <code>GS_INSTALL</code>.</li>
+<code>git install-project</code> install project, runs <code>GS_INSTALL</code>.</li>
 <li>
-<code>git test</code>    Package the project. Runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
+<code>git test</code>    package project, runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
 </ul><h3>
-<a name="git-statistics" class="anchor" href="#git-statistics"><span class="octicon octicon-link"></span></a>Git statistics</h3>
+<a name="statistics-extensions" class="anchor" href="#statistics-extensions"><span class="octicon octicon-link"></span></a>Statistics extensions</h3>
 
 <ul>
 <li>
 <p>Show statistics for repository</p>
 
-<p>git stat 
-           contributions # shows statistics for all authors or specified author (alias: contrib)
-           commits       # shows number of commits for each author
-           weekdays      # prints statistics for number of commits per weekday
-           hour          # prints statistics for number of commits per hour
-           files         # prints number of files and lines
-           diff          # print stat of uncommitted changes
-           log           # print log with stat
-           modifie       # print stat of most modified files
-show statistics for repository.</p>
+<pre><code>git stat &lt;type&gt;
+
+types:
+  contrib &lt;name&gt; # shows statistics for all or specified author (alias: contributions)
+  commits        # shows number of commits for each author
+  weekdays       # prints statistics for number of commits per weekday
+  hour           # prints statistics for number of commits per hour
+  files          # prints number of files and lines
+  diff           # Print stat of uncommitted changes
+  log            # Print log with stat
+  modified       # Print stat of most modified files
+</code></pre>
+
+<p>prints statistics of given type.</p>
 </li>
 <li>
 <code>git churn</code> count number of changes for each file.</li>
+<li>
+<code>git effort</code> like churn, but prettier and with active day count.</li>
+<li>
+<code>git summary</code> show summary for current project.</li>
 </ul><h3>
 <a name="git-story-interactions" class="anchor" href="#git-story-interactions"><span class="octicon octicon-link"></span></a>git-story interactions</h3>
 
 <ul>
 <li>
-<code>git gs-update</code> gets the latest version of <em>git-story</em>.</li>
+<code>git gs-update</code> gets the latest version of git-story.</li>
 <li>
-<code>git gs-extend &lt;extension-name&gt;</code> add new <em>git-story</em> extension to git.</li>
+<code>git gs-extend &lt;extension-name&gt;</code> add new git-story extension to git.</li>
 <li>
-<code>git gs</code> list <em>git-story</em> extensions.</li>
+<code>git gs</code> list git-story extensions.</li>
+</ul><h3>
+<a name="misc" class="anchor" href="#misc"><span class="octicon octicon-link"></span></a>misc</h3>
+
+<ul>
+<li>
+<code>git repl</code> git read-eval-print-loop (REPL).</li>
 </ul><h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
@@ -236,16 +288,22 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 <li>
 <code>git neck</code> both neck and trail fails on <code>git -p column</code>
 </li>
-<li>
-<code>git browse</code> does nothing (<code>xdg-open</code>/<code>open</code> not available)</li>
 </ul>
 </li>
-<li>Fork the repository and update the URL defined in <a href="https://github.com/buren/git-story/blob/master/setup/install#L2">setup/install</a> to install and use your own version of <em>git-story</em>
+<li>Fork the repository and update the URL defined in <a href="https://github.com/buren/git-story/blob/master/setup/install#L2">setup/install</a> to install and use your own version of git-story</li>
+<li>Thanks:
+
+<ul>
+<li><a href="https://github.com/visionmedia/git-extras">visionmedia/git-extras</a></li>
+<li><a href="https://github.com/cypher/dotfiles">cypher/dotfiles</a></li>
+</ul>
+</li>
+<li>Uninstall git-story: <code>rm -rf ~/.git-story</code>
 </li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p><em>git-story</em> is released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
+<p>git-story is released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
         </section>
 
         <aside id="sidebar">
