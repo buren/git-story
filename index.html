@@ -1,34 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <title>git-story by buren</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>git-story</h1>
-        <h2>Simplified git workflow.</h2>
-        <a href="https://github.com/buren/git-story" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/buren/git-story">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/buren/git-story/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/buren/git-story/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>git-story</h1>
+          <p>Simplified git workflow.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/buren">buren</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
 <a name="git-story-beta" class="anchor" href="#git-story-beta"><span class="octicon octicon-link"></span></a>git-story (beta)</h1>
 
 <p>Various extensions to git, documented below.</p>
@@ -58,21 +68,21 @@
 <p>Branch model:</p>
 
 <ol>
-<li>Start developing a feature, and name it <code>git dev &lt;name&gt;</code>
+<li>Start developing a feature, and name it <code>git feature &lt;name&gt;</code>
 </li>
-<li>Save local changes and sync with remote <code>git done</code>
+<li>Save local changes and sync with remote <code>git finish</code>
 </li>
 <li>Create a pull request</li>
 </ol><p>The principle is that you develop each new feature in its own branch and when
 you're done you push it and create a pull request. See <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> branch model.<br>
-Note that <code>git dev</code> and <code>git done</code> are flexible. They both take an optional argument <em>target-branch</em>, which the current/new branch will sync with.</p>
+Note that <code>git feature</code> and <code>git finish</code> are flexible. They both take an optional argument <em>target-branch</em>, which the current/new branch will sync with.</p>
 
 <h2>
 <a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<pre><code>git dev branch-name   # Sets up clean workspace based on remote master.
-git done              # Commit changes, updates current and local branch.
-</code></pre>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature branch-name   <span class="c"># Sets up clean workspace based on remote master.</span>
+<span class="nv">$ </span>git finish              <span class="c"># Commit changes, updates current and local branch.</span>
+</pre></div>
 
 <p>Output <a href="http://showterm.io/f25fff6593f82dcdab7d1">example</a> (video).</p>
 
@@ -81,18 +91,16 @@ git done              # Commit changes, updates current and local branch.
 
 <p>Print command usage:</p>
 
-<pre><code>git &lt;git-story-extension&gt; --usage
-</code></pre>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git &lt;git-story-extension&gt; --usage
+</pre></div>
 
 <h3>
 <a name="branching-extensions" class="anchor" href="#branching-extensions"><span class="octicon octicon-link"></span></a>Branching extensions</h3>
 
 <ul>
-<li>
-<p>Start developing a feature</p>
-
-<pre><code>git dev &lt;branch-name&gt; &lt;target-branch&gt;
-</code></pre>
+<li>Start developing a feature</li>
+</ul><div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature &lt;branch-name&gt; &lt;target-branch&gt;
+</pre></div>
 
 <p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.<br>
 Executes:</p>
@@ -105,14 +113,13 @@ Executes:</p>
 <li>Create new branch <em>branch-name</em>
 </li>
 <li>Push <em>branch-name</em>
-</li>
-</ol>
-</li>
-<li>
-<p>Commit and sync with repository</p>
 
-<pre><code>git done &lt;target-branch&gt;
-</code></pre>
+<ul>
+<li>Commit and sync with repository</li>
+</ul>
+</li>
+</ol><div class="highlight highlight-bash"><pre><span class="nv">$ </span>git finish &lt;target-branch&gt;
+</pre></div>
 
 <p>commit the changes you've made and merge changes with <em>target-branch</em>.
 <em>target-branch</em> is optional and the default is <em>target-branch</em>.<br>
@@ -125,9 +132,9 @@ Executes:</p>
 </li>
 <li>Push current branch</li>
 <li>Perform local merge with <em>target-branch</em> if configured
-will exit and print conflicted files if any merge conflicts are found.</li>
-</ol>
-</li>
+will exit and print conflicted files if any merge conflicts are found.
+
+<ul>
 <li>
 <code>git branch-status</code> shows current branch status.</li>
 <li>
@@ -140,7 +147,9 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
 <code>git delete-merged</code> delete all merged branches locally and at remote.</li>
-</ul><h3>
+</ul>
+</li>
+</ol><h3>
 <a name="convenience-extensions" class="anchor" href="#convenience-extensions"><span class="octicon octicon-link"></span></a>Convenience extensions</h3>
 
 <ul>
@@ -252,12 +261,12 @@ types:
 <p>Available options and their default value:</p>
 
 <pre><code>GS_DEFAULT_REMOTE='origin'          # Default remote for git story
-GS_GIT_STORY_BRANCH='master'        # Target branch for 'dev' &amp; 'done'
-GS_LOCAL_MERGE=false                # Perform local merge on 'done'
-GS_PRINT_CHECKLIST=false            # Print checklist before 'done'
-GS_PROMPT_ON_DONE=false             # Prompt user before 'done'
-GS_TEST_ON_DONE=true                # Run test dcommand before 'done'
-GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'done'
+GS_GIT_STORY_BRANCH='master'        # Target branch for 'feature' &amp; 'finish'
+GS_LOCAL_MERGE=false                # Perform local merge on 'finish'
+GS_PRINT_CHECKLIST=false            # Print checklist before 'finish'
+GS_PROMPT_ON_DONE=false             # Prompt user before 'finish'
+GS_TEST_ON_DONE=true                # Run test command before 'finish'
+GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
 GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
 GS_PACKAGE=''                       # Shell command for 'package'
 GS_RELEASE=''                       # Shell command for 'release
@@ -304,26 +313,11 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>git-story is released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
-        </section>
+      </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/buren/git-story/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/buren/git-story/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/buren/git-story"></a> is maintained by <a href="https://github.com/buren">buren</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
     </div>
-
-            <script type="text/javascript">
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
