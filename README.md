@@ -22,14 +22,15 @@ Reload your shell to initialize git-story extensions.
 ## Getting started
 
 
-The model:
+Branch model:
 
 1. Start developing a feature, and name it `git dev <name>`
 2. Save local changes and sync with remote `git done`
 3. Create a pull request
 
 The principle is that you develop each new feature in its own branch and when
-you're done you push it and create a pull request.
+you're done you push it and create a pull request. See [GitHub flow](http://scottchacon.com/2011/08/31/github-flow.html) branch model.
+Note that `git dev` and `git done` are flexible. They both take an optional argument _target-branch_, which the current/new branch will sync with.
 
 ## Example
 
@@ -46,13 +47,25 @@ Print command usage:
 ### Branching extensions
 * Start developing a feature
 
-        git dev <branch-name> <base-branch>
-this will create a new branch _branch-name_ based of master or specified _base-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
+        git dev <branch-name> <target-branch>
+this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
+Performs:
+  1. Checkout _target-branch_
+  2. Pull _target-branch_
+  3. Create new branch _branch-name_
+  4. Push _branch-name_
 * Commit and sync with repository
 
         git done <target-branch>
 commit the changes you've made and merge changes with _target-branch_.
 _target-branch_ is optional and the default is _target-branch_.
+Performs:
+  1. Prompt commit message if any uncommitted changes
+  2. Pull current branch
+  3. Pull _target-branch_
+  4. Push current branch
+  5. Perform local merge with _target-branch_ if configured
+will exit and print conflicted files if any merge conflicts are found.
 * `git branch-status` shows current branch status.
 * `git pull-branch` pull current, or specified, branch's remote changes.
 * `git create-branch` create and checkout a new branch and push to remote.

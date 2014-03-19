@@ -6,15 +6,15 @@ __git-story-init
 #  dev  #
 #########
 
-USAGE="<branch-name> <base-branch>
+USAGE="<branch-name> <target-branch>
 
 required:
   branch-name
 
 optional:
-  base-branch, default: $GS_GIT_STORY_BRANCH
+  target-branch, default: $GS_GIT_STORY_BRANCH
 
-Creates a new branch branch-name from newest version of base-branch."
+Creates a new branch branch-name from newest version of target-branch."
 
 main() {
   __gs-check-usage-param $1
