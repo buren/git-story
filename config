@@ -2,7 +2,7 @@
 
 # General
 export GS_DEFAULT_REMOTE='origin'
-export GS_GIT_STORY_BRANCH='master' # Default target for 'dev' & 'done' commands
+export GS_GIT_STORY_BRANCH='master' # Default target for 'feature' & 'finish' commands
 export GS_TEST_ON_AUTO_MERGE=true
 
 

@@ -14,7 +14,7 @@ Please commit or stash your changes.
 __gs-automatic-merge-failed() {
   __gs-print "Automatic merge with branch '$1' into '$2' failed."
   __gs-error "Merge with '$1' failed."
-  __gs-info "Please fix all conflicts and then run 'gs done'."
+  __gs-info "Please fix all conflicts and then run 'gs finish'."
 }
 
 __gs-print-args-ignored() {

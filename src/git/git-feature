@@ -66,15 +66,15 @@ You have three options:
 
   1. Fix the merge conflict locally.
     $ git addcom 'Fixed merge conflicts'
-    $ git dev $new_branch $target_branch
+    $ git feature $new_branch $target_branch
 
   2. Fix the merge conflict and push to remote (BEWARE)
-    $ git done
-    $ git dev $new_branch $target_branch
+    $ git finish
+    $ git feature $new_branch $target_branch
 
   3. Abort the merge and choose antother target branch.
     $ git abort-merge
-    $ git dev $new_branch <other_branch>
+    $ git feature $new_branch <other_branch>
 
 Beware of the changes that you make to the target branch.
 Especially if its an integration branch e.g master."

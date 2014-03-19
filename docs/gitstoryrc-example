@@ -25,7 +25,7 @@ GS_GIT_STORY_EXT_BRANCH='custom-git-story-branch'
 
 # Default remote for git-story extensions
 GS_DEFAULT_REMOTE='origin'
-# Default target branch for 'dev' & 'done' commands
+# Default target branch for 'feature' & 'finish' commands
 GS_GIT_STORY_BRANCH='master'
 
 # Tests

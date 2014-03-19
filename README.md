@@ -24,18 +24,18 @@ Reload your shell to initialize git-story extensions.
 
 Branch model:
 
-1. Start developing a feature, and name it `git dev <name>`
-2. Save local changes and sync with remote `git done`
+1. Start developing a feature, and name it `git feature <name>`
+2. Save local changes and sync with remote `git finish`
 3. Create a pull request
 
 The principle is that you develop each new feature in its own branch and when
 you're done you push it and create a pull request. See [GitHub flow](http://scottchacon.com/2011/08/31/github-flow.html) branch model.  
-Note that `git dev` and `git done` are flexible. They both take an optional argument _target-branch_, which the current/new branch will sync with.
+Note that `git feature` and `git finish` are flexible. They both take an optional argument _target-branch_, which the current/new branch will sync with.
 
 ## Example
 ```bash
-$ git dev branch-name   # Sets up clean workspace based on remote master.
-$ git done              # Commit changes, updates current and local branch.
+$ git feature branch-name   # Sets up clean workspace based on remote master.
+$ git finish              # Commit changes, updates current and local branch.
 ```
 Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
@@ -48,7 +48,7 @@ $ git <git-story-extension> --usage
 ### Branching extensions
 * Start developing a feature
 ```bash
-$ git dev <branch-name> <target-branch>
+$ git feature <branch-name> <target-branch>
 ```
 this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.  
 Executes:
@@ -58,7 +58,7 @@ Executes:
   4. Push _branch-name_
 * Commit and sync with repository
 ```bash
-$ git done <target-branch>
+$ git finish <target-branch>
 ```
 commit the changes you've made and merge changes with _target-branch_.
 _target-branch_ is optional and the default is _target-branch_.  
@@ -143,12 +143,12 @@ See full example with comments in [docs/gitstoryrc-example](https://github.com/b
 Available options and their default value:
 
     GS_DEFAULT_REMOTE='origin'          # Default remote for git story
-    GS_GIT_STORY_BRANCH='master'        # Target branch for 'dev' & 'done'
-    GS_LOCAL_MERGE=false                # Perform local merge on 'done'
-    GS_PRINT_CHECKLIST=false            # Print checklist before 'done'
-    GS_PROMPT_ON_DONE=false             # Prompt user before 'done'
-    GS_TEST_ON_DONE=true                # Run test dcommand before 'done'
-    GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'done'
+    GS_GIT_STORY_BRANCH='master'        # Target branch for 'feature' & 'finish'
+    GS_LOCAL_MERGE=false                # Perform local merge on 'finish'
+    GS_PRINT_CHECKLIST=false            # Print checklist before 'finish'
+    GS_PROMPT_ON_DONE=false             # Prompt user before 'finish'
+    GS_TEST_ON_DONE=true                # Run test command before 'finish'
+    GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
     GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
     GS_PACKAGE=''                       # Shell command for 'package'
     GS_RELEASE=''                       # Shell command for 'release
