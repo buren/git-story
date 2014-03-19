@@ -33,7 +33,7 @@ you're done you push it and create a pull request.
 
 ## Example
 
-    git dev branch_name   # Sets up clean workspace based on remote master.
+    git dev branch-name   # Sets up clean workspace based on remote master.
     git done              # Commit changes, updates current and local branch.
 Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
@@ -43,47 +43,54 @@ Print command usage:
 
     git <git-story-extension> --usage
 
-### GitHub Flow extensions
-
+### Branching extensions
 * Start developing a feature
 
-        git dev <branch_name> <base_branch>
-this will create a new branch <branch_name> based of master or specified <base_branch>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
+        git dev <branch-name> <base-branch>
+this will create a new branch _branch-name_ based of master or specified _base-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 * Commit and sync with repository
 
-        git done <target_branch>
-commit the changes you've made and merge changes with <target_branch>.
-`<target_branch>` is optional and the default is `master`.
-
-### git convenience extensions
-* `git addcom <commit_message>` add all files and commit.
-* `git fuckit` commit all files with optional <message> and push current branch. Default is to prompt for commit message.
-* `git redo-commit` Redo last commit.
-* `git tag-release` Create a new tagged release.
-* `git goto <branch_name>` switches to branch <branch_name> if the working directory is clean.
-* `git history` view repository commit history.
-* `git abort-merge` aborts current merge.
-* `git conflicted` list files with merge-conflicts.
-* `git todos` list all TODOS and FIXMES.
-
-### git branching extensions
+        git done <target-branch>
+commit the changes you've made and merge changes with _target-branch_.
+_target-branch_ is optional and the default is _target-branch_.
 * `git branch-status` shows current branch status.
 * `git pull-branch` pull current, or specified, branch's remote changes.
 * `git create-branch` create and checkout a new branch and push to remote.
-* `git delete-branch` delete branch from remote and local.
 * `git push-branch` push the current branch to remote.
+* `git delete-branch` delete branch from remote and local.
+* `git delete-merged` delete all merged branches locally and at remote.
+
+
+### Convenience extensions
+* `git addcom` add all files and commit.
+* `git fuckit` commit all files and push current branch. Default is to prompt for commit message.
+* `git redo-commit` redo last commit.
+* `git goto <branch-name>` switches to branch _branch-name_ if the working directory is clean.
+* `git abort-merge` aborts current merge.
+* `git obliterate` remove file from local repository and its entire history.
+* `git zip-project` create zip-file of project.
+* `git ignore` add and list patterns to local and global gitignore.
+* `git conflicted` list files with merge-conflicts.
+* `git todos` list all TODOS and FIXMES.
+* `git tag-release` create a new tagged release.
+* `git rename-tag` rename an existing release.
+
+### Log extensions
+* `git history` view repository commit history.
 * `git trail` shows the last common commit with current branch.
 * `git neck` show commits until first branching point.
 * `git divergence` show the difference between current branch and the same branch at remote.
+* `git local-commits` show local commits that haven't been pushed to remote.
+* `git commits-since` show commits since given time.
 
-### Project integration
+### Project integration extensions
 * `git browse`  opens the repository on GitHub.
-* `git package` Package the project. Runs `GS_PACKAGE`.
-* `git release` Package the project. Runs `GS_RELEASE`.
-* `git install-project` Install the project. Runs `GS_INSTALL`.
-* `git test`    Package the project. Runs `GS_PRE_COMMIT_HOOK`.
+* `git package` package project, runs `GS_PACKAGE`.
+* `git release` package project, runs `GS_RELEASE`.
+* `git install-project` install project, runs `GS_INSTALL`.
+* `git test`    package project, runs `GS_PRE_COMMIT_HOOK`.
 
-### Git statistics
+### Statistics extensions
 * Show statistics for repository
 
       git stat <type>
@@ -94,17 +101,22 @@ commit the changes you've made and merge changes with <target_branch>.
         weekdays       # prints statistics for number of commits per weekday
         hour           # prints statistics for number of commits per hour
         files          # prints number of files and lines
-        diff           # Print stat of uncomitted changes
+        diff           # Print stat of uncommitted changes
         log            # Print log with stat
         modified       # Print stat of most modified files
 
   prints statistics of given type.
 * `git churn` count number of changes for each file.
+* `git effort` like churn, but prettier and with active day count.
+* `git summary` show summary for current project.
 
 ### git-story interactions
 * `git gs-update` gets the latest version of git-story.
 * `git gs-extend <extension-name>` add new git-story extension to git.
 * `git gs` list git-story extensions.
+
+### misc
+* `git repl` git read-eval-print-loop (REPL).
 
 
 ## Configuration
@@ -142,7 +154,11 @@ Default [config](https://github.com/buren/git-story/blob/master/config).
   * `git trail`
   * `git neck` both neck and trail fails on `git -p column`
 * Fork the repository and update the URL defined in [setup/install](https://github.com/buren/git-story/blob/master/setup/install#L2) to install and use your own version of git-story
+* Thanks:
+  * [visionmedia/git-extras](https://github.com/visionmedia/git-extras)
+  * [cypher/dotfiles](https://github.com/cypher/dotfiles)
 * Uninstall git-story: `rm -rf ~/.git-story`
+
 
 ## License
 git-story is released under the [MIT License](https://github.com/buren/git-story/blob/master/LICENSE).

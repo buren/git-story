@@ -1,0 +1,32 @@
+#!/bin/bash
+# Original: https://github.com/visionmedia/git-extras/blob/master/bin/git-rename-tag
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<old-tag> <new-tag>
+
+required:
+  old-tag
+  new-tag
+
+Renames a given tag."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  old=$1
+  new=$2
+
+  test -z $old && __gs-error "Missing required argument <old-tag>" 1>&2 && exit 1
+  test -z $new && __gs-error "Missing required argument <new-tag>" 1>&2 && exit 1
+
+  git tag $new $old
+  git tag -d $old
+  git push origin $new
+  git push origin :refs/tag/$old
+}
+
+main "$@"

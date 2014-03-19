@@ -1,0 +1,27 @@
+#!/bin/bash
+# Original: https://github.com/visionmedia/git-extras/blob/master/bin/git-delete-merged-branches
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="
+
+Ignores master, next, edge, dev and development branches.
+Delete all merged branches locally and at remote."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git branch --merged | \
+    grep -v "\*" | \
+    grep -v "master" | \
+    grep -v "next" | \
+    grep -v "dev" | \
+    grep -v "development" | \
+    grep -v "edge" | \
+    xargs -n 1 git delete-branch
+}
+
+main "$@"

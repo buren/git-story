@@ -63,7 +63,7 @@ main-exec() {
       __gs-stat-log "$2" "$3"
       ;;
     "modified" | "most-modified" )
-      _gs-stat-most-modified "$2" "$3"
+      __gs-stat-most-modified "$2" "$3"
       ;;
     *)
       usage
@@ -138,8 +138,8 @@ __gs-stat-log() {
   git log --stat
 }
 
-_gs-stat-most-modified() {
-  git churn
+__gs-stat-most-modified() {
+  git effort
 }
 
 main "$@"

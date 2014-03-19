@@ -6,7 +6,7 @@
 
 __gs-uncommitted-changes-message() {
   __gs-warning "
-You have uncommited changes.
+You have uncommitted changes.
 Please commit or stash your changes.
 "
 }

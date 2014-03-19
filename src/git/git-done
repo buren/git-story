@@ -24,7 +24,7 @@ main-exec() {
   __gs-branch-exists-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
-    __gs-warning "You have uncommited changes."
+    __gs-warning "You have uncommitted changes."
     __gs-continue-prompt "Commit all files and continue?"
     __gs-add-all
     git commit && __gs-print "Commit added." || __gs-abort-and-die

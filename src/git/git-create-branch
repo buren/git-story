@@ -15,7 +15,7 @@ main() {
 }
 
 main-exec() {
-  git push $GS_DEFAULT_REMOTE HEAD:refs/heads/$1 && \
+  git push $GS_DEFAULT_REMOTE $GS_DEFAULT_REMOTE:refs/heads/$1 && \
   git fetch $GS_DEFAULT_REMOTE && \
   git branch --track $1 $GS_DEFAULT_REMOTE/$1 && \
   cd . && \

@@ -18,7 +18,6 @@ export GS_PRODUCTION_BRANCH='heads/master'
 export GS_NEXT_VERSION_BRANCH
 export GS_EDGE_BRANCH
 
-
 # Done
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false

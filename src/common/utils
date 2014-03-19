@@ -80,7 +80,7 @@ __gs-no-spaces-or-die() {
 
 __gs-continue-prompt() {
   while true; do
-    yn="$(__gs-prompt-for-result "$1 [y\n]")"
+    local yn="$(__gs-prompt-for-result "$1 [y\n]")"
     case $yn in
       [Yy]* ) __gs-print "Resuming.."; break;;
       [Nn]* ) __gs-warning "Aborted."; die; break;;
@@ -91,7 +91,7 @@ __gs-continue-prompt() {
 
 __gs-prompt-for-result() {
   if [[ $SHELL == "/bin/zsh" ]]; then
-    p_res=""
+    local p_res=""
     vared -p "$1" p_res
   else
     read -p  "$1" p_res

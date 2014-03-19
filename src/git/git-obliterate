@@ -1,0 +1,34 @@
+#!/bin/bash
+# Original: https://github.com/visionmedia/git-extras/blob/master/bin/git-obliterate
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<file>
+
+required:
+  file
+
+Remove file from local repository and its entire history."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  file=$1
+  test -z $file && echo "file required." 1>&2 && exit 1
+  __gs-warning "This will completly remove the file and its entire history."
+  __gs-continue-prompt "Are you sure you want to continue?"
+  __gs-continue-prompt "Are you REALLY sure you want to continue?"
+  git filter-branch -f --index-filter "git rm -r --cached $file --ignore-unmatch" --prune-empty --tag-name-filter cat -- --all
+  echo
+  __gs-info "NOTE:"
+  __gs-print "To reflect this change at remote use:"
+  __gs-print "  $ git push --force <remote> <branch>"
+  __gs-warning "WARNING:"
+  __gs-print "Will force the remote to use exactly your version."
+  __gs-print "No automatic merge will be performed."
+}
+
+main "$@"

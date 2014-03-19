@@ -14,10 +14,13 @@ export GS_EXENSIONS_FOLDER=$GS_FOLDER/src/git
 
 __git-story-init() {
   set -e
-  __gs-read-default-config
+  # Read default config
+  source $HOME/.git-story/config
+  # Import common functionality
   for file in $GS_FOLDER/src/common/*; do
     source $file
   done
+  # Read project specific config
   __gs-read-project-config
   cd "$(__gs-git-root-dir)"
   . "$(git --exec-path)/git-sh-setup"
@@ -27,9 +30,6 @@ __gs-print-command-list() {
   echo "$(cat $HOME/.git-story/docs/command_list.txt)"
 }
 
-__gs-read-default-config() {
-  source $HOME/.git-story/config
-}
 
 ####################
 #  git-story help  #
@@ -50,9 +50,9 @@ git-story() {
     [[ "$1" == "-h" ]] || [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
     gs-help
   elif [[ "$1" == "update" ]]; then
-    git update-git-story "$2"
-  elif [[ "$1" == "extend-with" ]]; then
-    git extend-with "$2"
+    git gs-update "$2"
+  elif [[ "$1" == "extend" ]]; then
+    git gs-extend "$2"
   else
     echo "Unknown command '$1'"
   fi
