@@ -33,21 +33,23 @@ you're done you push it and create a pull request. See [GitHub flow](http://scot
 Note that `git dev` and `git done` are flexible. They both take an optional argument _target-branch_, which the current/new branch will sync with.
 
 ## Example
-
-    git dev branch-name   # Sets up clean workspace based on remote master.
-    git done              # Commit changes, updates current and local branch.
+```bash
+$ git dev branch-name   # Sets up clean workspace based on remote master.
+$ git done              # Commit changes, updates current and local branch.
+```
 Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
 
 ## Documentation
 
 Print command usage:
-
-    git <git-story-extension> --usage
-
+```bash
+$ git <git-story-extension> --usage
+```
 ### Branching extensions
 * Start developing a feature
-
-        git dev <branch-name> <target-branch>
+```bash
+$ git dev <branch-name> <target-branch>
+```
 this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.  
 Executes:
   1. Checkout _target-branch_
@@ -55,8 +57,9 @@ Executes:
   3. Create new branch _branch-name_
   4. Push _branch-name_
 * Commit and sync with repository
-
-        git done <target-branch>
+```bash
+$ git done <target-branch>
+```
 commit the changes you've made and merge changes with _target-branch_.
 _target-branch_ is optional and the default is _target-branch_.  
 Executes:
