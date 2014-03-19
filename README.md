@@ -93,17 +93,17 @@ _target-branch_ is optional and the default is _target-branch_.
 ### Statistics extensions
 * Show statistics for repository
 
-      git stat <type>
+        git stat <type>
 
-      types:
-        contrib <name> # shows statistics for all or specified author (alias: contributions)
-        commits        # shows number of commits for each author
-        weekdays       # prints statistics for number of commits per weekday
-        hour           # prints statistics for number of commits per hour
-        files          # prints number of files and lines
-        diff           # Print stat of uncommitted changes
-        log            # Print log with stat
-        modified       # Print stat of most modified files
+        types:
+          contrib <name> # shows statistics for all or specified author (alias: contributions)
+          commits        # shows number of commits for each author
+          weekdays       # prints statistics for number of commits per weekday
+          hour           # prints statistics for number of commits per hour
+          files          # prints number of files and lines
+          diff           # Print stat of uncommitted changes
+          log            # Print log with stat
+          modified       # Print stat of most modified files
 
   prints statistics of given type.
 * `git churn` count number of changes for each file.
