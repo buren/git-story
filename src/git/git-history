@@ -2,7 +2,10 @@
 source $GS_INIT_PATH
 __git-story-init
 
-USAGE="
+USAGE="<type>
+
+optional:
+  type, default: short
 
 List repository commits and branch network."
 
@@ -12,7 +15,15 @@ main() {
 }
 
 main-exec() {
-  git log $1 --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+  local type="${1:-short}"
+  if [[ "$type" == "short" ]];then
+    git log --all --graph --decorate --oneline --simplify-by-decoration
+  elif [[ "$type" == "long" ]];then
+    git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+  else
+    __gs-error "Unknown argument '$1'"
+    __gs-print "Available types: short, long"
+  fi
 }
 
 main "$@"
