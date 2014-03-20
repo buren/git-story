@@ -1,0 +1,29 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<tag-name>
+
+required:
+  tag-name
+
+Delete locally and at remote."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  local tag_name="$1"
+  if [[ -z "$tag_name" ]];then
+    __gs-error "Missing required argument <tag-name>"
+    die
+  fi
+  __gs-no-spaces-or-die "$tag_name" "Tag name"
+  __gs-continue-prompt "Are you sure you wnat to delete $tag_name?"
+  git tag -d $tag_name
+  git push origin :refs/tags/$tag_name
+}
+
+main "$@"

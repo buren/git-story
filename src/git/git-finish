@@ -42,6 +42,9 @@ main-exec() {
 
   gs-sync-local-with-branch "$target_branch"
 
+  git push $GS_DEFAULT_REMOTE --tags
+  __gs-print "Pushed tags to remote."
+
   if [[ $GS_LOCAL_MERGE == true ]]; then
     ga-perform-local-merge $target_branch
   fi

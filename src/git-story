@@ -12,6 +12,7 @@ export GS_EXENSIONS_FOLDER=$GS_FOLDER/src/git
 #  git-story init  #
 ####################
 
+# Called from each extension
 __git-story-init() {
   set -e
   # Read default config

@@ -90,6 +90,7 @@ will exit and print conflicted files if any merge conflicts are found.
 * `git todos` list all TODOS and FIXMES.
 * `git tag-release` create a new tagged release.
 * `git rename-tag` rename an existing release.
+* `git changelog` generate changelog from last tag.
 
 ### Log extensions
 * `git history` view repository commit history.
