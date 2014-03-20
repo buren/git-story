@@ -1,4 +1,4 @@
-# git-story (beta)
+# git-story
 
 Various extensions to git, documented below.
 
