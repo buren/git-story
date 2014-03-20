@@ -48,8 +48,19 @@
 <li><a href="#getting-started">Getting Started</a></li>
 <li><a href="#example">Example</a></li>
 <li><a href="#configuration">Configuration</a></li>
-<li><a href="#command-list">Command list</a></li>
-<li><a href="#documentation">Documentation</a></li>
+<li>
+<a href="#documentation">Documentation</a>
+
+<ul>
+<li><a href="#branching-extensions">Branching extensions</a></li>
+<li><a href="#convenience-extensions">Convenience extensions</a></li>
+<li><a href="#log-extensions">Log extensions</a></li>
+<li><a href="#project-integration-extensions">Project integration extensions</a></li>
+<li><a href="#statistics-extensions">Statistics extensions</a></li>
+<li><a href="#git-story-interactions">git-story interactions</a></li>
+<li><a href="#misc">Misc</a></li>
+</ul>
+</li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#license">License</a></li>
 </ul><h2>
@@ -98,11 +109,13 @@ Note that <code>git feature</code> and <code>git finish</code> are flexible. The
 <a name="branching-extensions" class="anchor" href="#branching-extensions"><span class="octicon octicon-link"></span></a>Branching extensions</h3>
 
 <ul>
-<li>Start developing a feature</li>
-</ul><div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature &lt;branch-name&gt; &lt;target-branch&gt;
+<li>
+<p>Start developing a feature</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature &lt;branch-name&gt; &lt;target-branch&gt;
 </pre></div>
 
-<p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.<br>
+<p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on   remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.<br>
 Executes:</p>
 
 <ol>
@@ -113,12 +126,13 @@ Executes:</p>
 <li>Create new branch <em>branch-name</em>
 </li>
 <li>Push <em>branch-name</em>
-
-<ul>
-<li>Commit and sync with repository</li>
-</ul>
 </li>
-</ol><div class="highlight highlight-bash"><pre><span class="nv">$ </span>git finish &lt;target-branch&gt;
+</ol>
+</li>
+<li>
+<p>Commit and sync with repository</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git finish &lt;target-branch&gt;
 </pre></div>
 
 <p>commit the changes you've made and merge changes with <em>target-branch</em>.
@@ -132,11 +146,10 @@ Executes:</p>
 </li>
 <li>Push current branch</li>
 <li>Perform local merge with <em>target-branch</em> if configured
-will exit and print conflicted files if any merge conflicts are found.
-
-<ul>
-<li>
-<code>git branch-status</code> shows current branch status.</li>
+will exit and print conflicted files if any merge conflicts are found.</li>
+</ol>
+</li>
+<li><p><code>git branch-status</code> shows current branch status.</p></li>
 <li>
 <code>git pull-branch</code> pull current, or specified, branch's remote changes.</li>
 <li>
@@ -147,9 +160,7 @@ will exit and print conflicted files if any merge conflicts are found.
 <code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
 <code>git delete-merged</code> delete all merged branches locally and at remote.</li>
-</ul>
-</li>
-</ol><h3>
+</ul><h3>
 <a name="convenience-extensions" class="anchor" href="#convenience-extensions"><span class="octicon octicon-link"></span></a>Convenience extensions</h3>
 
 <ul>
