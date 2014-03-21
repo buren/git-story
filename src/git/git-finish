@@ -21,7 +21,7 @@ main() {
 main-exec() {
   local target_branch="${1:-$GS_GIT_STORY_BRANCH}"
   __gs-no-spaces-or-die "$target_branch"
-  __gs-branch-exists-or-die "$target_branch"
+  __gs-remote-branch-exists-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
     __gs-warning "You have uncommitted changes."

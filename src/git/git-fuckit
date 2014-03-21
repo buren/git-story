@@ -18,7 +18,9 @@ main-exec() {
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
     git addcom "$1"
   fi
-  git push $GS_DEFAULT_REMOTE $(__gs-current-branch)
+  local branch=$(__gs-current-branch)
+  git pull $GS_DEFAULT_REMOTE $branch
+  git push $GS_DEFAULT_REMOTE $branch
 }
 
 main "$@"

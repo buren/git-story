@@ -132,7 +132,7 @@ will exit and print conflicted files if any merge conflicts are found.
 * `git gs-extend <extension-name>` add new git-story extension to git.
 * `git gs` list git-story extensions.
 
-### misc
+### Misc
 * `git repl` git read-eval-print-loop (REPL).
 
 

@@ -24,9 +24,14 @@ __gs-pull-and-check-status() {
   local no_auto_prompt="$4"
 
   __gs-print "Pull from $pull_target"
-  git checkout $pull_target && \
-  git pull $GS_DEFAULT_REMOTE $pull_target && \
-  git checkout $current_br || gs-show-conflicted-and-die
+  git checkout $pull_target
+
+  if [[ "$(__gs-remote-branch-exists $pull_target)" == "true" ]];then
+    git pull $GS_DEFAULT_REMOTE $pull_target || gs-show-conflicted-and-die
+  fi
+
+  git checkout $current_br
+
   local pull_tail="$(git merge $pull_target)"
 
   if [[ "$pull_tail" == *"Already up-to-date"* ]]; then
@@ -120,10 +125,40 @@ __gs-global-unique-branch-or-die() {
   fi
 }
 
-# Check that target_branch exists
-__gs-branch-exists-or-die() {
-  if [[ -z "$(__gs-remote-branches | grep -w "$GS_DEFAULT_REMOTE/$1")" ]]; then
+# Check that target-branch exists at remote
+# $1: target-branch
+__gs-remote-branch-exists-or-die() {
+  if [[ "$(__gs-remote-branch-exists)" == "false" ]]; then
     __gs-error "Target branch with name '$1' does *not* exist."
+    __gs-info "Please choose valid target branch."
+    die
+  fi
+}
+
+__gs-branch-exists() {
+  local branches="$(__gs-remote-branches)\n$(git branch)"
+  if [[ -z "$(echo "$branches" | grep -w "$1")" ]]; then
+    echo "false"
+  else
+    echo "true"
+  fi
+}
+
+__gs-remote-branch-exists() {
+  if [[ -z "$(__gs-remote-branches | grep -w "$GS_DEFAULT_REMOTE/$1")" ]]; then
+    echo "false"
+  else
+    echo "true"
+  fi
+}
+
+# Check that target-branch exists
+# $1 : target-branch
+__gs-branch-exists-or-die() {
+  local target_branch="$1"
+  local branches="$(__gs-remote-branches)\n$(git branch)"
+  if [[ -z "$(echo "$branches" | grep -w "$target_branch")" ]]; then
+    __gs-error "Target branch with name '$target_branch' does *not* exist."
     __gs-info "Please choose valid target branch."
     die
   fi
