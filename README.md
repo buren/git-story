@@ -7,8 +7,14 @@ Various extensions to git, documented below.
 * [Getting Started](#getting-started)
 * [Example](#example)
 * [Configuration](#configuration)
-* [Command list](#command-list)
 * [Documentation](#documentation)
+  * [Branching extensions](#branching-extensions)
+  * [Convenience extensions](#convenience-extensions)
+  * [Log extensions](#log-extensions)
+  * [Project integration extensions](#project-integration-extensions)
+  * [Statistics extensions](#statistics-extensions)
+  * [git-story interactions](#git-story-interactions)
+  * [Misc](#misc)
 * [Notes](#notes)
 * [License](#license)
 
@@ -46,29 +52,32 @@ Print command usage:
 $ git <git-story-extension> --usage
 ```
 ### Branching extensions
+
 * Start developing a feature
-```bash
-$ git feature <branch-name> <target-branch>
-```
-this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.  
-Executes:
+  ```bash
+  $ git feature <branch-name> <target-branch>
+  ```
+  this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on   remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.  
+  Executes:
   1. Checkout _target-branch_
   2. Pull _target-branch_
   3. Create new branch _branch-name_
   4. Push _branch-name_
+
 * Commit and sync with repository
-```bash
-$ git finish <target-branch>
-```
-commit the changes you've made and merge changes with _target-branch_.
-_target-branch_ is optional and the default is _target-branch_.  
-Executes:
+  ```bash
+  $ git finish <target-branch>
+  ```
+  commit the changes you've made and merge changes with _target-branch_.
+  _target-branch_ is optional and the default is _target-branch_.  
+  Executes:
   1. Prompt commit message if any uncommitted changes
   2. Pull current branch
   3. Pull _target-branch_
   4. Push current branch
   5. Perform local merge with _target-branch_ if configured
 will exit and print conflicted files if any merge conflicts are found.
+
 * `git branch-status` shows current branch status.
 * `git pull-branch` pull current, or specified, branch's remote changes.
 * `git create-branch` create and checkout a new branch and push to remote.
