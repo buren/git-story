@@ -8,8 +8,8 @@ install-git-story() {
     git clone --depth=1 $GIT_STORY_URL && \
     mv git-story .git-story || echo "Something went wrong."
     cd $current_folder
-    echo "sudo permissions needed to make ~/.git-story/src/git executable"
-    sudo chmod +x $HOME/.git-story/src/git/*
+    echo "Making ~/.git-story/src/git/* executable"
+    chmod +x $HOME/.git-story/src/git/*
   else
     echo "git-story already installed"
     echo "Exiting"
