@@ -23,7 +23,7 @@ main-exec() {
   fi
   __gs-no-spaces-or-die "$branch"
 
-  integration_branches=($GS_PRODUCTION_BRANCH $GS_NEXT_VERSION_BRANCH $GS_EDGE_BRANCH)
+  integration_branches=($GS_GIT_STORY_BRANCH $GS_PRODUCTION_BRANCH $GS_NEXT_VERSION_BRANCH $GS_EDGE_BRANCH)
 
   for inbranch in ${integration_branches[*]}; do
     local ibranch=${inbranch/heads\//}

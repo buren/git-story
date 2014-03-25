@@ -21,7 +21,7 @@ main() {
 main-exec() {
   local target_branch="${1:-$GS_GIT_STORY_BRANCH}"
   __gs-no-spaces-or-die "$target_branch"
-  __gs-remote-branch-exists-or-die "$target_branch"
+  __gs-branch-exists-or-die "$target_branch"
 
   if [[ $(__gs-is-clean-dir) == "dirty" ]]; then
     __gs-warning "You have uncommitted changes."
@@ -41,9 +41,6 @@ main-exec() {
   fi
 
   gs-sync-local-with-branch "$target_branch"
-
-  git push $GS_DEFAULT_REMOTE --tags
-  __gs-print "Pushed tags to remote."
 
   if [[ $GS_LOCAL_MERGE == true ]]; then
     ga-perform-local-merge $target_branch

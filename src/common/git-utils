@@ -23,14 +23,12 @@ __gs-pull-and-check-status() {
   local merge_wrn_msg="$3"
   local no_auto_prompt="$4"
 
-  __gs-print "Pull from $pull_target"
-  git checkout $pull_target
-
   if [[ "$(__gs-remote-branch-exists $pull_target)" == "true" ]];then
+    git checkout $pull_target
+    __gs-print "Pull from $pull_target"
     git pull $GS_DEFAULT_REMOTE $pull_target || gs-show-conflicted-and-die
+    git checkout $current_br
   fi
-
-  git checkout $current_br
 
   local pull_tail="$(git merge $pull_target)"
 
