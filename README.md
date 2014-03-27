@@ -148,9 +148,9 @@ will exit and print conflicted files if any merge conflicts are found.
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 
-See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
+See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example). 
 
-Available options and their default value:
+Available options and their [default](https://github.com/buren/git-story/blob/master/config) value:
 
     GS_DEFAULT_REMOTE='origin'          # Default remote for git story
     GS_GIT_STORY_BRANCH='master'        # Target branch for 'feature' & 'finish'
@@ -170,7 +170,6 @@ Available options and their default value:
     GS_NEXT_VERSION_BRANCH=''           # Integration branch for next
     GS_EDGE_BRANCH=''                   # Integration branch for edge
     GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
-Default [config](https://github.com/buren/git-story/blob/master/config).
 
 ## Notes
 * The software is supplied “as is” and all use is at your own risk (see [license](https://github.com/buren/git-story/blob/master/LICENSE))
