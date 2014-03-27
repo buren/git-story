@@ -43,7 +43,7 @@ Note that `git feature` and `git finish` are flexible. They both take an optiona
 $ git feature branch-name   # Sets up clean workspace based on remote master.
 $ git finish              # Commit changes, updates current and local branch.
 ```
-Output [example](http://showterm.io/f25fff6593f82dcdab7d1) (video).
+Output [example](http://showterm.io/ec6267151db96042b6cf8) (video).
 
 ## Documentation
 
