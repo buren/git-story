@@ -25,8 +25,19 @@ __gs-info "TODOS:"
 __gs-info "FIXMES:"
  __gs-print "$fixme_results"
  __gs-info "\nFound:"
- __gs-print "$(echo "$todo_results"  | wc -l) TODOS"
- __gs-print "$(echo "$fixme_results" | wc -l) FIXMES"
+
+ print-count "$todo_results" "TODOS"
+ print-count "$fixme_results" "FIXMES"
+}
+
+print-count() {
+  local res="$1"
+  local type="$2"
+  if [[ "$res" == "" ]];then
+    __gs-print "       0 $type"
+  else
+    __gs-print "$(echo "$res" | wc -l) $type"
+  fi
 }
 
 find-matching-lines() {
