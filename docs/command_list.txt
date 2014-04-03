@@ -1,41 +1,42 @@
 git
-   feature           Start developing a new feature
-   finish            Commit changes and sync with remote
-   addcom            Adds all files and commit them
-   fuckit            Commit all files and push current branch
-   pull-branch       Pull current branch's remote changes
-   push-branch       Push the current branch to remote
-   create-branch     Create and checkout a new branch on remote and local
-   delete-branch     Delete branch from remote and local
-   delete-merged     Delete all merged branches locally and at remote
-   goto              Switch from current branch to specified branch
-   abort-merge       Aborts current merge
-   redo-commit       Redo last commit
-   todos             List all TODOS and FIXMES
-   history           List repository commits
-   tag-release       Create a new tag
-   rename-tag        Rename existing tag
-   changelog         Generate changelog from last tag
-   local-commits     Show local commits that haven't been pushed to remote
-   commits-since     Print commits headers since a specified time
-   divergence        Show difference between current branch and remote branch
-   obliterate        Remove file from local repository and its entire history
-   stat              Print statistics of git repository
-   branch-status     Show current branch status
-   browse            Open current git repository on Github
-   test              Runs test command defined in .gitstoryrc
-   package           Runs package command defined in .gitstoryrc
-   release           Runs release command defined in .gitstoryrc
-   install-project   Runs install command defined in .gitstoryrc
-   zip-project       Create a zip-file from current project
-   trail             Show the last common commit with current branch
-   neck              Show commits until first branching point
-   summary           Show summary for current project
-   churn             Count number of changes for each file
-   effort            Like churn, but prettier and with active day count
-   conflicted        List files with merge-conflicts
-   ignore            Manage local and global gitignore
-   repl              Git REPL
-   gs                List git-story extensions
-   gs-extend         Add new git-story extension to git
-   gs-update         Update git-story to its latest version
+   feature            Start developing a new feature
+   finish             Commit changes and sync with remote
+   addcom             Adds all files and commit them
+   fuckit             Commit all files and push current branch
+   pull-branch        Pull current branch's remote changes
+   push-branch        Push the current branch to remote
+   create-branch      Create and checkout a new branch on remote and local
+   delete-branch      Delete branch from remote and local
+   delete-merged      Delete all merged branches locally and at remote
+   goto               Switch from current branch to specified branch
+   abort-merge        Aborts current merge
+   redo-commit        Redo last commit
+   todos              List all TODOS and FIXMES
+   history            List repository commits
+   tag-release        Create a new tag
+   rename-tag         Rename existing tag
+   changelog          Generate changelog from last tag
+   local-commits      Show local commits that haven't been pushed to remote
+   commits-since      Print commits headers since a specified time
+   divergence         Show difference between current branch and remote branch
+   obliterate         Remove file from local repository and its entire history
+   stat               Print statistics of git repository
+   branch-status      Show current branch status
+   browse             Open current git repository on Github
+   test               Runs test command defined in .gitstoryrc
+   package            Runs package command defined in .gitstoryrc
+   release            Runs release command defined in .gitstoryrc
+   install-project    Runs install command defined in .gitstoryrc
+   zip-project        Create a zip-file from current project
+   trail              Show the last common commit with current branch
+   neck               Show commits until first branching point
+   summary            Show summary for current project
+   churn              Count number of changes for each file
+   effort             Like churn, but prettier and with active day count
+   conflicted         List files with merge-conflicts
+   ignore             Manage local and global gitignore
+   ignore-boilerplate Manage gitignore boilerplates from github/gitignore
+   repl               Git REPL
+   gs                 List git-story extensions
+   gs-extend          Add new git-story extension to git
+   gs-update          Update git-story to its latest version

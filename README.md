@@ -95,6 +95,7 @@ will exit and print conflicted files if any merge conflicts are found.
 * `git obliterate` remove file from local repository and its entire history.
 * `git zip-project` create zip-file of project.
 * `git ignore` add and list patterns to local and global gitignore.
+* `git ignore-boilerplate` easy access to gitignore boilerplates from github.com/github/gitignore.
 * `git conflicted` list files with merge-conflicts.
 * `git todos` list all TODOS and FIXMES.
 * `git tag-release` create a new tagged release.
@@ -148,7 +149,7 @@ will exit and print conflicted files if any merge conflicts are found.
 ## Configuration
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 
-See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example). 
+See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
 
 Available options and their [default](https://github.com/buren/git-story/blob/master/config) value:
 
