@@ -19,9 +19,10 @@ Various extensions to git, documented below.
 * [License](#license)
 
 ## Install git-story
-
-    curl https://raw2.github.com/buren/git-story/master/setup/install | bash
-The above command will install and inject an import of the git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).
+```bash
+curl -L http://bit.ly/1hHt20S | bash
+```
+The above command will install and inject an import of the git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).  See [install script](https://github.com/buren/git-story/blob/master/setup/install) for details.
 
 Reload your shell to initialize git-story extensions.
 
@@ -35,7 +36,7 @@ Branch model:
 3. Create a pull request
 
 The principle is that you develop each new feature in its own branch and when
-you're done you push it and create a pull request. See [GitHub flow](http://scottchacon.com/2011/08/31/github-flow.html) branch model.  
+you're done you push it and create a pull request. See [GitHub flow](http://scottchacon.com/2011/08/31/github-flow.html) branch model.
 Note that `git feature` and `git finish` are flexible. They both take an optional argument _target-branch_, which the current/new branch will sync with.
 
 ## Example
@@ -57,7 +58,7 @@ $ git <git-story-extension> --usage
   ```bash
   $ git feature <branch-name> <target-branch>
   ```
-  this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on   remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.  
+  this will create a new branch _branch-name_ based of master or specified _target-branch_. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
   Executes:
   1. Checkout _target-branch_
   2. Pull _target-branch_
@@ -69,7 +70,7 @@ $ git <git-story-extension> --usage
   $ git finish <target-branch>
   ```
   commit the changes you've made and merge changes with _target-branch_.
-  _target-branch_ is optional and the default is _target-branch_.  
+  _target-branch_ is optional and the default is _target-branch_.
   Executes:
   1. Prompt commit message if any uncommitted changes
   2. Pull current branch
@@ -183,6 +184,7 @@ Available options and their [default](https://github.com/buren/git-story/blob/ma
 * Thanks:
   * [visionmedia/git-extras](https://github.com/visionmedia/git-extras)
   * [cypher/dotfiles](https://github.com/cypher/dotfiles)
+  * [simonwhitaker/gibo](https://github.com/simonwhitaker/gibo/)
 * Uninstall git-story: `rm -rf ~/.git-story`
 
 

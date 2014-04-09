@@ -1,0 +1,19 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="
+
+Push all local branches to remote."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  # Push all branches
+  git push --all origin
+}
+
+main "$@"

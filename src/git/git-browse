@@ -20,7 +20,8 @@ main-exec() {
   if [[ ! -z $GS_PROJECT_URL ]]; then
     local url=$GS_PROJECT_URL
   elif [[ $GS_HAS_GITHUB == true ]]; then
-    local url=$(git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//')
+    # local url=$(git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//')
+    local url=$(__gs_github_url)
   fi
 
   echo "$url"
@@ -32,6 +33,14 @@ main-exec() {
   elif [ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" ]; then
     cygstart "$url" &
   fi
+}
+
+__gs_github_url() {
+  local remotename="${@:-origin}"
+  local remote="$(git remote -v | awk '/^'"$remotename"'.*\(push\)$/ {print $2}')"
+  [[ "$remote" ]] || return
+  local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
+  echo "https://github.com/$user_repo"
 }
 
 main "$@"
