@@ -51,9 +51,9 @@ git-story() {
     [[ "$1" == "-h" ]] || [[ "$1" == "-help" ]] || [[ "$1" == "--help" ]]; then
     gs-help
   elif [[ "$1" == "update" ]]; then
-    git gs-update "$2"
+    git gs-update $2
   elif [[ "$1" == "extend" ]]; then
-    git gs-extend "$2"
+    git gs-extend $2
   else
     echo "Unknown command '$1'"
   fi
