@@ -15,11 +15,12 @@ main() {
 }
 
 main-exec() {
-  git push $GS_DEFAULT_REMOTE $GS_DEFAULT_REMOTE:refs/heads/$1 && \
+  local branch=$1
+  git push $GS_DEFAULT_REMOTE HEAD:refs/heads/$branch && \
   git fetch $GS_DEFAULT_REMOTE && \
-  git branch --track $1 $GS_DEFAULT_REMOTE/$1 && \
+  git branch --track $branch $GS_DEFAULT_REMOTE/$branch && \
   cd . && \
-  git checkout $1
+  git checkout $branch
 }
 
 main "$@"
