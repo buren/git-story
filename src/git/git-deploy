@@ -14,7 +14,7 @@ main() {
 main-exec() {
   if [[ ! -z $GS_DEPLOY ]]; then
     __gs-info "Deploying project."
-    eval $GS_DEPLOY
+    eval $GS_DEPLOY "$@"
     __gs-info "Done"
   else
     __gs-warning "No deploy command set in .gitstoryrc"

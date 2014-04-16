@@ -14,7 +14,7 @@ main() {
 main-exec() {
   if [[ ! -z $GS_INSTALL ]]; then
     __gs-info "Installing project."
-    eval $GS_INSTALL
+    eval $GS_INSTALL "$@"
     __gs-info "Done"
   else
     __gs-warning "No install command set in .gitstoryrc"

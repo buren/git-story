@@ -14,7 +14,7 @@ main() {
 main-exec() {
   if [[ ! -z $GS_PACKAGE ]]; then
     __gs-info "Packaging project."
-    eval $GS_PACKAGE
+    eval $GS_PACKAGE "$@"
     __gs-info "Done"
   else
     __gs-warning "No package command set in .gitstoryrc"
