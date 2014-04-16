@@ -23,7 +23,6 @@ __git-story-init() {
   done
   # Read project specific config
   __gs-read-project-config
-  cd "$(__gs-git-root-dir)"
   . "$(git --exec-path)/git-sh-setup"
 }
 

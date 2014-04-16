@@ -25,7 +25,7 @@ git
    browse             Open current git repository on Github
    test               Runs test command defined in .gitstoryrc
    package            Runs package command defined in .gitstoryrc
-   release            Runs release command defined in .gitstoryrc
+   deploy             Runs deploy  command defined in .gitstoryrc
    install-project    Runs install command defined in .gitstoryrc
    zip-project        Create a zip-file from current project
    trail              Show the last common commit with current branch

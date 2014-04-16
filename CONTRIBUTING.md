@@ -10,8 +10,9 @@
 ## Add new extension
 
 1. Add a new extensions run:
-
-        $ git gs-extend <extension-name>
+```bash
+$ git gs-extend <extension-name>
+```
 2. Document your extension in README.md
 3. Add your command to docs/command_list.txt
 4. Create pull-request

@@ -114,7 +114,7 @@ will exit and print conflicted files if any merge conflicts are found.
 ### Project integration extensions
 * `git browse`  opens the repository on GitHub.
 * `git package` package project, runs `GS_PACKAGE`.
-* `git release` package project, runs `GS_RELEASE`.
+* `git deploy` package project, runs `GS_DEPLOY`.
 * `git install-project` install project, runs `GS_INSTALL`.
 * `git test`    package project, runs `GS_PRE_COMMIT_HOOK`.
 
@@ -163,7 +163,7 @@ Available options and their [default](https://github.com/buren/git-story/blob/ma
     GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
     GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
     GS_PACKAGE=''                       # Shell command for 'package'
-    GS_RELEASE=''                       # Shell command for 'release
+    GS_DEPLOY=''                        # Shell command for 'deploy'
     GS_INTSALL=''                       # Shell command for 'install'
     GS_HAS_GITHUB=true                  # Project has GitHub.
     GS_PROJECT_URL=''                   # Project URL

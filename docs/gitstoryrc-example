@@ -39,8 +39,8 @@ GS_TEST_ON_AUTO_MERGE=true
 # Project integration
 # git-story will eval any string in GS_PACKAGE
 GS_PACKAGE="$enduro_package"
-# git-story will eval any string in GS_RELEASE
-GS_RELEASE="$enduro_package && bash release.sh"
+# git-story will eval any string in GS_DEPLOY
+GS_DEPLOY="$enduro_package && bash deploy.sh"
 # git-story will eval any string in GS_INSTALL
 GS_INSTALL="curl https://raw2.github.com/buren/enduro/master/install_enduro.sh | bash"
 # used to indentify integration branches for branch-status command
