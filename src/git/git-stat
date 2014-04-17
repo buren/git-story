@@ -9,6 +9,7 @@ __git-story-init
 USAGE="<type>
 
 types:
+  summary        # shows project statistics (age, active days, authors etc)
   contrib <name> # shows statistics for all or specified author (alias: contributions)
   commits        # shows number of commits for each author
   weekdays       # prints statistics for number of commits per weekday
@@ -47,6 +48,9 @@ main-exec() {
     "commits" | "commit" )
       __gs-stat-commits "$2" "$3"
       ;;
+    "summary" | "sum" )
+      git summary
+      ;;
     "weekday" | "weekdays" | "week" )
       __gs-stat-week "$2" "$3"
       ;;
@@ -55,6 +59,7 @@ main-exec() {
       ;;
     "files" | "lines" | "loc" )
       __gs-stat-files "$2" "$3"
+      git line-summary
       ;;
     "diff" | "changes" )
       __gs-stat-changes "$2" "$3"
