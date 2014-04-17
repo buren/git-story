@@ -66,10 +66,10 @@
 </ul><h2>
 <a name="install-git-story" class="anchor" href="#install-git-story"><span class="octicon octicon-link"></span></a>Install git-story</h2>
 
-<pre><code>curl https://raw2.github.com/buren/git-story/master/setup/install | bash
-</code></pre>
+<div class="highlight highlight-bash"><pre>curl -L http://bit.ly/1hHt20S <span class="p">|</span> bash
+</pre></div>
 
-<p>The above command will install and inject an import of the git-story script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).</p>
+<p>The above command will install and inject an import of the git-story script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).  See <a href="https://github.com/buren/git-story/blob/master/setup/install">install script</a> for details.</p>
 
 <p>Reload your shell to initialize git-story extensions.</p>
 
@@ -85,7 +85,7 @@
 </li>
 <li>Create a pull request</li>
 </ol><p>The principle is that you develop each new feature in its own branch and when
-you're done you push it and create a pull request. See <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> branch model.<br>
+you're done you push it and create a pull request. See <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> branch model.
 Note that <code>git feature</code> and <code>git finish</code> are flexible. They both take an optional argument <em>target-branch</em>, which the current/new branch will sync with.</p>
 
 <h2>
@@ -115,7 +115,7 @@ Note that <code>git feature</code> and <code>git finish</code> are flexible. The
 <div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature &lt;branch-name&gt; &lt;target-branch&gt;
 </pre></div>
 
-<p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on   remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.<br>
+<p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 Executes:</p>
 
 <ol>
@@ -136,7 +136,7 @@ Executes:</p>
 </pre></div>
 
 <p>commit the changes you've made and merge changes with <em>target-branch</em>.
-<em>target-branch</em> is optional and the default is <em>target-branch</em>.<br>
+<em>target-branch</em> is optional and the default is <em>target-branch</em>.
 Executes:</p>
 
 <ol>
@@ -181,6 +181,8 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <li>
 <code>git ignore</code> add and list patterns to local and global gitignore.</li>
 <li>
+<code>git ignore-boilerplate</code> easy access to gitignore boilerplates from github.com/github/gitignore.</li>
+<li>
 <code>git conflicted</code> list files with merge-conflicts.</li>
 <li>
 <code>git todos</code> list all TODOS and FIXMES.</li>
@@ -215,7 +217,7 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <li>
 <code>git package</code> package project, runs <code>GS_PACKAGE</code>.</li>
 <li>
-<code>git release</code> package project, runs <code>GS_RELEASE</code>.</li>
+<code>git deploy</code> package project, runs <code>GS_DEPLOY</code>.</li>
 <li>
 <code>git install-project</code> install project, runs <code>GS_INSTALL</code>.</li>
 <li>
@@ -269,7 +271,7 @@ types:
 
 <p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.</p>
 
-<p>See full example with comments in <a href="https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example">docs/gitstoryrc-example</a>. </p>
+<p>See full example with comments in <a href="https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example">docs/gitstoryrc-example</a>.</p>
 
 <p>Available options and their <a href="https://github.com/buren/git-story/blob/master/config">default</a> value:</p>
 
@@ -282,7 +284,7 @@ GS_TEST_ON_DONE=true                # Run test command before 'finish'
 GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
 GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
 GS_PACKAGE=''                       # Shell command for 'package'
-GS_RELEASE=''                       # Shell command for 'release
+GS_DEPLOY=''                        # Shell command for 'deploy'
 GS_INTSALL=''                       # Shell command for 'install'
 GS_HAS_GITHUB=true                  # Project has GitHub.
 GS_PROJECT_URL=''                   # Project URL
@@ -316,6 +318,7 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 <ul>
 <li><a href="https://github.com/visionmedia/git-extras">visionmedia/git-extras</a></li>
 <li><a href="https://github.com/cypher/dotfiles">cypher/dotfiles</a></li>
+<li><a href="https://github.com/simonwhitaker/gibo/">simonwhitaker/gibo</a></li>
 </ul>
 </li>
 <li>Uninstall git-story: <code>rm -rf ~/.git-story</code>
