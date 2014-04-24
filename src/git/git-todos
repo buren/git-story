@@ -15,19 +15,25 @@ main() {
 }
 
 main-exec() {
- local default_path='*'
- local search_path="${1:-$default_path}"
- local todo_results="$(find-matching-lines 'TODO\|TODO:' $search_path)"
- local fixme_results="$(find-matching-lines 'FIXME\|FIXME:' $search_path)"
-__gs-info "TODOS:"
- __gs-print "$todo_results"
- __gs-print
-__gs-info "FIXMES:"
- __gs-print "$fixme_results"
- __gs-info "\nFound:"
+  local default_path='.'
+  local search_path="${1:-$default_path}"
+  local todo_results="$(find-matching-lines 'TODO\|TODO:' $search_path)"
+  local fixme_results="$(find-matching-lines 'FIXME\|FIXME:' $search_path)"
 
- print-count "$todo_results" "TODOS"
- print-count "$fixme_results" "FIXMES"
+  if [ -t 1 ];then
+  __gs-info "TODOS:"
+  fi
+  __gs-print "$todo_results"
+  if [ -t 1 ];then
+    __gs-print
+    __gs-info "FIXMES:"
+  fi
+  __gs-print "$fixme_results"
+  if [ -t 1 ];then
+    __gs-info "\nFound:"
+    print-count "$todo_results" "TODOS"
+    print-count "$fixme_results" "FIXMES"
+  fi
 }
 
 print-count() {
