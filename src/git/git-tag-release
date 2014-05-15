@@ -28,7 +28,8 @@ main-exec() {
     die
   fi
 
-  git tag -a $version_no -m "Version $version_no" && \
+  local release_title="$(__gs-prompt-for-result "Provide release title: ")"
+  git tag -a $version_no -m "Version $version_no - $release_title" && \
   git push --tags && \
   __gs-success "Success." && __gs-print "Tagged version: $version_no" || \
   __gs-error "Something went wrong creating the tag."

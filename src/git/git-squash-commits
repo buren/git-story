@@ -1,0 +1,20 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<args>
+
+Description goes here..."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  local squash_number=$1
+  __gs-continue-prompt "Are you sure you want to squash together the last $squash_number commits?"
+  git reset --soft HEAD~$squash_number && git commit
+}
+
+main "$@"
