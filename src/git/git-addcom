@@ -19,7 +19,7 @@ main-exec() {
   if [[ $GS_SIGN_COMMITS == true ]]; then
     local sign_opt_string='--gpg-sign'
   else
-    local sign_opt_string=''
+    local sign_opt_string='--signoff'
   fi
 
   __gs-add-all
