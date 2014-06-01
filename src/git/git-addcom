@@ -16,11 +16,17 @@ main() {
 }
 
 main-exec() {
+  if [[ $GS_SIGN_COMMITS == true ]]; then
+    local sign_opt_string='--gpg-sign'
+  else
+    local sign_opt_string=''
+  fi
+
   __gs-add-all
   if [[ -z $1 ]]; then
-    git commit
+    git commit $sign_opt_string
   else
-    git commit -m "$1"
+    git commit $sign_opt_string --message="$1"
   fi
 }
 

@@ -60,6 +60,8 @@ GS_LOCAL_MERGE=false
 GS_TEST_ON_DONE=true
 # Sign tags created with tag-release
 GS_SIGN_RELEASE=true
+# Sign each commit created with addcom
+GS_SIGN_COMMITS=true
 
 # Project Website
 GS_HAS_GITHUB=false
