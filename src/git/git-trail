@@ -37,7 +37,7 @@ main-exec() {
             if (nr != "undefined") print $1, $2, nr   # skip unreachable commits
           }
         }
-      }' | git -p column   # paginate output
+      }' | git --paginate column   # paginate output
 }
 
 main "$@"

@@ -22,7 +22,7 @@ main-exec() {
   fi
   __gs-no-spaces-or-die "$tag_name" "Tag name"
   __gs-continue-prompt "Are you sure you wnat to delete $tag_name?"
-  git tag -d $tag_name
+  git tag --delete $tag_name
   git push origin :refs/tags/$tag_name
 }
 

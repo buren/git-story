@@ -18,12 +18,11 @@ export GS_PRODUCTION_BRANCH='heads/master'
 export GS_NEXT_VERSION_BRANCH
 export GS_EDGE_BRANCH
 
-# Done
+# Finish
 export GS_PRINT_CHECKLIST=false
 export GS_PROMPT_ON_DONE=false
 export GS_LOCAL_MERGE=false
 export GS_TEST_ON_DONE=true
-
 
 # Project Website
 export GS_HAS_GITHUB=true
@@ -42,3 +41,4 @@ Checklist:
 
 # git-story
 export GS_GIT_STORY_EXT_BRANCH='master' # Target branch for updating the git-story tool
+export GS_SIGN_RELEASE=true # Sign tags created with tag-release

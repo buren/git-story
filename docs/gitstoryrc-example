@@ -58,6 +58,8 @@ GS_PROMPT_ON_DONE=true
 GS_LOCAL_MERGE=false
 # Run tests before done command
 GS_TEST_ON_DONE=true
+# Sign tags created with tag-release
+GS_SIGN_RELEASE=true
 
 # Project Website
 GS_HAS_GITHUB=false

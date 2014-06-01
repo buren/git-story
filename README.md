@@ -160,6 +160,7 @@ Available options and their [default](https://github.com/buren/git-story/blob/ma
     GS_PRINT_CHECKLIST=false            # Print checklist before 'finish'
     GS_PROMPT_ON_DONE=false             # Prompt user before 'finish'
     GS_TEST_ON_DONE=true                # Run test command before 'finish'
+    GS_SIGN_RELEASE=true                # Sign tags created with 'tag-release'
     GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
     GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
     GS_PACKAGE=''                       # Shell command for 'package'
