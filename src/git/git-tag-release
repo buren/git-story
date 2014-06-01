@@ -15,7 +15,7 @@ main-exec() {
   git fetch --tags
   __gs-print "Previous releases:"
   __gs-print "========================"
-  git tag
+  git tag --list -n
   __gs-print "========================"
 
   __gs-print "Parent tag and current commit:"
@@ -28,8 +28,14 @@ main-exec() {
     die
   fi
 
+  if [[ $GS_SIGN_RELEASE == true ]]; then
+    local sign_opt_string='--sign'
+  else
+    local sign_opt_string='--annotate'
+  fi
+
   local release_title="$(__gs-prompt-for-result "Provide release title: ")"
-  git tag -a $version_no -m "Version $version_no - $release_title" && \
+  git tag $sign_opt_string $version_no --message="Version $version_no - $release_title" && \
   git push --tags && \
   __gs-success "Success." && __gs-print "Tagged version: $version_no" || \
   __gs-error "Something went wrong creating the tag."
