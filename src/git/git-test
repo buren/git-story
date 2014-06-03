@@ -13,7 +13,7 @@ main() {
 
 main-exec() {
   if [[ ! -z $GS_PRE_COMMIT_HOOK ]]; then
-    __gs-info "Running pre-commit hook."
+    __gs-info "Running test hook."
     eval $GS_PRE_COMMIT_HOOK
     __gs-info "Ran all tests. Check status."
   else
