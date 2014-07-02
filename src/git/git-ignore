@@ -56,11 +56,11 @@ main-exec() {
     show_local
   else
     case "$1" in
-      -l|--local)
+      -l | --local)
         test $# -gt 1 && add_local "${@:2}" && echo
         show_local
         ;;
-      -g|--global)
+      -g | --global)
         test $# -gt 1 && add_global "${@:2}" && echo
         show_global
         ;;

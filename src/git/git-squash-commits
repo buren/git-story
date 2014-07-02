@@ -2,9 +2,12 @@
 source $GS_INIT_PATH
 __git-story-init
 
-USAGE="<args>
+USAGE="<number>
 
-Description goes here..."
+required:
+  number
+
+the number of commits you'd like to squash together."
 
 main() {
   __gs-check-usage-param $1
@@ -12,6 +15,10 @@ main() {
 }
 
 main-exec() {
+  if [[ -z $1 ]]; then
+    __gs-error "Missing required argument <number>"
+    die
+  fi
   local squash_number=$1
   __gs-continue-prompt "Are you sure you want to squash together the last $squash_number commits?"
   git reset --soft HEAD~$squash_number && git commit
