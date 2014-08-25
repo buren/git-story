@@ -17,11 +17,8 @@ main() {
 }
 
 main-exec() {
-  old=$1
-  new=$2
-
-  test -z $old && __gs-error "Missing required argument <old-tag>" 1>&2 && exit 1
-  test -z $new && __gs-error "Missing required argument <new-tag>" 1>&2 && exit 1
+  local old=$(__gs-not-null-or-prompt "$1" "Specify old tag name: ")
+  local new=$(__gs-not-null-or-prompt "$2" "Specify new tag name: ")
 
   git tag $new $old
   git tag --delete $old

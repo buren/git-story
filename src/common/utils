@@ -89,8 +89,29 @@ __gs-continue-prompt() {
   done
 }
 
+__gs-not-null-or-prompt() {
+  if [[ -z $1 ]]; then
+    local res=$(__gs-prompt-for-result "$2")
+    if [[ -z $res ]]; then
+      die "Argument can't be empty."
+    fi
+  else
+    echo "$1"
+    return
+  fi
+  echo "$res"
+}
+
 __gs-prompt-for-result() {
-  if [[ $SHELL == "/bin/zsh" ]]; then
+  if [[ "$(uname)" == "Darwin" && $GS_GRAPHIC_PROMPT == true ]]; then
+    local p_res=$(/usr/bin/osascript << EOT
+      activate
+      display dialog "$1" default answer "" buttons {"OK"} default button 1
+      set site to text returned of the result
+      return site
+    EOT)
+    #
+  elif [[ $SHELL == "/bin/zsh" ]]; then
     local p_res=""
     vared -p "$1" p_res
   else

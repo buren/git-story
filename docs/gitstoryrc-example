@@ -69,6 +69,7 @@ GS_HAS_GITHUB=false
 GS_PROJECT_URL="https://github.com/buren/enduro" # has same effect as GS_HAS_GITHUB=true in this case
 
 # Prompts
+GS_GRAPHIC_PROMPT=true # Show all prompts (on OSX) in a GUI dialog
 # Checklist thats printed before executing done command (respects the value of GS_PRINT_CHECKLIST)
 GS_CHECKLIST_MESSAGE="
 Checklist:

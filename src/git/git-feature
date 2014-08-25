@@ -22,7 +22,7 @@ main() {
 }
 
 main-exec() {
-  local new_branch="$1"
+  local new_branch=$(__gs-not-null-or-prompt "$1" "Specify new branch name: ")
   local target_branch_arg="$2"
 
   if [[ -z "$new_branch" ]]; then

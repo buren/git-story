@@ -149,6 +149,7 @@ will exit and print conflicted files if any merge conflicts are found.
 
 
 ## Configuration
+Configure `git-story` by creating a file `~/.gitstoryrc`
 For project specific configurations create a file named `.gitstoryrc` at the project's git root.
 
 See full example with comments in [docs/gitstoryrc-example](https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example).
@@ -159,6 +160,7 @@ Available options and their [default](https://github.com/buren/git-story/blob/ma
     GS_GIT_STORY_BRANCH='master'        # Target branch for 'feature' & 'finish'
     GS_LOCAL_MERGE=false                # Perform local merge on 'finish'
     GS_PRINT_CHECKLIST=false            # Print checklist before 'finish'
+    GS_GRAPHIC_PROMPT=false             # Show all prompts (on OSX) in a GUI dialog
     GS_PROMPT_ON_DONE=false             # Prompt user before 'finish'
     GS_TEST_ON_DONE=true                # Run test command before 'finish'
     GS_SIGN_RELEASE=true                # Sign tags created with 'tag-release'

@@ -15,11 +15,7 @@ main() {
 }
 
 main-exec() {
-  local tag_name="$1"
-  if [[ -z "$tag_name" ]];then
-    __gs-error "Missing required argument <tag-name>"
-    die
-  fi
+  local tag_name=$(__gs-not-null-or-prompt "$1" "Specify tag name: ")
   __gs-no-spaces-or-die "$tag_name" "Tag name"
   __gs-continue-prompt "Are you sure you wnat to delete $tag_name?"
   git tag --delete $tag_name
