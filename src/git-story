@@ -21,6 +21,7 @@ __git-story-init() {
   for file in $GS_FOLDER/src/common/*; do
     source $file
   done
+  [[ -f $HOME/.gitstoryrc ]] && source $HOME/.gitstoryrc
   # Read project specific config
   __gs-read-project-config
   . "$(git --exec-path)/git-sh-setup"

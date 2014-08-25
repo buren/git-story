@@ -12,7 +12,6 @@ main() {
 
 main-exec() {
   git commit --amend
-  # git reset --soft HEAD~9 && git commit
 }
 
 main "$@"

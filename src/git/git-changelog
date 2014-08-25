@@ -7,6 +7,7 @@ __git-story-init
 USAGE="[options] <file>
 
 optional:
+  --tag, changelog for specific tag
   --list, print changelog
   --no-merges, filters out merge commits
   file, file to write changelog to
@@ -43,7 +44,7 @@ main-exec() {
     shift
   done
 
-  DATE=`date +'%Y-%m-%d'`
+  DATE=$(date +'%Y-%m-%d')
   HEAD="\n$TAG / $DATE\n==================\n\n"
 
   if $LIST; then
@@ -60,7 +61,7 @@ main-exec() {
   if test "$CHANGELOG" = ""; then
     CHANGELOG=`ls | egrep 'change|history' -i`
     if test "$CHANGELOG" = ""; then
-      CHANGELOG='History.md';
+      CHANGELOG='CHANGELOG.md';
     fi
   fi
   tmp="/tmp/changelog"
