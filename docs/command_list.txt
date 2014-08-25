@@ -16,6 +16,7 @@ git
    tag-release        Create a new tag
    rename-tag         Rename existing tag
    changelog          Generate changelog from last tag
+   git squash-commits Squash given number of commits together
    local-commits      Show local commits that haven't been pushed to remote
    commits-since      Print commits headers since a specified time
    divergence         Show difference between current branch and remote branch
