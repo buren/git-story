@@ -22,7 +22,12 @@ main-exec() {
   __gs-info "$(git describe)"
   local prompt_text="What tag would you like to give this version? "
   local version_no="$(__gs-prompt-for-result "$prompt_text")"
-  if [[ "$version_no" == *" "* ]]; then
+
+  if [[ -z $version_no ]]; then
+    __gs-error "ERROR:"
+    __gs-print "\t Tag can *not* be empty"
+    die
+  elif [[ "$version_no" == *" "* ]]; then
     __gs-error "ERROR:"
     __gs-print "\t Tag can *not* contain spaces!"
     die
@@ -35,7 +40,11 @@ main-exec() {
   fi
 
   local release_title="$(__gs-prompt-for-result "Provide release title: ")"
-  git tag $sign_opt_string $version_no --message="Version $version_no - $release_title" && \
+  local tag_message="Version $version_no"
+  if [[ ! -z $release_title ]]; then
+    tag_message="$tag_message - $release_title"
+  fi
+  git tag $sign_opt_string $version_no --message="$tag_message" && \
   git push --tags && \
   __gs-success "Success." && __gs-print "Tagged version: $version_no" || \
   __gs-error "Something went wrong creating the tag."

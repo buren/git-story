@@ -92,7 +92,7 @@ __gs-continue-prompt() {
 __gs-not-null-or-prompt() {
   if [[ -z $1 ]]; then
     local res=$(__gs-prompt-for-result "$2")
-    if [[ -z $res ]]; then
+    if [[ -z "$res" ]]; then
       die "Argument can't be empty."
     fi
   else
