@@ -62,6 +62,8 @@ GS_TEST_ON_DONE=true
 GS_SIGN_RELEASE=true
 # Sign each commit created with addcom
 GS_SIGN_COMMITS=true
+# Sign each commit made with addcom, with --signoff ($GS_SIGN_COMMITS has higher priority)
+GS_SIGN_COMMITS_STRING=false 
 
 # Project Website
 GS_HAS_GITHUB=false

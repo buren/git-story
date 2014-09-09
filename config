@@ -42,5 +42,6 @@ Checklist:
 
 # git-story
 export GS_GIT_STORY_EXT_BRANCH='master' # Target branch for updating the git-story tool
-export GS_SIGN_RELEASE=true  # Sign tags created with tag-release
-export GS_SIGN_COMMITS=false # Sign each commit created with addcom
+export GS_SIGN_RELEASE=true # Sign tags created with tag-release
+export GS_SIGN_COMMITS=false # Sign each commit made with addcom, with GPG-key
+export GS_SIGN_COMMITS_STRING=false # Sign each commit made with addcom, with --signoff ($GS_SIGN_COMMITS has higher priority)
