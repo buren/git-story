@@ -39,7 +39,7 @@ main-exec() {
     local sign_opt_string='--annotate'
   fi
 
-  local release_title="$(__gs-prompt-for-result "Provide release title: ")"
+  local release_title="$(__gs-prompt-for-result "Provide release title (optional): ")"
   local tag_message="Version $version_no"
   if [[ ! -z $release_title ]]; then
     tag_message="$tag_message - $release_title"
