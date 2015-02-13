@@ -1,0 +1,18 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<args>
+
+Search code in the entire git history. All arguments will be passed to grep."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git rev-list --all | xargs git grep "$@"
+}
+
+main "$@"
