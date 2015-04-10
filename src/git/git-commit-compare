@@ -1,0 +1,21 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<base> <target>
+
+Diff commits between branches."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  local branch=
+  local base=$(__gs-not-null-or-prompt "$1" "Specify base branch name: ")
+  local target=$(__gs-not-null-or-prompt "$2" "Specify target branch name: ")
+  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $base..$target
+}
+
+main "$@"
