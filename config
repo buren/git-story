@@ -13,6 +13,7 @@ export GS_PRE_COMMIT_HOOK
 # Project integration
 export GS_PACKAGE
 export GS_DEPLOY
+export GS_TAG_RELEASE
 export GS_INSTALL
 export GS_PRODUCTION_BRANCH='heads/master'
 export GS_NEXT_VERSION_BRANCH

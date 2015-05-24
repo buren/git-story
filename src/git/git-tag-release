@@ -15,7 +15,7 @@ main-exec() {
   git fetch --tags
   __gs-print "Previous releases:"
   __gs-print "========================"
-  git tag --list -n
+  git tag --list -n | tail -n10
   __gs-print "========================"
 
   __gs-print "Parent tag and current commit:"
@@ -31,6 +31,12 @@ main-exec() {
     __gs-error "ERROR:"
     __gs-print "\t Tag can *not* contain spaces!"
     die
+  fi
+
+  if [[ ! -z $GS_TAG_RELEASE ]]; then
+    __gs-info "Calling tag-release hook."
+    eval $GS_TAG_RELEASE "$@"
+    __gs-info "Done"
   fi
 
   if [[ $GS_SIGN_RELEASE == true ]]; then

@@ -118,6 +118,7 @@ will exit and print conflicted files if any merge conflicts are found.
 * `git deploy` package project, runs `GS_DEPLOY`.
 * `git install-project` install project, runs `GS_INSTALL`.
 * `git test`    package project, runs `GS_PRE_COMMIT_HOOK`.
+* `git tag-release` tags release, runs `GS_TAG_RELEASE`.
 
 ### Statistics extensions
 * Show statistics for repository
@@ -170,6 +171,7 @@ Available options and their [default](https://github.com/buren/git-story/blob/ma
     GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
     GS_PACKAGE=''                       # Shell command for 'package'
     GS_DEPLOY=''                        # Shell command for 'deploy'
+    GS_TAG_RELEASE=''                   # Shell command for 'tag-release'
     GS_INTSALL=''                       # Shell command for 'install'
     GS_HAS_GITHUB=true                  # Project has GitHub.
     GS_PROJECT_URL=''                   # Project URL
