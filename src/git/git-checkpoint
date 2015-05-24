@@ -1,0 +1,18 @@
+#!/bin/bash
+source $GS_INIT_PATH
+__git-story-init
+
+USAGE="<args>
+
+Description goes here..."
+
+main() {
+  __gs-check-usage-param $1
+  main-exec "$@"
+}
+
+main-exec() {
+  git addcom "CHECKPOINT"
+}
+
+main "$@"
