@@ -2,7 +2,7 @@
 source $GS_INIT_PATH
 __git-story-init
 
-USAGE="<base> <target>
+USAGE="<base>
 
 Diff commits between branches."
 
@@ -14,7 +14,7 @@ main() {
 main-exec() {
   local branch=
   local base=$(__gs-not-null-or-prompt "$1" "Specify base branch name: ")
-  local target=$(__gs-not-null-or-prompt "$2" "Specify target branch name: ")
+  local target="$(__gs-current-branch)"
   git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $base..$target
 }
 
