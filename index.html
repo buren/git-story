@@ -1,45 +1,26 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>git-story by buren</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/buren/git-story">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/buren/git-story/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/buren/git-story/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <section class="page-header">
+      <h1 class="project-name">git-story</h1>
+      <h2 class="project-tagline">Simplified git workflow.</h2>
+      <a href="https://github.com/buren/git-story" class="btn">View on GitHub</a>
+      <a href="https://github.com/buren/git-story/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/buren/git-story/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>git-story</h1>
-          <p>Simplified git workflow.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/buren">buren</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <h1>
-<a name="git-story" class="anchor" href="#git-story"><span class="octicon octicon-link"></span></a>git-story</h1>
+    <section class="main-content">
+      <h1>
+<a id="git-story" class="anchor" href="#git-story" aria-hidden="true"><span class="octicon octicon-link"></span></a>git-story</h1>
 
 <p>Various extensions to git, documented below.</p>
 
@@ -63,18 +44,19 @@
 </li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#license">License</a></li>
-</ul><h2>
-<a name="install-git-story" class="anchor" href="#install-git-story"><span class="octicon octicon-link"></span></a>Install git-story</h2>
+</ul>
 
-<div class="highlight highlight-bash"><pre>curl -L http://bit.ly/1hHt20S <span class="p">|</span> bash
-</pre></div>
+<h2>
+<a id="install-git-story" class="anchor" href="#install-git-story" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install git-story</h2>
+
+<div class="highlight highlight-bash"><pre>curl -L http://bit.ly/1hHt20S <span class="pl-k">|</span> bash</pre></div>
 
 <p>The above command will install and inject an import of the git-story script to either <code>.bash_profile</code>, <code>.bashrc</code> or <code>.zshrc</code> (in that order).  See <a href="https://github.com/buren/git-story/blob/master/setup/install">install script</a> for details.</p>
 
 <p>Reload your shell to initialize git-story extensions.</p>
 
 <h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
 <p>Branch model:</p>
 
@@ -84,36 +66,35 @@
 <li>Save local changes and sync with remote <code>git finish</code>
 </li>
 <li>Create a pull request</li>
-</ol><p>The principle is that you develop each new feature in its own branch and when
+</ol>
+
+<p>The principle is that you develop each new feature in its own branch and when
 you're done you push it and create a pull request. See <a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a> branch model.
 Note that <code>git feature</code> and <code>git finish</code> are flexible. They both take an optional argument <em>target-branch</em>, which the current/new branch will sync with.</p>
 
 <h2>
-<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature branch-name   <span class="c"># Sets up clean workspace based on remote master.</span>
-<span class="nv">$ </span>git finish              <span class="c"># Commit changes, updates current and local branch.</span>
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ git feature branch-name   <span class="pl-c"># Sets up clean workspace based on remote master.</span>
+$ git finish              <span class="pl-c"># Commit changes, updates current and local branch.</span></pre></div>
 
 <p>Output <a href="http://showterm.io/ec6267151db96042b6cf8">example</a> (video).</p>
 
 <h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
 <p>Print command usage:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git &lt;git-story-extension&gt; --usage
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ git <span class="pl-k">&lt;</span>git-story-extension<span class="pl-k">&gt;</span> --usage</pre></div>
 
 <h3>
-<a name="branching-extensions" class="anchor" href="#branching-extensions"><span class="octicon octicon-link"></span></a>Branching extensions</h3>
+<a id="branching-extensions" class="anchor" href="#branching-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Branching extensions</h3>
 
 <ul>
 <li>
 <p>Start developing a feature</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git feature &lt;branch-name&gt; &lt;target-branch&gt;
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ git feature <span class="pl-k">&lt;</span>branch-name<span class="pl-k">&gt;</span> <span class="pl-k">&lt;</span>target-branch<span class="pl-k">&gt;</span></pre></div>
 
 <p>this will create a new branch <em>branch-name</em> based of master or specified <em>target-branch</em>. If the branch exists on remote pull the latest changes. Ensures the uniqueness of branch name at remote. Pushes the created branch to remote.
 Executes:</p>
@@ -132,8 +113,7 @@ Executes:</p>
 <li>
 <p>Commit and sync with repository</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git finish &lt;target-branch&gt;
-</pre></div>
+<div class="highlight highlight-bash"><pre>$ git finish <span class="pl-k">&lt;</span>target-branch<span class="pl-k">&gt;</span></pre></div>
 
 <p>commit the changes you've made and merge changes with <em>target-branch</em>.
 <em>target-branch</em> is optional and the default is <em>target-branch</em>.
@@ -160,8 +140,10 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <code>git delete-branch</code> delete branch from remote and local.</li>
 <li>
 <code>git delete-merged</code> delete all merged branches locally and at remote.</li>
-</ul><h3>
-<a name="convenience-extensions" class="anchor" href="#convenience-extensions"><span class="octicon octicon-link"></span></a>Convenience extensions</h3>
+</ul>
+
+<h3>
+<a id="convenience-extensions" class="anchor" href="#convenience-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convenience extensions</h3>
 
 <ul>
 <li>
@@ -192,8 +174,12 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <code>git rename-tag</code> rename an existing release.</li>
 <li>
 <code>git changelog</code> generate changelog from last tag.</li>
-</ul><h3>
-<a name="log-extensions" class="anchor" href="#log-extensions"><span class="octicon octicon-link"></span></a>Log extensions</h3>
+<li>
+<code>git squash-commits</code> squash given number of commits together.</li>
+</ul>
+
+<h3>
+<a id="log-extensions" class="anchor" href="#log-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log extensions</h3>
 
 <ul>
 <li>
@@ -208,8 +194,10 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <code>git local-commits</code> show local commits that haven't been pushed to remote.</li>
 <li>
 <code>git commits-since</code> show commits since given time.</li>
-</ul><h3>
-<a name="project-integration-extensions" class="anchor" href="#project-integration-extensions"><span class="octicon octicon-link"></span></a>Project integration extensions</h3>
+</ul>
+
+<h3>
+<a id="project-integration-extensions" class="anchor" href="#project-integration-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project integration extensions</h3>
 
 <ul>
 <li>
@@ -222,8 +210,12 @@ will exit and print conflicted files if any merge conflicts are found.</li>
 <code>git install-project</code> install project, runs <code>GS_INSTALL</code>.</li>
 <li>
 <code>git test</code>    package project, runs <code>GS_PRE_COMMIT_HOOK</code>.</li>
-</ul><h3>
-<a name="statistics-extensions" class="anchor" href="#statistics-extensions"><span class="octicon octicon-link"></span></a>Statistics extensions</h3>
+<li>
+<code>git tag-release</code> tags release, runs <code>GS_TAG_RELEASE</code>.</li>
+</ul>
+
+<h3>
+<a id="statistics-extensions" class="anchor" href="#statistics-extensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistics extensions</h3>
 
 <ul>
 <li>
@@ -250,8 +242,10 @@ types:
 <code>git effort</code> like churn, but prettier and with active day count.</li>
 <li>
 <code>git summary</code> show summary for current project.</li>
-</ul><h3>
-<a name="git-story-interactions" class="anchor" href="#git-story-interactions"><span class="octicon octicon-link"></span></a>git-story interactions</h3>
+</ul>
+
+<h3>
+<a id="git-story-interactions" class="anchor" href="#git-story-interactions" aria-hidden="true"><span class="octicon octicon-link"></span></a>git-story interactions</h3>
 
 <ul>
 <li>
@@ -260,16 +254,21 @@ types:
 <code>git gs-extend &lt;extension-name&gt;</code> add new git-story extension to git.</li>
 <li>
 <code>git gs</code> list git-story extensions.</li>
-</ul><h3>
-<a name="misc" class="anchor" href="#misc"><span class="octicon octicon-link"></span></a>Misc</h3>
+</ul>
+
+<h3>
+<a id="misc" class="anchor" href="#misc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Misc</h3>
 
 <ul>
 <li>
 <code>git repl</code> git read-eval-print-loop (REPL).</li>
-</ul><h2>
-<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+</ul>
 
-<p>For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.</p>
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Configure <code>git-story</code> by creating a file <code>~/.gitstoryrc</code>
+For project specific configurations create a file named <code>.gitstoryrc</code> at the project's git root.</p>
 
 <p>See full example with comments in <a href="https://github.com/buren/git-story/blob/master/docs/gitstoryrc-example">docs/gitstoryrc-example</a>.</p>
 
@@ -279,12 +278,17 @@ types:
 GS_GIT_STORY_BRANCH='master'        # Target branch for 'feature' &amp; 'finish'
 GS_LOCAL_MERGE=false                # Perform local merge on 'finish'
 GS_PRINT_CHECKLIST=false            # Print checklist before 'finish'
+GS_GRAPHIC_PROMPT=false             # Show all prompts (on OSX) in a GUI dialog
 GS_PROMPT_ON_DONE=false             # Prompt user before 'finish'
 GS_TEST_ON_DONE=true                # Run test command before 'finish'
+GS_SIGN_RELEASE=true                # Sign tags created with 'tag-release'
+GS_SIGN_COMMITS=true                # Sign each commit created with addcom, with GPG-key
+GS_SIGN_COMMITS_STRING=true         # Sign each commit created with addcom, with --signoff
 GS_CHECKLIST_MESSAGE='...'          # Checklist string for 'finish'
 GS_PRE_COMMIT_HOOK=''               # A command that runs all tests
 GS_PACKAGE=''                       # Shell command for 'package'
 GS_DEPLOY=''                        # Shell command for 'deploy'
+GS_TAG_RELEASE=''                   # Shell command for 'tag-release'
 GS_INTSALL=''                       # Shell command for 'install'
 GS_HAS_GITHUB=true                  # Project has GitHub.
 GS_PROJECT_URL=''                   # Project URL
@@ -296,7 +300,7 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 </code></pre>
 
 <h2>
-<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
+<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <ul>
 <li>The software is supplied “as is” and all use is at your own risk (see <a href="https://github.com/buren/git-story/blob/master/LICENSE">license</a>)</li>
@@ -323,15 +327,22 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 </li>
 <li>Uninstall git-story: <code>rm -rf ~/.git-story</code>
 </li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>git-story is released under the <a href="https://github.com/buren/git-story/blob/master/LICENSE">MIT License</a>.</p>
-      </section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-              <script type="text/javascript">
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/buren/git-story">git-story</a> is maintained by <a href="https://github.com/buren">buren</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -344,3 +355,4 @@ GS_GIT_STORY_EXT_BRANCH='master'    # Target branch for git-story extension
 
   </body>
 </html>
+
