@@ -104,6 +104,11 @@ __gs-not-null-or-prompt() {
 
 __gs-prompt-for-result() {
   if [[ "$(uname)" == "Darwin" && $GS_GRAPHIC_PROMPT == true ]]; then
+    # TODO: Seems like this causes bash to throw:
+    #   $HOME/.git-story/src/common/utils: line 107: unexpected EOF while looking for matching `)'
+    #   $HOME/.git-story/src/common/utils: line 122: syntax error: unexpected end of file
+    # not sure why I haven't seen this before, perhaps I just missed it or it has something
+    # to do with the bash version..
     local p_res=$(/usr/bin/osascript << EOT
       activate
       display dialog "$1" default answer "" buttons {"OK"} default button 1
