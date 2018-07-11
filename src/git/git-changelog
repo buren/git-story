@@ -8,8 +8,8 @@ USAGE="[options] <file>
 
 optional:
   --tag, changelog for specific tag
-  --list, print changelog
-  --no-merges, filters out merge commits
+  --list, print changelog (default)
+  --no-merges, filters out merge commits (default)
   file, file to write changelog to
 
 Generate changelog from last tag."
@@ -21,9 +21,9 @@ main() {
 
 main-exec() {
   FILE=""
-  LIST=false
+  LIST=true
   TAG="n.n.n"
-  GIT_LOG_OPTS=""
+  GIT_LOG_OPTS="--no-merges"
 
   while [ "$1" != "" ]; do
     case $1 in
