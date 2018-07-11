@@ -101,7 +101,7 @@ will exit and print conflicted files if any merge conflicts are found.
 * `git todos` list all TODOS and FIXMES.
 * `git tag-release` create a new tagged release.
 * `git rename-tag` rename an existing release.
-* `git changelog` generate changelog from last tag.
+* `git changelog` print change log from last tag.
 * `git squash-commits` squash given number of commits together.
 
 ### Log extensions
