@@ -2,9 +2,9 @@
 source $GS_INIT_PATH
 __git-story-init
 
-USAGE="<base>
+USAGE="<base> <target>
 
-Diff commits between branches."
+Diff commits between branches - target argument defaults to current branch."
 
 main() {
   __gs-check-usage-param $1
@@ -15,7 +15,7 @@ main-exec() {
   local branch=
   local base=$(__gs-not-null-or-prompt "$1" "Specify base branch name: ")
   local target="$(__gs-current-branch)"
-  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $base..$target
+  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $base..${2:-$target}
 }
 
 main "$@"
