@@ -12,10 +12,15 @@ main() {
 }
 
 main-exec() {
-  local branch=
   local base=$(__gs-not-null-or-prompt "$1" "Specify base branch name: ")
-  local target="$(__gs-current-branch)"
-  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $base..${2:-$target}
+  local target=${2:-"$(__gs-current-branch)"}
+
+  git log   \
+    --graph \
+    --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' \
+    --abbrev-commit \
+    --date=relative \
+    $base..$target
 }
 
 main "$@"
