@@ -20,7 +20,7 @@ Various extensions to git, documented below.
 
 ## Install git-story
 ```bash
-curl -L http://bit.ly/1hHt20S | bash
+curl -L https://raw.githubusercontent.com/buren/git-story/master/setup/install | bash
 ```
 The above command will install and inject an import of the git-story script to either `.bash_profile`, `.bashrc` or `.zshrc` (in that order).  See [install script](https://github.com/buren/git-story/blob/master/setup/install) for details.
 
