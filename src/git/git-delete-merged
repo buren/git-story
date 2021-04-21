@@ -17,6 +17,7 @@ main-exec() {
   git branch --merged | \
     grep -v "\*" | \
     grep -v "master" | \
+    grep -v "main" | \
     grep -v "next" | \
     grep -v "dev" | \
     grep -v "development" | \
