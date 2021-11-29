@@ -1,4 +1,0 @@
-
-if [[ -d ~/.git-story/ ]]; then
-  source ~/.git-story/setup/import
-fi

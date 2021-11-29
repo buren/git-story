@@ -1,5 +1,0 @@
-PATH=$PATH:$HOME/.git-story/src/git
-export PATH
-
-source $HOME/.git-story/src/git-story
-source $HOME/.git-story/config
